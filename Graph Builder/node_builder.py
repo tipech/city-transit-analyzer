@@ -31,4 +31,5 @@ for route in routes_list:
 	stops_map = filter((lambda x: x.tag=="stop"), stops_tree[0])
 	stops_map = map((lambda x: x.attrib), stops_map)
 	print(list(stops_map))
+	#TEST
 	# print(stops_tree[0][1])
