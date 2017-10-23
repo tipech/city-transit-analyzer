@@ -18,18 +18,17 @@ def main():
 	# With the "static" argument, build the static network
 	if len(sys.argv) > 2 and (sys.argv[1] == "static" or sys.argv[1] == "-s" ):
 
-		agency = sys.argv[2]
-		build_static_network(agency)
+		agencies = sys.argv[2].split(",")
+		build_static_network(agencies)
 
 	# With the "distances" argument, calculate the distances between stops
 	elif len(sys.argv) > 2 and (sys.argv[1] == "distances" or sys.argv[1] == "-d" ):
 
-		agency = sys.argv[2]
-		calculate_distances(agency)
+		calculate_distances(sys.argv[2])
 
 	# With wrong arguments, print usage help message
 	else:
-		print("Usage: builder <static|distances> <agency>")
+		print("Usage: builder <static|distances> <agency>[,<agency_2>,...]")
 
 		
 
@@ -38,11 +37,11 @@ def main():
 # =			Static Network Construction 		=
 # ===============================================
 
-def build_static_network(agency):
+def build_static_network(agencies):
 	"""Construct the atops & connection network of the transport system from all the routes"""
 
-	# Get the list of routes and stops for this agency
-	routes_list = get_routes_list(agency)
+	# Get the list of routes and stops for these agencies
+	routes_list = get_routes_list(agencies)
 	print("Found " + str(len(routes_list)) + " routes")
 
 	# Hold all the stops and their connections
@@ -51,32 +50,37 @@ def build_static_network(agency):
 
 	# Iterate through routes
 	for index, route in enumerate(routes_list):
-		route_xml = ET.fromstring( call_API(agency, "routeConfig", route) )[0]
+		route_xml = ET.fromstring( call_API(route["agency"], "route_data", route["tag"]) )[0]
 		stops_list = stops_list + get_route_stops(route_xml)
 		connections_list = connections_list + get_route_connections(route_xml)
 
 		print("Extracted data from " + str( index + 1 ) + "/" + str(len(routes_list)) + " routes", end="\r")
 
-	# After all routes, consolidate data
+	# # After all routes, consolidate data
 	stops_list = consolidate_stops(stops_list)
 	connections_list = consolidate_connections(connections_list)
 
 	print("\nFound " + str(len(stops_list)) + " stops and " + str(len(connections_list)) + " connections")
 
 	# Write results to files
-	write_stops_file(agency, stops_list)
-	write_connections_file(agency, connections_list)
+	write_stops_file(','.join(agencies), stops_list)
+	write_connections_file(','.join(agencies), connections_list)
 
 
-def get_routes_list(agency):
-	"""Use the API to retrieve a list of the agency's routes."""
+def get_routes_list(agencies):
+	"""Use the API to retrieve a list of the agencies's routes."""
 
-	routes_tree = ET.fromstring(call_API(agency, "routeList"))
-	# we are only interested in the route tags
-	routes_map = map((lambda x: x.attrib["tag"]), routes_tree)
-	# convert to list
-	#return list(routes_map)
-	return list(routes_map)[:10] # DEBUG only the first 10 routes
+	routes_list = []
+
+	for agency in agencies:
+
+		routes_tree = ET.fromstring(call_API(agency, "route_list"))
+		# we are only interested in the route tags
+		routes_map = map((lambda x: {"tag": x.attrib["tag"], "agency": agency}), routes_tree)
+		# convert to list
+		routes_list = routes_list + list(routes_map)
+
+	return routes_list[:10] # DEBUG only the first 10 routes
 
 
 def get_route_stops(route_xml):
@@ -152,80 +156,86 @@ def merge_connections(connection_1, connection_2):
 # =				Distance Calculation			=
 # ===============================================
 
-def calculate_distances(agency):
+def calculate_distances(directory):
 	"""Calculate the straight-line and road distances between the connected stops of the network."""
 
 	# read the previously-built network data
-	stops_list = read_stops_file(agency)
-	connections_list = read_connections_file(agency)
+	stops_list = read_stops_file(directory)
+	connections_list = read_connections_file(directory)
 
-
+	connections_list = list(map(lambda connection: build_single_connection(connection, stops_list), connections_list))
+		
 	# pprint(connections_list)
+	write_connections_distances_file(directory, connections_list)
 
 
-	# @Abbas distance calculation here
-	# you can use write_connections_distances_file() at the end which expects connection_list to be 
-	# [
-	#   {"from": ...  , "to": ...  , "routes": ...|...|...  , "straight-distance": ...  , "road-distance": ...},
-	#   ...,  ...,  ...  ]
+def build_single_connection(connection,stops_list):
 
-	result_array = []
-	
+	stop1 = connection['from']
+	stop2 = connection['to']
+	routes = connection['routes']
+	flag1 = 0
+
 	#Radius of the Earth in kilometeres, used for 37 degrees, like Washington D.C.
 	R = 6373
-	for index, connection in enumerate(connections_list):
-		write_connections_distances_file(agency, result_array)
-		stop1 = connection['from']
-		stop2 = connection['to']
-		routes = connection['routes']
-		flag1 = 0
-		for index,  stop in enumerate(stops_list): 
-			if (stop['tag'] == stop1):
-				lat1 = float(stop['lat']) * (math.pi / 180)
-				lon1 = float(stop['lon']) * (math.pi / 180)
-				if flag1 == 0:
-					flag1 = 1
-					continue
-				elif flag1 == 1:
-				 	break
-			if (stop['tag'] == stop2):
-				lat2 = float(stop['lat']) * (math.pi / 180)
-				lon2 = float(stop['lon']) * (math.pi / 180)
-				if flag1 == 0:
-					flag1 = 1
-					continue
-				elif flag1 == 1:
-					break
-		dlon = lon2 - lon1
-		dlat = lat2 - lat1
-		a = ((math.sin(dlat/2))**2) + (math.cos(lat1) * math.cos(lat2) * ((math.sin(dlon/2))**2))
-		c = 2 * math.atan2(math.sqrt(a),  math.sqrt(1-a))
-		d = R * c
-		#write one line to an array, to be written to the file after the completion of the search
-		result_array.append({"from": stop1, "to": stop2, "routes": routes, "straight-distance": str(d), "road-distance": str(0)})
-	pprint(result_array)
-	write_connections_distances_file(agency, result_array)
-	a = 1
+
+	for stop in stops_list: 
+		if (stop['tag'] == stop1):
+			lat1 = float(stop['lat']) * (math.pi / 180)
+			lon1 = float(stop['lon']) * (math.pi / 180)
+			if flag1 == 0:
+				flag1 = 1
+				continue
+			elif flag1 == 1:
+			 	break
+		if (stop['tag'] == stop2):
+			lat2 = float(stop['lat']) * (math.pi / 180)
+			lon2 = float(stop['lon']) * (math.pi / 180)
+			if flag1 == 0:
+				flag1 = 1
+				continue
+			elif flag1 == 1:
+				break
+	dlon = lon2 - lon1
+	dlat = lat2 - lat1
+	a = ((math.sin(dlat/2))**2) + (math.cos(lat1) * math.cos(lat2) * ((math.sin(dlon/2))**2))
+	c = 2 * math.atan2(math.sqrt(a),  math.sqrt(1-a))
+	d = R * c
+
+	return {"from": stop1, "to": stop2, "routes": routes, "straight-distance": str(d), "road-distance": str(0)}
+
+
+# def calculate_road_distance(from_stops,to_stops):
+	# len(from_stops) < 25
+	# ...
+	# ...
+
+
+	# return [
+	# 		{"from":"1324","to":"5","distance":25},
+	# 		{"from":"1342","to":"5","distance":25},
+	# 		{"from":"1","to":"5","distance":25},
+	# 	]
 
 # ===============================================
 # =					File IO 					=
 # ===============================================\
 
-def create_agency_folder(agency):
-	"""Creates a folder for this agency if one doesn't already exist."""
+def create_agencies_folder(agencies):
+	"""Creates a folder for this agencies if one doesn't already exist."""
 
-	if not os.path.isdir(agency):
-		os.makedirs(agency)
+	if not os.path.isdir(agencies):
+		os.makedirs(agencies)
 
 
-def read_stops_file(agency):
+def read_stops_file(agencies):
 	"""Opens stops file and reads contents into a list."""
 
 	# read the file and split the rows into a list
 	try:
-		stops_file = open(agency + "/stops.csv","r+")
+		stops_file = open(agencies + "/stops.csv","r+")
 	except FileNotFoundError:
-		print("Error: Stops file missing for this agency!")
+		print("Error: Stops file missing for this agencies!")
 		sys.exit()
 
 	stops_list_csv = stops_file.read().split("\n")
@@ -239,14 +249,14 @@ def read_stops_file(agency):
 	return stops_list
 
 
-def read_connections_file(agency):
+def read_connections_file(agencies):
 	"""Opens connections file and reads contents into a list."""
 
 	# read the file and split the rows into a list
 	try:
-		connections_file = open(agency + "/connections.csv","r+")
+		connections_file = open(agencies + "/connections.csv","r+")
 	except FileNotFoundError:
-		print("Error: Connections file missing for this agency!")
+		print("Error: Connections file missing for this agencies!")
 		sys.exit()
 
 	connections_list_csv = connections_file.read().split("\n")
@@ -286,12 +296,12 @@ def read_connection_entry(connection_text):
 		return None
 
 
-def write_stops_file(agency, stops_list):
+def write_stops_file(directory, stops_list):
 	"""Creates a new or empties the existing stops file and fills it with the list of stops."""
 
 	# (Re)create empty stops file
-	create_agency_folder(agency)
-	stops_file = open(agency + "/stops.csv", "w+")
+	create_agencies_folder(directory)
+	stops_file = open(directory + "/stops.csv", "w+")
 
 	# Write stops file
 	stops_file.write("tag,title,lat,lon\n")
@@ -302,12 +312,12 @@ def write_stops_file(agency, stops_list):
 	stops_file.close()
 
 
-def write_connections_file(agency, connections_list):
+def write_connections_file(directory, connections_list):
 	"""Creates a new or empties the existing connections file and fills it with the list of connections."""
 
 	# (Re)create empty connections file
-	create_agency_folder(agency)
-	connections_file = open(agency + "/connections.csv", "w+")
+	create_agencies_folder(directory)
+	connections_file = open(directory + "/connections.csv", "w+")
 
 	# Write connections file
 	connections_file.write("from,to,routes\n")
@@ -318,11 +328,11 @@ def write_connections_file(agency, connections_list):
 	connections_file.close()
 
 
-def write_connections_distances_file(agency, connections_list):
+def write_connections_distances_file(directory, connections_list):
 	"""Creates a new or empties the existing connections file and fills it with the list of connections with distances."""
 
 	# (Re)create empty connections file
-	connections_file = open(agency + "/connections2.csv", "w+")
+	connections_file = open(directory + "/connections.csv", "w+")
 
 	# Write connections file
 	connections_file.write("from,to,routes,straight-distance,road-distance\n")
@@ -358,19 +368,24 @@ def call_API(agency, command, route = "", stop = ""):
 
 	"""
 
-	# TODO change these to arguments so that we can use other agencies
-	agency = "ttc"
-	agency_API_base = "http://webservices.nextbus.com/service/publicXMLFeed?command="
+	APIs_dict = {
+		"ttc":{
+			"api_base":"http://webservices.nextbus.com/service/publicXMLFeed?a=ttc&command=",
+			"route_option":"&r=",
+			"commands":{
+				"route_list":"routeList",
+				"route_data":"routeConfig"
+				}
+			}
+		}
 
-	request_url = agency_API_base + command + '&a=' + agency 
-
-	if command == 'routeList':
+	if command == 'route_list':
 		options_url = ''
-	elif command == 'routeConfig' and route != '':
-		options_url = '&r=' + route
+	elif command == 'route_data' and route != '':
+		options_url = APIs_dict[agency]['route_option'] + route
 
+	return requests.get(APIs_dict[agency]['api_base'] + APIs_dict[agency]['commands'][command] +  options_url).text
 
-	return requests.get(request_url + options_url).text
 
 
 
