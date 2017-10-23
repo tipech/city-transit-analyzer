@@ -1,4 +1,4 @@
-import requests, sys, os
+import requests, sys, os,  math
 import xml.etree.ElementTree as ET
 from itertools import groupby
 from functools import reduce
@@ -75,8 +75,8 @@ def get_routes_list(agency):
 	# we are only interested in the route tags
 	routes_map = map((lambda x: x.attrib["tag"]), routes_tree)
 	# convert to list
-	return list(routes_map)
-	# return list(routes_map)[100:110] # DEBUG only the first 10 routes
+	#return list(routes_map)
+	return list(routes_map)[:10] # DEBUG only the first 10 routes
 
 
 def get_route_stops(route_xml):
@@ -159,6 +159,7 @@ def calculate_distances(agency):
 	stops_list = read_stops_file(agency)
 	connections_list = read_connections_file(agency)
 
+
 	# pprint(connections_list)
 
 
@@ -168,7 +169,43 @@ def calculate_distances(agency):
 	#   {"from": ...  , "to": ...  , "routes": ...|...|...  , "straight-distance": ...  , "road-distance": ...},
 	#   ...,  ...,  ...  ]
 
-
+	result_array = []
+	
+	#Radius of the Earth in kilometeres, used for 37 degrees, like Washington D.C.
+	R = 6373
+	for index, connection in enumerate(connections_list):
+		write_connections_distances_file(agency, result_array)
+		stop1 = connection['from']
+		stop2 = connection['to']
+		routes = connection['routes']
+		flag1 = 0
+		for index,  stop in enumerate(stops_list): 
+			if (stop['tag'] == stop1):
+				lat1 = float(stop['lat']) * (math.pi / 180)
+				lon1 = float(stop['lon']) * (math.pi / 180)
+				if flag1 == 0:
+					flag1 = 1
+					continue
+				elif flag1 == 1:
+				 	break
+			if (stop['tag'] == stop2):
+				lat2 = float(stop['lat']) * (math.pi / 180)
+				lon2 = float(stop['lon']) * (math.pi / 180)
+				if flag1 == 0:
+					flag1 = 1
+					continue
+				elif flag1 == 1:
+					break
+		dlon = lon2 - lon1
+		dlat = lat2 - lat1
+		a = ((math.sin(dlat/2))**2) + (math.cos(lat1) * math.cos(lat2) * ((math.sin(dlon/2))**2))
+		c = 2 * math.atan2(math.sqrt(a),  math.sqrt(1-a))
+		d = R * c
+		#write one line to an array, to be written to the file after the completion of the search
+		result_array.append({"from": stop1, "to": stop2, "routes": routes, "straight-distance": str(d), "road-distance": str(0)})
+	pprint(result_array)
+	write_connections_distances_file(agency, result_array)
+	a = 1
 
 # ===============================================
 # =					File IO 					=
@@ -285,15 +322,15 @@ def write_connections_distances_file(agency, connections_list):
 	"""Creates a new or empties the existing connections file and fills it with the list of connections with distances."""
 
 	# (Re)create empty connections file
-	connections_file = open(agency + "/connections.csv", "w+")
+	connections_file = open(agency + "/connections2.csv", "w+")
 
 	# Write connections file
-	connections_file.write("from,to,routes\n")
+	connections_file.write("from,to,routes,straight-distance,road-distance\n")
 	for connection in connections_list:
 		connections_file.write(
 			  connection['from'] + ","
 			+ connection['to'] + ","
-			+ '|'.join(connection['routes'])
+			+ '|'.join(connection['routes']) + ","
 			+ connection['straight-distance'] + ","
 			+ connection['road-distance']
 			+ "\n" )
