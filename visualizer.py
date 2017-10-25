@@ -1,5 +1,6 @@
 import sys
 import networkx as nx
+import matplotlib.pyplot as plt
 from pprint import pprint
 
 from common import *
@@ -38,9 +39,11 @@ def draw_static_network(directory):
 	stops_list = read_stops_file(directory)
 	connections_list = read_connections_file(directory)
 
-	G = nx.Graph()
+	G = nx.DiGraph()
 	G.add_nodes_from(convert_stops_to_tuples(stops_list))
 	G.add_edges_from(convert_connections_to_tuples(connections_list))
+
+	# H = nx.petersen_graph()
 
 	# pprint(stops_list)
 
@@ -64,7 +67,7 @@ def convert_connections_to_tuples(connections_list):
 	map_func = lambda x: (x['from'], x['to'], {'routes':x['routes']} )
 
 	return list(map(map_func, connections_list))
-	
+
 
 
 

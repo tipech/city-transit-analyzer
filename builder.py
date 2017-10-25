@@ -250,6 +250,9 @@ def call_transit_API(agency, command, route = "", stop = ""):
 				'route_list':"routeList",
 				'route_data':"routeConfig"
 				}
+			},
+		'nextTrain':{
+			'api_base':"sadda"
 			}
 		}
 
