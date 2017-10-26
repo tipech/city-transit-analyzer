@@ -85,7 +85,7 @@ def get_routes_list(agencies):
 		# convert to list
 		routes_list = routes_list + list(routes_map)
 
-	return routes_list[:10] # DEBUG only the first 10 routes
+	return routes_list[100:104] # DEBUG only the first 10 routes
 
 
 def get_route_stops(route_xml):

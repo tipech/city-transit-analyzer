@@ -1,719 +1,257 @@
 tag,title,lat,lon
-263,Davenport Rd At Bedford Rd,43.6744499,-79.3997
-264,Davenport Rd At Dupont St,43.67554,-79.40196
-265,Davisville Ave At Cleveland St,43.7020999,-79.37815
-311,2495 Eglinton Ave East At South Service Rd (East),43.73404,-79.2597999
-317,Eglinton Ave East At Brimley Rd West Side,43.7366499,-79.24876
-359,Evans Ave At Browns Line,43.61078,-79.5489899
-384,Bathurst St At Elm Ridge Dr,43.7053299,-79.4264099
-386,Bathurst St At Glencairn Ave,43.7122399,-79.4279799
-388,Bathurst St At St Clair Ave West,43.6833099,-79.4184299
-394,Bayview Ave At Vallyanna Dr,43.7241999,-79.37944
-417,Bellamy Rd North At Progress Ave,43.78037,-79.2440499
-461,Lonsdale Rd At Avenue Rd East Side,43.69084,-79.4022899
-493,Queen'S Park Cres East At St Joseph St North Side,43.66528,-79.39124
-494,Queen'S Park Cres West At Queen'S Park Cres West,43.6662399,-79.3932299
-495,Queen'S Park Cres West At University Library,43.66215,-79.39276
-543,Sherway Gardens Rd At Sherway Gate Mall),43.6098199,-79.55794
-599,Oconnor Dr At Pape Ave,43.6931299,-79.35043
-707,Bathurst St At St Clair Ave West North Side,43.6835399,-79.41834
-725,Chaplin Cres At Avenue Rd,43.69876,-79.40589
-727,Glencairn Ave At Danesbury Ave,43.70826,-79.4468699
-730,Davisville Ave At Pailton Cres,43.69921,-79.3920099
-735,1100 Bellamy Rd North,43.77621,-79.24237
-737,Davisville Ave At Belle Ayre Blvd,43.7010099,-79.38344
-751,Avenue Rd At Dupont St,43.67729,-79.39775
-767,Davisville Ave At Mt Pleasant Rd,43.70045,-79.3866799
-805,Van Horne Ave At Hobart Dr,43.7880002,-79.3499009
-808,St Clair Ave East At Brimley Rd West Side,43.72085,-79.2419599
-810,St Clair Ave East At Danforth Rd,43.7166699,-79.26028
-811,St Clair Ave East At Elfreda Blvd,43.7136799,-79.27313
-812,St Clair Ave East At Kennedy Rd,43.71636,-79.2616999
-837,Steeles Ave West At Bathurst St East Side,43.7926,-79.4445799
-852,Wellness Way At Hospital Rd (Odette Cancer Centre),43.72138,-79.37777
-853,Wellness Way At Hospital Rd (Odette Cancer Centre),43.7215499,-79.37779
-966,Oconnor Dr At Don Mills Rd West Side,43.6955299,-79.34007
-999,Kingston Rd At Victoria Park Ave,43.6809099,-79.2839199
-1001,Royal York Rd At Bloor St West,43.64718,-79.51115
-1019,Bathurst St At Sheppard Ave West,43.75566,-79.43864
-1025,Glencairn Ave At Haven Rd,43.7062,-79.4580699
-1040,2395 Bayview Ave (Bob Rumball Centre For The Deaf),43.7339699,-79.38124
-1047,Van Horne Ave At Houston Cres (West),43.7876699,-79.3476499
-1121,Bellamy Rd North At Lawrence Ave East,43.7575499,-79.23509
-1143,Bathurst St At Allingham Gardens South Side,43.7399099,-79.4347399
-1149,Davisville Ave At Yonge St East Side,43.6983399,-79.39619
-1158,Glencairn Ave At Bathurst St,43.71222,-79.4283999
-1163,Don Mills Rd At Godstone Rd,43.78267,-79.34892
-1164,Bathurst St At Southbourne Ave,43.7382699,-79.43412
-1190,Kingston Rd At Birchcliff Ave,43.69136,-79.2648199
-1218,Bayview Ave At Ruth Ave,43.7942199,-79.3940999
-1239,Bathurst St At Lyonsgate Dr,43.74291,-79.43547
-1245,Bellamy Rd North At Eglinton Ave East North Side,43.7408099,-79.23211
-1262,Bathurst St At Ellerslie Ave North Side,43.76589,-79.44086
-1270,Bathurst St At McAllister Rd North Side,43.75352,-79.43787
-1315,Gelncairn Ave At Dalemount Ave,43.7112999,-79.43281
-1320,Bathurst St At Lawrence Ave West,43.71909,-79.42961
-1329,Don Mills Rd At Goodview Rd,43.7839999,-79.35301
-1330,Brimley Rd South At Kingston Rd South Side,43.7177199,-79.24021
-1343,Bayview Ave At Heathcote Ave,43.7520599,-79.38479
-1405,Avenue Rd At Boswell Ave,43.67262,-79.39561
-1408,Corporate Dr At Lee Centre Dr (West),43.78045,-79.2471599
-1410,Bay St At Queen St West,43.65179,-79.38148
-1413,Bay St At Grosvenor St,43.6623899,-79.38623
-1414,Oconnor Dr At Derwyn Rd,43.6964899,-79.33502
-1430,Barkdene Hill At Brooklawn Ave,43.7166099,-79.23379
-1468,Victoria Park Ave At Swanwick Ave,43.6849099,-79.2856799
-1477,Bayview Ave At Byng Ave North Side,43.78221,-79.3914
-1495,Royal York Rd At Castlebar Rd South Side,43.6324399,-79.5051999
-1496,Roselawn Ave At Chaplin Cres,43.7055699,-79.42418
-1507,Bayview Ave At Byng Ave South Side,43.7815599,-79.3914599
-1529,Kingston Rd At Birchcliff Ave,43.6915999,-79.26466
-1536,Glencairn Ave At Glenmount Ave,43.71184,-79.4304099
-1545,Chaplin Cres At Oriole Pkwy,43.69791,-79.4036
-1596,Bellamy Rd North At Painted Post Dr,43.7605899,-79.23628
-1602,Bellamy Rd North At Ellesmere Rd South Side,43.7738999,-79.24176
-1605,Evans Ave At Kipling Ave,43.6160499,-79.52434
-1609,Bathurst St At Blue Flag Gate,43.76866,-79.44185
-1642,Bedford Rd At Davenport Rd,43.6745199,-79.39989
-1646,Avenue Rd At Dupont St,43.6771099,-79.39742
-1650,Oconnor Dr At Pape Ave,43.6933299,-79.35012
-1656,Bathurst St At Heathdale Rd South Side,43.6887799,-79.4206699
-1661,Bayview Ave At Garnier Park,43.80105,-79.3955
-1677,Bay St At Charles St West South Side,43.6680999,-79.38893
-1752,Kingston Rd At Chine Dr,43.7143,-79.2450899
-1757,Brooklawn Ave At Kingston Rd South Side,43.7216299,-79.2359
-1758,Kingston Rd At Resthaven Memorial Gardens,43.7158199,-79.24337
-1760,Bayview Ave At Truman Rd,43.7603299,-79.3863999
-1778,Oconnor Dr At Rivercourt Blvd,43.6937,-79.3481399
-1793,Bathurst St At Drewry Ave,43.78078,-79.44458
-1836,Van Horne Ave At Lucifer Dr,43.7875499,-79.33747
-1839,Bayview Ave At Fleming Cres North Side,43.7071799,-79.3756299
-1857,Bathurst St At Bridgman Ave,43.6749899,-79.4149999
-1867,Bellamy Rd North At Amberjack Blvd,43.77249,-79.24105
-1886,Bellamy Rd North At Northleigh Dr,43.76972,-79.24015
-1891,Bathurst St At Patricia Ave North Side,43.7841999,-79.44544
-1920,Queen'S Park Cres East At College St North Side,43.6609099,-79.39017
-1925,Bellamy Rd North At Jarwick Dr,43.76626,-79.23876
-1937,Avenue Rd At Boswell Ave,43.6726999,-79.39585
-1939,Kingston Rd At Fallingbrook Rd,43.68241,-79.2790899
-1945,Bathurst St At Finch Ave West South Side,43.7734299,-79.44302
-1949,Kingston Rd At Glen Everest Rd East Side,43.6980199,-79.25622
-2004,Chaplin Cres At Duplex Ave,43.6980799,-79.39788
-2005,Bathurst St At Melrose Ave,43.72719,-79.4315
-2031,Opposite 130 Bellamy Rd North,43.7419999,-79.2306
-2035,Bathurst St At Finch Ave West,43.77361,-79.44276
-2043,Brooklawn Ave At Barkdene Hills,43.7169199,-79.23381
-2045,Oriole Pkwy At Gormley Ave,43.6938199,-79.4019799
-2073,Davisville Ave At Mt Pleasant Rd,43.7002,-79.3871499
-2099,Davenport Rd At Yonge St,43.6727999,-79.38805
-2106,Davenport Rd At Avenue Rd West Side,43.6746999,-79.39706
-2129,Oriole Pkwy At Hillsdale Ave West,43.70172,-79.40465
-2139,Glencairn Ave At Caledonia Rd East Side,43.7046699,-79.46433
-2160,Brian Ave At Margaret Ave,43.78651,-79.33428
-2166,Bathurst St At Tichester Rd South Side,43.68512,-79.41913
-2169,Bayview Ave At York Mills Rd,43.7483,-79.38436
-2200,Bay St At Gerrard St West,43.6585899,-79.38501
-2232,Bellamy Rd North At Braeburn Blvd South Side,43.74924,-79.23235
-2250,Brimley Rd At Danforth Rd,43.73532,-79.24758
-2262,McCowan Rd At Horfield Ave,43.72854,-79.23403
-2268,Bayview Ave At Burleigh Heights Dr North Side,43.77969,-79.39087
-2275,Birchmount Rd At Kingston Rd,43.6931399,-79.2624499
-2328,Brimley Rd At St Clair Ave East,43.72108,-79.24165
-2329,Broadview Ave At Mortimer Ave North Side,43.68435,-79.3567399
-2336,Bayview Ave At Post Rd North Side,43.73678,-79.38185
-2341,Bathurst St At Laurelcrest Ave,43.74452,-79.43588
-2349,Bayview Ave At York Mills Rd,43.7478499,-79.3839299
-2351,Glencairn Station,43.70951,-79.4410399
-2359,Bay St At Davenport Rd,43.6728599,-79.3906799
-2371,Bathurst St At Wilson Ave,43.73762,-79.43423
-2373,Royal York Rd At Thompson Ave,43.6418799,-79.5091899
-2390,Bathurst St At Ardmore Rd South Side,43.69358,-79.42264
-2410,Davenport Rd At Avenue Rd,43.67468,-79.3966999
-2419,Bayview Ave At McKee Ave,43.77813,-79.39071
-2437,Bellamy Rd North At Pandora Cir,43.7631099,-79.2372799
-2447,Eglinton Ave East At Huntington Ave,43.73489,-79.2558799
-2450,Victoria Park Ave At Danforth Ave,43.69108,-79.2882
-2479,Bay St At Adelaide St West North Side,43.65008,-79.38075
-2482,Bellamy Rd North At Eastpark Blvd,43.7553999,-79.2346999
-2492,Avenue Rd At Davenport Rd,43.6746099,-79.3963999
-2493,Bathurst St At Fairlawn Ave,43.7247099,-79.4309199
-2498,Van Horne Ave At Don Mills Rd East Side,43.7874199,-79.35235
-2522,Kingston Rd At Warden Ave,43.68802,-79.2706699
-2526,Brimley Rd At Minerva Ave,43.7227299,-79.2423299
-2541,McCowan Rd At Progress Ave North Side,43.7766499,-79.2528899
-2543,St Clair Ave East At Linden Ave,43.71794,-79.2555999
-2557,Bayview Ave At Fife Rd,43.75472,-79.38537
-2586,Royal York Rd At Coney Rd North Side,43.6345699,-79.5059399
-2591,Bayview Ave At Lawrence Ave East (York U Glendon Campus),43.72769,-79.3822399
-2594,Greenwin Village Rd At Elise Terr West,43.79176,-79.4420699
-2597,St Clair Ave East At Gidley Rd,43.7194399,-79.24767
-2600,Kingston Rd At Fallingbrook Rd,43.68215,-79.2793399
-2604,Bayview Ave At Broadway Ave North Side,43.7143799,-79.3775099
-2606,Bayview Ave At Kilgour Rd North Side (Cnib),43.7171999,-79.3780199
-2608,Victoria Park Ave At Gerrard St East,43.68756,-79.28693
-2612,Broadview Ave At Torrens Ave,43.6901499,-79.3550099
-2623,Victoria Park Ave At Wakehood St South Side,43.6900499,-79.2879699
-2628,Bathurst St At Kenton Dr South Side,43.7779799,-79.44415
-2670,Victoria Park Ave At Pleasant View Dr,43.78582,-79.3280999
-2671,Van Horne Ave At Victoria Park Ave,43.7890699,-79.33014
-2675,Glencairn Ave At Ennerdale St East Side,43.70667,-79.4554399
-2685,Bayview Ave At Newton Dr,43.79923,-79.39527
-2746,Kingston Rd At Midland Ave West Side,43.7109799,-79.2485
-2753,Evans Ave At Treeview Dr,43.61343,-79.5364599
-2778,Glencairn Station,43.7095899,-79.44129
-2794,Brooklawn Ave At Sloley Rd,43.71961,-79.23493
-2801,Kingston Rd At Wood Glen Rd,43.6840799,-79.27615
-2802,Kingston Rd At Cliffside Dr,43.7038099,-79.25266
-2817,Bathurst St At York Downs Dr,43.7470599,-79.4362999
-2896,Bayview Ave At Forest Heights Blvd,43.7582,-79.38631
-2936,Bellamy Rd North At Farmbrook Rd,43.7495699,-79.2322099
-2939,Royal York Rd At Van Dusen Blvd,43.6442399,-79.5101099
-2947,Bathurst St At Dewbourne Ave,43.6990699,-79.42485
-2963,Brimley Rd At Comrie Terr (South),43.7246899,-79.2431399
-2966,Kingston Rd At Victoria Park Ave East Side,43.6807899,-79.28362
-2968,Bayview Ave At Tudor Gate North Side,43.74365,-79.3832
-2997,Bathurst St At Carscadden Dr,43.76556,-79.44109
-3018,Bellamy Rd North At Lawrence Ave East,43.75792,-79.23546
-3024,Kingston Rd At St Clair Ave East West Side,43.7218899,-79.23716
-3050,Bathurst St At Neptune Dr,43.7316,-79.4327
-3099,Bathurst St At Roselawn Ave,43.70501,-79.4262
-3105,Broadview Ave At Fernwood Gardens South Side,43.6917199,-79.3558199
-3157,Oriole Pkwy At Kilbarry Rd,43.6953899,-79.40228
-3188,Royal York Rd At Evans Ave South Side,43.62158,-79.50074
-3190,Evans Ave At Garroch Pl,43.6196799,-79.50661
-3195,Bathurst St At Barton Ave,43.6680399,-79.4122499
-3201,Evans Ave At Islington Ave,43.61855,-79.5109099
-3212,Glencairn Ave At Shermount Ave,43.71019,-79.4384999
-3223,Greenwin Village Rd At Bathurst St,43.7908299,-79.44461
-3243,Bingham Loop,43.6814999,-79.28485
-3248,Avenue Rd At Heath St West,43.6886,-79.40217
-3264,Davisville Ave At Belle Ayre Blvd,43.7011599,-79.38313
-3287,Victoria Park Ave At Gerrard St East North Side,43.6873899,-79.2866499
-3312,Glencairn Ave At Dufferin St,43.70695,-79.4534999
-3326,Bathurst St At Raeburn Ave,43.7441699,-79.4355799
-3333,Royal York Rd At Bloor St West South Side,43.6470299,-79.51128
-3418,Bayview Ave At Burleigh Heights Dr South Side,43.7793399,-79.3909699
-3432,Glencairn Ave At Marlee Ave,43.7089,-79.4439299
-3450,Bay St At Gerrard St West North Side,43.65875,-79.38486
-3463,Bayview Ave At Millwood Rd,43.70436,-79.37471
-3467,Evans Ave At Wickman Rd West Side,43.6149499,-79.53029
-3480,Don Mills Rd At Esterbrooke Ave,43.77924,-79.34895
-3485,Bathurst St At Ridge Hill Dr,43.70346,-79.42601
-3486,Chaplin Cres At Eglinton Ave West,43.70236,-79.41637
-3519,Bay St At Hagerman St,43.6542099,-79.3830199
-3542,Avenue Rd At Edmund Ave North Side,43.68294,-79.39982
-3553,Chaplin Cres At Oriole Pkwy,43.69793,-79.40307
-3555,Bellamy Rd North At Grace St North Side,43.7435999,-79.2297199
-3589,Bay St At St Joseph St North Side,43.6660599,-79.3877399
-3605,Bathurst St At Codsell Ave,43.7583899,-79.43904
-3630,St Clair Ave East At Fermoy Rd,43.72147,-79.2390399
-3642,Oconnor Dr At Wolverton Ave,43.6941299,-79.34528
-3714,Bayview Ave At York Mills Rd South Side,43.7473799,-79.38413
-3715,Oconnor Dr At Warland Ave,43.69412,-79.3460099
-3724,Bayview Ave At Argonne Cres,43.7940199,-79.3938499
-3734,Bayview Ave At Citation Dr North Side,43.77483,-79.38976
-3740,St Clair Ave East At Marsh Rd,43.71595,-79.2643899
-3753,Evans Ave At North Carson St,43.61307,-79.5386299
-3767,Bathurst St At Fisherville Rd,43.7902599,-79.44567
-3788,Royal York Rd At Frankwood Rd,43.62894,-79.50375
-3795,Lansdowne Ave At Glencairn Ave South Side,43.7052199,-79.4607599
-3801,Kingston Rd At Birchmount Rd,43.69321,-79.2622399
-3807,Don Mills Rd At Leith Hill Rd North Side,43.7775199,-79.3478099
-3834,Chaplin Cres At Colin Ave,43.69809,-79.3995799
-3852,Queen'S Park At Charles St North Side (Museum Station),43.6676099,-79.3935299
-3858,Bayview Ave At Forest Heights Blvd,43.7581299,-79.3860099
-3891,Royal York Rd At Van Dusen Blvd North Side,43.6443699,-79.5100199
-3897,McCowan Rd At Martindale Rd,43.73292,-79.23586
-3899,St Clair Ave East At Cotton Ave,43.71587,-79.2637999
-3922,Kingston Rd At Midland Ave,43.7107999,-79.24824
-3934,Chaplin Cres At Duplex Ave,43.6979,-79.39821
-3942,Bathurst St At Joicey Blvd,43.7338399,-79.4330699
-3951,Bathurst St At Strathearn Rd,43.6920499,-79.4219999
-3969,Bellamy Rd North At Progress Ave,43.7799699,-79.2436399
-3981,Van Horne Ave At Lucifer Dr,43.7873399,-79.33794
-4048,340 Chaplin Cres,43.7041899,-79.42124
-4058,Oconnor Dr At Beechwood Dr,43.6927399,-79.35306
-4095,Brian Ave At Van Horne Ave,43.7877199,-79.33484
-4138,Bay St At Albert St,43.6530899,-79.3827899
-4158,2665 Kingston Rd East Side,43.7159199,-79.24279
-4165,Dupont St At Bedford Rd,43.6761999,-79.40084
-4166,Queens Quay East At Richardson St,43.6447199,-79.36701
-4174,Bellamy Rd North At Eastpark Blvd South Side,43.7554199,-79.23491
-4180,Opposite 88 Corporate Dr,43.78,-79.2494199
-4194,Eglinton Ave East At Gilder Dr,43.73577,-79.2529699
-4199,Oconnor Dr At St Hubert Ave,43.6953399,-79.3403
-4206,Van Horne Ave At Edmonton Rd East Side,43.7869999,-79.33949
-4216,Bathurst St At Yorkview Dr,43.7722299,-79.4424499
-4266,Evans Ave At Ourland Ave,43.6188399,-79.50964
-4289,Bathurst St At Briar Hill Ave,43.70807,-79.4272
-4298,Bathurst St At Eglinton Ave West,43.7011099,-79.4256899
-4311,Barkdene Hill At Gradwell Dr,43.7160099,-79.23581
-4324,Bathurst St At Lytton Blvd,43.7103799,-79.4275299
-4374,Evans Ave At Kipling Ave,43.6157599,-79.52495
-4400,Bay St At Queen St West,43.65194,-79.3822499
-4405,Brimley Rd At St Clair Ave East South Side,43.7205,-79.2414
-4411,Queens Quay West At Bay St East Side,43.64152,-79.3754999
-4420,Eglinton Ave West At Henning Ave,43.7061999,-79.40131
-4434,Van Horne Ave At Edmonton Dr,43.787,-79.3399199
-4437,Bay St At Elm St,43.65714,-79.38421
-4452,Evans Ave At Garroch Pl,43.6195399,-79.50687
-4483,Bayview Ave At The Bridle Path,43.73856,-79.38238
-4496,Bathurst St At Bannockburn Ave,43.7311999,-79.4324399
-4525,Opposite 340 Chaplin Cres,43.7044099,-79.4223999
-4530,Bathurst St At Warwick Ave,43.6953799,-79.4233499
-4558,St Clair Ave East At Birchmount Rd West Side,43.7141499,-79.27184
-4563,McCowan Rd At Kingston Rd,43.7252299,-79.2326399
-4578,1095 Bellamy Rd North,43.7760299,-79.24213
-4586,Brimley Rd At Kingston Rd North Side,43.7190999,-79.24064
-4588,The West Mall At Sherway Dr (Trillium Health Ctr South Stop),43.6093999,-79.5598
-4601,Royal York Rd At The Queensway,43.62621,-79.50242
-4610,Bathurst St At Yorkview Dr South Side,43.77231,-79.44273
-4616,Brimley Rd At Skagway Ave,43.7282699,-79.2444099
-4639,Van Horne Ave At Houston Cres (West) West Side,43.7877999,-79.3478
-4657,Bayview Ave At Manor Rd East,43.7070399,-79.3757499
-4677,Bayview Ave At Parkview Ave,43.77621,-79.39027
-4688,McCowan Rd At Kingston Rd North Side,43.7256999,-79.23258
-4709,Oconnor Dr At Donlands Ave,43.69454,-79.34327
-4716,Royal York Rd At Tenby St,43.6276199,-79.50305
-4720,Kingston Rd At Warden Ave,43.68761,-79.2710299
-4764,Chaplin Cres At Opposite Walkway To Shallmar Apts,43.70468,-79.42293
-4768,88 Corporate Dr,43.78012,-79.2495999
-4771,Brimley Rd At Skagway Ave,43.72854,-79.24476
-4792,185 Evans Ave,43.61805,-79.5131499
-4813,Bathurst St At Rockford Rd,43.7859699,-79.4461799
-4819,Brimley Rd At Anson Ave,43.72433,-79.2428
-4822,Evans Ave At Treeview Dr,43.6136699,-79.53596
-4854,Avenue Rd At St Clair Ave West North Side,43.6869199,-79.40146
-4858,Bathurst St At Davenport Rd,43.67651,-79.41559
-4872,Birchmount Rd At Hollis Ave,43.6949299,-79.2630299
-4886,Oriole Pkwy At Tranmer Ave,43.7000899,-79.4041499
-4888,Oriole Pkwy At Gormley Ave,43.69365,-79.40171
-4889,Bathurst St At Elderwood Dr,43.69517,-79.4231
-4932,Bathurst St At Stafford Rd,43.77028,-79.44196
-4934,Bathurst St At Glengrove Ave,43.7141199,-79.4284499
-4940,Glencairn Ave At Shermount Ave,43.7100299,-79.43874
-4956,Bellamy Rd North At Northleigh Dr North Side,43.76977,-79.23997
-4960,Eglinton Ave East At Torrance Rd,43.7393699,-79.23544
-4970,1149 Bellamy Rd North,43.7779999,-79.2429099
-4979,Bay St At King St West,43.64863,-79.38015
-4995,Davisville Ave At Forman Ave,43.7017099,-79.38047
-5037,Bathurst St At Dewbourne Ave,43.69889,-79.42462
-5046,Avenue Rd At Bloor St West,43.6687999,-79.3942799
-5052,Bellamy Rd North At Grace St South Side,43.7432999,-79.2298599
-5077,Bay St At Wellington St West,43.6472399,-79.37953
-5092,Queens Quay East At Yonge St,43.64217,-79.3742199
-5096,Bayview Ave At Country Lane,43.7402299,-79.3824999
-5105,Victoria Park Ave At Denton Ave,43.6926399,-79.2887899
-5117,Glencairn Ave At Bathurst St West Side,43.7122799,-79.42871
-5125,Oconnor Dr At Northbrook Rd,43.6957699,-79.33835
-5167,Oconnor Dr At Donlands Ave West Side,43.6945999,-79.34354
-5177,Davisville Ave At Cleveland St,43.7022399,-79.37788
-5184,Evans Ave At Carnarvon Ave,43.6201399,-79.50412
-5198,Bathurst St At York Downs Dr,43.74738,-79.43658
-5223,Chaplin Cres At Russell Hill Rd East Side,43.7017599,-79.41487
-5248,100 Consilium Pl,43.7773499,-79.2507699
-5249,Brimley Rd At Oakridge Dr,43.7258099,-79.2433999
-5251,Broadview Ave At Pretoria Ave,43.67853,-79.3584599
-5258,3311 Bayview Ave,43.79043,-79.39309
-5285,Bayview Ave At Post Rd,43.7365399,-79.3820499
-5309,St Clair Ave East At Midland Ave,43.7185599,-79.25161
-5336,Barkdene Hill At Larwood Blvd,43.71546,-79.2379299
-5366,Bayview Ave At Holmes Ave,43.7830299,-79.39178
-5400,Bathurst St At Wells St,43.6699999,-79.4130199
-5413,160 Tycos Dr,43.70366,-79.4625699
-5434,Bayview Ave At Empress Ave South Side,43.77398,-79.38978
-5465,2466 Eglinton Ave East (Rainbow Village),43.7340999,-79.26044
-5475,Bathurst St At Dupont St,43.67305,-79.41422
-5481,620 Evans Ave,43.6104299,-79.55042
-5486,Broadview Ave At Cosburn Ave North Side,43.68877,-79.3550499
-5490,Opposite 1859 Kingston Rd,43.6954099,-79.2594
-5512,Bayview Ave At Valley Rd,43.74409,-79.38346
-5518,Oconnor Dr At Milton Rd West Side,43.69723,-79.3322999
-5523,Bathurst St At Glengrove Ave,43.71429,-79.42864
-5524,Bellamy Rd North At Eglinton Ave East,43.7405499,-79.2322799
-5532,Kingston Rd At Manderley Dr,43.68908,-79.2690999
-5538,Bathurst St At Douglas Ave,43.7207099,-79.42999
-5542,Davenport Rd At Bay St,43.6731199,-79.3910499
-5543,Bayview Ave At Sheppard Ave East (Bayview Station),43.7667899,-79.3881999
-5544,St Clair Ave East At Linden Ave,43.71756,-79.2561299
-5549,Opposite 4981 Bathurst St,43.7758699,-79.4436299
-5563,Evans Ave At Carnarvon Ave,43.6204,-79.5033299
-5579,Bayview Ave At Kilgour Rd (Cnib),43.7170899,-79.3782799
-5580,Bay St At Wellesley St West South Side,43.6639999,-79.3871199
-5583,Broadview Ave At Cosburn Ave South Side,43.6882,-79.3554699
-5614,Bayview Ave At Glenvale Blvd,43.71601,-79.37782
-5616,250 Davenport Rd,43.67444,-79.3983299
-5624,Roselawn Ave At Bathurst St East Side,43.7052399,-79.42583
-5626,St Clair Ave East At Santamonica Blvd,43.71322,-79.2764199
-5634,Bathurst St At Ardmore Rd,43.6935999,-79.4224599
-5650,Broadview Ave At Chester Hill Rd,43.6814,-79.3577099
-5662,Broadview Ave At Bater Ave,43.6869699,-79.35578
-5668,Bathurst St At Burton Rd,43.6917899,-79.4217299
-5736,St Clair Ave East At Danforth Rd,43.71708,-79.2593599
-5739,Bathurst St At Mascot Pl,43.7704999,-79.4422799
-5749,Royal York Rd At Norseman St,43.63732,-79.50734
-5753,Bayview Ave At Sheppard Ave East North Side (Bayview Stn),43.7671299,-79.38791
-5824,Royal York Rd At Yorkview Dr,43.6308899,-79.5045499
-5861,Bayview Ave At Garnier Crt,43.7990699,-79.3950299
-5869,St Clair Ave East At Brimley Rd,43.7207699,-79.24162
-5872,St Clair Ave East At North Woodrow Blvd,43.71545,-79.2664399
-5882,Evans Ave At North Carson St,43.6128799,-79.53888
-5888,Royal York Rd At Evans Ave North Side,43.6214999,-79.50045
-5910,Bayview Ave At Bayview Mews Lane,43.7692499,-79.3884599
-5912,Bathurst St At Olive Ave,43.67039,-79.41336
-5920,Bayview Ave At Heathcote Ave,43.75231,-79.38512
-5932,St Clair Ave East At Birchmount Rd East Side,43.7141999,-79.27053
-5943,Bay St At Dundas St West (Toronto Coach Terminal),43.6556099,-79.3835699
-5945,Kingston Rd At Glen Everest Rd,43.6978699,-79.25667
-5949,Evans Ave At Sheldon Ave,43.6112999,-79.54587
-5956,Bay St At Bloor St West (Bay Station),43.6699,-79.38964
-5975,St Clair Ave East At Kingston Rd,43.7217699,-79.23684
-5979,Bathurst St At Briar Hill Ave,43.7077299,-79.42692
-5981,Oriole Pkwy At Tranmer Ave,43.69989,-79.40393
-5983,Avenue Rd At Heath St West,43.6888,-79.40247
-6012,Kingston Rd At Birchmount Rd East Side,43.69324,-79.2618799
-6016,Avenue Rd At Balmoral Ave,43.6843699,-79.40059
-6026,McCowan Rd At Cree Ave,43.7306399,-79.2346199
-6034,Fisherville Rd At Bathurst St West Side,43.7902199,-79.44619
-6054,Bathurst St At Sheppard Ave West,43.7551999,-79.4382599
-6067,1859 Kingston Rd,43.6951199,-79.25941
-6069,Bayview Ave At York Rd South Side,43.74579,-79.38381
-6070,849 Broadview Ave,43.67922,-79.3581299
-6100,Glencairn Ave At Capitol Ave,43.7076799,-79.44987
-6107,Bayview Ave At Dawlish Ave South Side,43.7242999,-79.3796999
-6112,Broadview Ave At Torrens Ave South Side,43.6900799,-79.3551499
-6130,Bathurst St At Alcina Ave,43.6801699,-79.41721
-6134,Royal York Rd At Norseman St North Side,43.6373699,-79.5070799
-6166,Bathurst St At Ranee Ave,43.72708,-79.43165
-6168,Brimley Rd At Comrie Terr (North),43.72615,-79.24374
-6172,2121 Kingston Rd,43.70086,-79.2544899
-6192,Oconnor Dr At Coxwell Ave,43.6976299,-79.3297
-6222,140 Pleasant View Dr,43.78518,-79.3304799
-6234,Bay St At College St,43.66076,-79.38568
-6241,Kingston Rd At Brimley Rd West Side,43.7179999,-79.2409
-6247,Royal York Rd At Oakfield Dr North Side,43.6324399,-79.5050599
-6265,Bathurst St At Prince Charles Dr South Side,43.72452,-79.43106
-6277,127 Victoria Park Ave (Neil McNeil Secondary School),43.6793499,-79.28337
-6281,Bathurst St At Lawrence Ave West South Side,43.7188399,-79.42981
-6292,Bayview Ave At Steeles Ave East South Side,43.8026599,-79.3961
-6297,Bathurst St At Ava Rd,43.69785,-79.4242
-6300,Bayview Ave At Hollywood Ave,43.77084,-79.38907
-6311,Bay St At Air Canada Centre,43.6441499,-79.37822
-6328,Elm St At University Ave East Side,43.6564899,-79.3879
-6331,Bathurst St At Kenton Dr,43.7779799,-79.4439199
-6335,Bathurst St At Tichester Rd,43.68529,-79.41909
-6347,Bay St At Adelaide St West,43.6500299,-79.3809
-6357,Oriole Pkwy At Anderson Ave,43.70313,-79.40526
-6397,Evans Ave At Gair Dr,43.60982,-79.5524199
-6400,Bathurst St At Bainbridge Ave,43.7506099,-79.4371599
-6427,Bayview Ave At Foxwarren Dr,43.7704899,-79.3887899
-6429,Gelncairn Ave At Dalemount Ave,43.7114599,-79.43259
-6448,Glencairn Ave At Dufferin St,43.70717,-79.4526599
-6452,Barkdene Hills At Larwood Blvd,43.7155799,-79.23779
-6498,Kingston Rd At Neilson Ave,43.7233999,-79.23423
-6526,Bathurst St At Davenport Rd,43.6769999,-79.4159699
-6540,876 Broadview Ave,43.6797599,-79.35814
-6550,Bathurst St At Nina St,43.6797199,-79.41687
-6565,McCowan Rd At Bridlegrove Dr North Side,43.7346599,-79.2363399
-6569,Davisville Ave At Mt Pleasant Rd West Side,43.7002799,-79.38748
-6579,Evans Ave At The East Mall,43.6120199,-79.54351
-6581,Kingston Rd At Lakehurst Dr,43.6961799,-79.25802
-6585,Corporate Dr At Lee Centre Dr (West) West Side,43.78052,-79.2473999
-6603,Bellamy Rd North At Lynnbrook Dr,43.77278,-79.24138
-6612,Van Horne Ave At Don Mills Rd,43.78752,-79.3524999
-6626,Bathurst St At Codsell Ave,43.7587599,-79.4393899
-6632,Bayview Ave At Wood Ave,43.7270899,-79.38204
-6683,4600 Bathurst St,43.7626499,-79.4403699
-6712,St Clair Ave East At Fermoy Rd,43.72126,-79.2392999
-6734,Queen'S Park Cres At College St (Queen'S Park Station),43.6605899,-79.3912399
-6737,Bay St At Grosvenor St,43.6625999,-79.3865199
-6743,Bayview Ave At Cummer Ave,43.7923399,-79.3936899
-6768,Oconnor Dr At Milton Rd,43.6970699,-79.3323
-6793,Bay St At Cumberland St (Bay Station),43.6704799,-79.38967
-6809,Oconnor Dr At Athlone Rd West Side,43.69611,-79.3373799
-6854,Chaplin Cres At Duncannon Dr,43.7003299,-79.4104899
-6869,Evans Ave At Arnold St,43.6163999,-79.52107
-6878,2980 Donmills Rd,43.7823199,-79.3522899
-6886,Bayview Ave At Finch Ave East North Side,43.7856099,-79.39212
-6904,Don Mills Rd At Fairview Mall Dr North Side,43.7795199,-79.34871
-6917,Brimley Rd At Lombardy Cres North Side,43.7321799,-79.2460499
-6939,Bay St At Hagerman St,43.65454,-79.38338
-6960,McCowan Rd At Eglinton Ave East South Side,43.7383399,-79.2381699
-6965,Birchmount Rd At Hollis Ave South Side,43.6948199,-79.2631499
-6986,Pleasant View Dr At Brian Dr,43.78461,-79.3330999
-6991,Avenue Rd At Yorkville Ave,43.67046,-79.39498
-6993,Bathurst St At Eglinton Ave West,43.7017899,-79.42556
-6997,Eglinton Ave East At Brimley Rd,43.73652,-79.2482799
-7014,Kingston Rd At Chine Dr,43.7139399,-79.24506
-7020,Kingston Rd At Hunt Club Dr,43.68371,-79.2769499
-7029,Bayview Ave At Eglinton Ave East,43.7111999,-79.3772399
-7054,Bayview Ave At Broadway Ave,43.7139399,-79.3776799
-7056,Brooklawn Ave At Sloley Rd,43.7194099,-79.23473
-7066,Evans Ave At Bellman Ave East Side,43.6142599,-79.5328
-7126,Evans Ave At Gamma St,43.6123699,-79.54112
-7133,Barkdene Hill At Gradwell Dr,43.71586,-79.2361099
-7147,Van Horne Ave At Clipper Rd,43.78872,-79.3317799
-7151,Broadview Ave At Pottery Rd South Side,43.6835599,-79.35714
-7167,Bathurst St At Invermay Ave,43.74163,-79.43516
-7174,Bay St At Front St West (Union Station),43.64585,-79.37893
-7223,Bayview Ave At Ruddington Dr South Side,43.78777,-79.39277
-7229,Evans Ave At Ourland Ave,43.6190899,-79.50922
-7240,Broadview Ave At O'Connor Dr,43.69168,-79.35564
-7256,Bayview Ave At Fifeshire Rd (North),43.7607899,-79.3868
-7258,Bathurst St At Dupont St,43.6732499,-79.4144699
-7260,Bellamy Rd North At Ben Alder Dr,43.7601099,-79.2362699
-7265,McCowan Rd At Martindale Rd,43.73275,-79.23551
-7267,Bathurst St At Dell Park Ave South Side,43.7173999,-79.4294199
-7285,Glencairn Ave At Haven Rd East Side,43.7060999,-79.45806
-7303,McCowan Rd At Cree Ave,43.7308099,-79.2349799
-7356,Bellamy Rd North At Burnview Cres,43.75387,-79.23405
-7388,Bathurst St At Horsham Ave,43.76843,-79.44153
-7405,St Clair Ave East At Santamonica Blvd,43.7129399,-79.2767
-7435,Evans Ave At Gair Dr,43.6100799,-79.55195
-7438,Oriole Pkwy At Walmsley Blvd,43.69217,-79.40137
-7447,Bayview Ave At Hillcrest Ave,43.7726599,-79.3894799
-7462,Bayview Ave At Wilket Rd,43.74592,-79.38361
-7466,Davisville Ave At Forman Ave,43.7015499,-79.38076
-7483,Glencairn Ave At Danesbury Ave,43.7084399,-79.44663
-7484,84 Davisville Ave (Salvation Army),43.69911,-79.3930899
-7486,Bellamy Rd North At Banmoor Blvd North Side,43.75196,-79.23325
-7494,Avenue Rd At Lonsdale Rd South Side,43.6902999,-79.40303
-7505,Bay St At Dundas St West (Toronto Coach Terminal),43.65584,-79.38386
-7514,Kingston Rd At Eastwood Ave,43.6902999,-79.26703
-7536,Bay St At Harbour St South Side (Toronto Island Ferry),43.6416999,-79.3773
-7537,Royal York Rd At Yorkview Dr,43.6304299,-79.5042199
-7538,Glencairn Ave At Glenmount Ave,43.7119599,-79.43014
-7542,Davenport Rd At New St,43.6747199,-79.39311
-7559,Davisville Ave At Acacia Rd,43.69963,-79.3898299
-7574,Bathurst St At Saranac Blvd,43.7231699,-79.4307399
-7593,Bellamy Rd North At Benleigh Dr South Side,43.76318,-79.23752
-7601,Bathurst St At Baycrest Ave,43.7297199,-79.4322599
-7605,Bathurst St At Woburn Ave,43.7224299,-79.4303899
-7640,Chaplin Cres At Roselawn Ave,43.7053799,-79.4237199
-7675,Bathurst St At Danby Ave,43.7491999,-79.4370399
-7677,Eglinton Ave West At Oriole Pkwy East Side,43.7051499,-79.40554
-7686,Birchmount Rd At Danforth Ave,43.6967799,-79.2637999
-7720,Kingston Rd At Sandown Ave,43.70858,-79.2496899
-7723,Don Mills Rd At Deerford Rd,43.7852699,-79.3505599
-7730,Gerrard St East At University Ave,43.6577299,-79.38893
-7731,Glencairn Ave At Englemount Ave,43.71065,-79.4357599
-7732,Bathurst St At Bainbridge Ave,43.75092,-79.43745
-7743,Royal York Rd At The Queensway,43.6264999,-79.5027799
-7745,Bayview Ave At Opposite Garnier Park,43.80093,-79.39567
-7751,Bay St At Wellesley St West,43.66427,-79.38702
-7760,800 Royal York Rd,43.6392399,-79.5086399
-7763,Avenue Rd At Balmoral Ave North Side,43.68472,-79.40054
-7806,Bathurst St At Heathdale Rd,43.68883,-79.42053
-7811,St Clair Ave East At Andrew Ave,43.7200999,-79.24473
-7835,Bathurst St At Danby Ave North Side,43.74925,-79.43683
-7836,Evans Ave At Sherway Gate West Side,43.6089899,-79.55685
-7845,Chaplin Cres At Russell Hill Rd West Side,43.702,-79.41539
-7857,Victoria Park Ave At Meadow Ave,43.68182,-79.28453
-7858,Avenue Rd At Bloor St West North Side,43.6692299,-79.3942599
-7882,Royal York Rd At Glenroy Ave,43.6421199,-79.5091499
-7896,Bayview Ave At Cummer Ave,43.79215,-79.39344
-7903,Evans Ave At Eastwick Rd West Side,43.6177599,-79.51555
-7904,McCowan Rd At Bridlegrove Dr,43.7345199,-79.2364999
-7920,Bathurst St At Marquette Ave,43.73424,-79.43335
-7921,Victoria Park Ave At Swanwick Ave,43.68526,-79.28594
-7941,Eglinton Ave East At Torrance Rd West Side,43.7395199,-79.23577
-7942,Bayview Ave At Millwood Rd,43.7041499,-79.37445
-7967,Bay St At Elm St,43.65741,-79.38453
-7973,Bathurst St At Shelborne Ave,43.71593,-79.42888
-7994,Bathurst St At Wilson Ave,43.7371899,-79.4338299
-8003,Davenport Rd At Belmont St,43.6746299,-79.3925599
-8008,Bay St At Albert St,43.6528999,-79.38249
-8013,Davisville Ave At Bayview Ave West Side,43.7029499,-79.37455
-8038,130 Bellamy Rd North,43.7422199,-79.23034
-8043,Evans Ave At Arnold St West Side,43.6166299,-79.52092
-8044,Evans Ave At Islington Ave West Side,43.6182299,-79.51272
-8067,Bayview Ave At Parkhurst Blvd North Side,43.7089899,-79.3762899
-8080,4979 Bathurst St,43.7755999,-79.4433
-8093,Avenue Rd At Lowther Ave North Side,43.67119,-79.39505
-8107,Birchmount Rd At Kingston Rd North Side,43.6935999,-79.26248
-8126,University Ave At College St (Queen'S Park Station),43.6597199,-79.3901899
-8137,Bathurst St At Dewlane Dr,43.7858299,-79.4458499
-8152,Bayview Ave At Blythwood Rd,43.7208099,-79.3786999
-8154,Evans Ave At Islington Ave,43.6182,-79.5115399
-8157,1138 Bathurst St,43.6753699,-79.41529
-8160,Victoria Park Ave At Woodale Ave,43.68342,-79.28519
-8167,Bellamy Rd North At Brimorton Dr,43.76724,-79.23895
-8178,Bayview Ave At Ruddington Dr,43.78788,-79.39258
-8192,McCowan Rd At Anson Ave,43.72666,-79.23323
-8205,Oriole Pkwy At College View Ave South Side,43.70214,-79.40504
-8224,Oriole Pkwy At Duggan Ave,43.6927199,-79.4013899
-8258,Eglinton Ave West At Lascelles Blvd East Side,43.7056399,-79.4032
-8266,Bayview Ave At Fifeshire Rd South South Side,43.75456,-79.38559
-8279,Queen'S Park Cres East At Wellesley St West,43.6634699,-79.3904899
-8320,Bathurst St At Covington Rd,43.72116,-79.43032
-8328,Bayview Ave At Lawrence Ave East (York U Glendon Campus),43.72727,-79.38157
-8329,Evans Ave At Bellman Ave,43.6143,-79.5331699
-8337,3292 Bayview Ave,43.78994,-79.39321
-8352,Queen'S Park At Charles St (Museum Station),43.6670999,-79.3935799
-8365,Davisville Ave At Acacia Rd,43.69994,-79.3890799
-8377,St Clair Ave East At Midland Ave,43.71895,-79.2509799
-8382,Glencairn Ave At Ennerdale St,43.70681,-79.4554399
-8400,Bayview Ave At Blythwood Rd South Side,43.72045,-79.37892
-8408,Bayview Ave At Sunnydene Cres South Side,43.7194999,-79.3787599
-8415,Royal York Rd At Dalesford Rd,43.62435,-79.50164
-8424,Chaplin Cres At Lascelles Blvd,43.6981399,-79.40059
-8446,Oconnor Dr At Hopedale Ave,43.69277,-79.3523099
-8455,Oconnor Dr At Derwyn Rd,43.6966899,-79.33472
-8473,Bellamy Rd North At Brimorton Dr,43.7676799,-79.2393299
-8477,St Clair Ave East At Kennedy Rd,43.7166999,-79.26108
-8504,Victoria Park Ave At Danforth Ave,43.6913699,-79.2885099
-8516,Kingston Rd At Manderley Dr,43.6886799,-79.26942
-8521,Glencairn Ave At Englemount Ave,43.71083,-79.4355299
-8524,Bayview Ave At The Bridle Path,43.7383599,-79.3821599
-8532,Chaplin Cres At Eglinton Ave West,43.70281,-79.41782
-8550,Eglinton Ave East At Huntington Ave West Side,43.7350899,-79.25601
-8565,400 Evans Ave,43.6152799,-79.52822
-8571,Bathurst St At Shelborne Ave,43.7161499,-79.4291199
-8586,Bay St At St Joseph St,43.6657599,-79.3878499
-8588,Van Horne Ave At Hobart Dr,43.7880599,-79.3494899
-8600,2350 Bayview Ave (The Granite Club),43.7341699,-79.3815899
-8615,Avenue Rd At St Clair Ave West,43.6867499,-79.4016699
-8619,Royal York Rd At Coney Rd,43.6340999,-79.5059599
-8627,Bayview Ave At Hillcrest Ave,43.77233,-79.38921
-8677,Bathurst St At Reiner Rd,43.7526799,-79.43786
-8684,Bayview Ave At Soudan Ave,43.7089499,-79.37649
-8720,Grangeway Ave At Progress Ave South Side,43.77598,-79.25051
-8721,1148 Bellamy Rd North,43.7781799,-79.24318
-8740,Evans Ave At Cremorne Ave,43.62067,-79.5015799
-8803,Bayview Ave At McKee Ave,43.77789,-79.39044
-8823,Bay St At College St,43.66097,-79.38604
-8827,Chaplin Cres At Avenue Rd East Side,43.69852,-79.40556
-8831,Bathurst St At Caribou Rd,43.7175299,-79.4292499
-8840,St Clair Ave East At North Woodrow Blvd,43.7151299,-79.26684
-8848,Van Horne Ave At Kingslake Rd,43.7866899,-79.3455499
-8853,Village Gate At Steeles Ave West,43.7925899,-79.44068
-8890,Eglinton Ave East At Midland Ave,43.7343199,-79.25847
-8892,Kingston Rd At Blantyre Ave,43.6813499,-79.28146
-8893,Bathurst St At Antibes Dr,43.78128,-79.44501
-8903,Kingston Rd At Blantyre Ave,43.6815599,-79.28128
-8918,Bay St At Charles St West,43.6680899,-79.3886999
-8920,University Ave At Gerrard St West,43.6576699,-79.38978
-8931,Avenue Rd At Edmund Ave,43.6826099,-79.3999299
-8948,Evans Ave At Horner Ave,43.6171099,-79.51856
-8973,Avenue Rd At Cottingham St South Side,43.6796799,-79.3987399
-8983,Evans Ave At Eastwick Rd,43.6176299,-79.51551
-8986,Eglinton Ave East At Falmouth Ave,43.73547,-79.2533099
-9042,Evans Ave At The East Mall,43.6117199,-79.54398
-9111,Brimley Rd At Lombardy Cres,43.7319599,-79.2461699
-9121,Oriole Pkwy At Lonsdale Rd North Side,43.6915499,-79.40093
-9161,Bellamy Rd North At Nelson St,43.74646,-79.23089
-9196,Kingston Rd At Sharpe St,43.7065299,-79.25136
-9198,Bathurst St At Vesta Dr,43.7031499,-79.4257499
-9214,6030 Bathurst St,43.78766,-79.44659
-9234,Bathurst St At Wilson Ave South Side,43.7368199,-79.43401
-9249,Evans Ave At Wickman Rd,43.61484,-79.5301799
-9276,Triton Rd At McCowan Rd,43.77532,-79.2529599
-9289,Bushby Dr At McCowan Rd (McCowan Rt Station),43.7747299,-79.25188
-9298,Kingston Rd At Sandown Ave,43.70898,-79.2498299
-9330,Bellamy Rd North At Ellesmere Rd,43.77404,-79.24154
-9359,Bellamy Rd North At Nelson St South Side,43.7462799,-79.2310899
-9364,Broadview Ave At Browning Ave,43.6808899,-79.35767
-9386,Eglinton Ave West At Duplex Ave,43.70618,-79.4006599
-9392,Van Horne Ave At Bickerton Cres,43.78815,-79.3342999
-9393,Kingston Rd At Neilson Ave West Side,43.7233999,-79.23468
-9399,Oriole Pkwy At Kilbarry Rd,43.69558,-79.40251
-9415,Bayview Ave At Arjay Cres,43.74015,-79.38269
-9430,Oriole Pkwy At Chaplin Cres North Side,43.69835,-79.40332
-9445,Kingston Rd At Ridgemoor Ave,43.7061599,-79.2512
-9451,Brooklawn Ave At Kingston Rd,43.7217799,-79.2359599
-9456,Kingston Rd At Kildonan Dr,43.6899699,-79.26735
-9464,Bathurst St At Lonsdale Rd,43.6868599,-79.4197299
-9470,McCowan Rd At Horfield Ave,43.72837,-79.23367
-9472,Brimley Rd At Barkdene Hills,43.71546,-79.23929
-9476,Chaplin Cres At Duncannon Dr East Side,43.7001299,-79.4101999
-9489,Oriole Pkwy At Eglinton Ave West South Side,43.7046599,-79.40603
-9536,Brimley Rd At Danforth Rd,43.7350799,-79.2472299
-9543,Bayview Ave At Bayview Ridge Cres,43.7423699,-79.3831299
-9544,Evans Ave At Horner Ave,43.61681,-79.5190999
-9546,Tycos Dr At Caledonia Rd,43.7033099,-79.46428
-9550,Opposite 4600 Bathurst St,43.7623199,-79.4400099
-9555,Lankin Blvd At O'Connor Dr,43.6973699,-79.3304099
-9595,Corporate Dr At Progress Ave North Side,43.7805399,-79.2439
-9624,Bayview Ave At Eglinton Ave East North Side,43.7115599,-79.37702
-9653,Avenue Rd At Davenport Rd,43.67481,-79.39673
-9655,Steeles Ave East Loop At Bayview Ave,43.8033799,-79.39735
-9666,Queen'S Park Cres West At Hart House,43.66372,-79.39349
-9678,400 Evans Ave,43.6153599,-79.52845
-9685,St Clair Ave East At Andrew Ave,43.7202999,-79.2445
-9693,Davisville Ave At Yonge St,43.69852,-79.3959299
-9701,Glencairn Ave At Marlee Ave,43.7090799,-79.44364
-9704,Glencairn Ave At Capitol Ave,43.70782,-79.4496199
-9706,Bayview Ave At Finch Ave East,43.78515,-79.39231
-9721,Bathurst St At Baycrest Ave,43.7295199,-79.4320399
-9729,Bathurst St At Barton Ave,43.6682,-79.41248
-9738,Glencairn Ave At Lansdowne Ave,43.70544,-79.4609799
-9758,Bathurst St At Cedarcroft Blvd South Side,43.7835299,-79.4455699
-9765,Carpenter Crt At Steeles Ave West,43.79187,-79.44748
-9775,Bayview Ave At Eglinton Ave East,43.7109299,-79.37693
-9791,Evans Ave At Sheldon Ave West Side,43.61151,-79.5457399
-9795,Bathurst St At Glencairn Ave,43.71247,-79.42826
-9823,McCowan Rd At Eglinton Ave East,43.7385799,-79.2380299
-9826,Yorkville Ave At Yonge St West Side,43.6718299,-79.38823
-9828,Bathurst St At Claxton Blvd South Side,43.68663,-79.41981
-9841,St Clair Ave East At Jeanette St,43.7197599,-79.24695
-9926,Bellamy Rd North At Burnview Cres South Side,43.7536699,-79.2341799
-9937,Evans Ave At Cremorne Ave,43.6208199,-79.50133
-9949,North Service Rd At Eglinton Ave East,43.73305,-79.2654799
-9987,Kingston Rd At Claremore Ave,43.70416,-79.2528199
-10040,Roselawn Ave At Bathurst St,43.70533,-79.4261299
-10058,Lansdowne Ave At Tycos Dr,43.7041699,-79.4603399
-10065,6101 Bathurst St,43.7873999,-79.4462999
-10066,Brimley Rd At Mandarin Rd,43.72245,-79.24203
-10085,Victoria Park Ave At Winston Ave,43.6837,-79.28518
-10125,Avenue Rd At Cottingham St,43.67945,-79.39841
-10165,Warden Ave At St Clair Ave East,43.7115499,-79.2806499
-10168,3377 Bayview Ave,43.7969899,-79.3945199
-10214,Van Horne Ave At Kingslake Rd,43.7865999,-79.3451599
-10223,Greenwin Village Rd At Regatta Cres,43.7912,-79.4428699
-10224,Bellamy Rd North At Cedar Brae Blvd,43.7518399,-79.2334099
-10233,Plains Rd At Coxwell Ave West Side,43.6958899,-79.32922
-10236,Oriole Pkwy At Chaplin Cres South Side,43.69732,-79.40309
-10274,Eglinton Ave West At Lascelles Blvd,43.70571,-79.4035199
-10296,Bathurst St At Viewmount Ave South Side,43.7101999,-79.42766
-10297,Royal York Rd At Sinclair St South Side,43.6241499,-79.50178
-10306,Evans Ave At Browns Line,43.6104499,-79.54948
-10314,Bay St At Queens Quay West North Side,43.6418799,-79.37721
-10324,Oconnor Dr At Chilton Rd,43.6937499,-79.34732
-10326,Gerrard St West At Elizabeth St West Side,43.6581499,-79.38678
-10330,Brimley Rd At St Clair Ave East,43.72074,-79.24132
-10375,Davisville Ave At Bayview Ave,43.70284,-79.3746999
-10380,Broadview Ave At Hillside Dr,43.6864199,-79.3562
-12887,Opposite 810 Royal York Rd,43.6387599,-79.50826
-12890,Wellness Way At Armistice Dr (Wellspring Centre),43.7235499,-79.37859
-12894,Evans Ave At Gamma St West Side,43.6126699,-79.5406
-14141,Bathurst Station,43.6660599,-79.41106
-14155,Don Mills Station,43.7759799,-79.34691
-14160,Broadview Station,43.6766899,-79.35861
-14168,Davisville Station,43.6977999,-79.39701
-14170,Davisville Station,43.6976299,-79.39687
-14189,Eglinton Station,43.7056199,-79.39966
-14232,Kennedy Station,43.7325199,-79.26389
-14277,Scarborough Centre Station,43.7742599,-79.25818
-14305,Victoria Park Station,43.6938799,-79.2883
-14307,Warden Station,43.7109799,-79.27952
-14569,Queens Quay East At Freeland St,43.6426399,-79.37293
-14731,Victoria Park Ave At Denton Ave,43.6931,-79.28931
-14778,Birchmount Rd At Parkette Pl,43.6962699,-79.26379
-14779,3701 Danforth Ave (Variety Village),43.6987399,-79.25899
-14780,Opposite 3701 Danforth Ave (Variety Village),43.6991299,-79.2588299
-14806,Bay St At Front St West (Union Station),43.64615,-79.37932
-14894,Queens Quay East At Freeland St,43.6423699,-79.37312
-14897,Dockside Dr At Queens Quay East South Side,43.64393,-79.36766
-14935,Dockside Dr At Queens Quay East,43.6448899,-79.36538
-14936,Queens Quay East At Lower Jarvis St West Side,43.6438699,-79.36939
-14954,Bayview Ave At Brenham Cres,43.79613,-79.39456
-14959,Bay St At Lake Shore Blvd W,43.6431099,-79.3777799
-15024,Bathurst St At Invermay Ave,43.74141,-79.43487
-15031,Kingston Rd At Queensbury Ave,43.6853399,-79.27431
-15032,Kingston Rd At Queensbury Ave,43.68562,-79.2742399
-15154,Queens Quay E At Lower Jarvis St,43.64405,-79.3683899
-15211,Eglinton Ave E At Midland Ave,43.73462,-79.2580099
-15280,Bay St At King St West,43.64871,-79.38034
-15282,Bathurst St At Ava Rd,43.69801,-79.42446
-15394,Bayview Ave At Bayview Mews,43.76953,-79.38883
-15451,Royal York Rd At Bloor St West (Subway Station) North Side,43.6481799,-79.51158
+266,Disco Rd At Attwell Dr,43.7013299,-79.59478
+433,Kennedy Rd At Eglinton Ave East,43.7319099,-79.2676699
+510,Renforth Dr At Eglinton Ave West,43.66609,-79.58727
+511,Renforth Dr At Eglinton Ave West,43.6657399,-79.5862999
+512,Michael Power / St Joseph H.s.,43.6594999,-79.58299
+772,Gentian Dr At Wellesworth Dr,43.66529,-79.5817399
+920,York Mills Rd At York Ridge Rd,43.7442,-79.4017499
+944,York Mills Rd At Leslie St West Side,43.7529999,-79.36076
+993,Attwell Dr At McLachlan Dr North Side,43.69355,-79.58847
+1000,361 The West Mall,43.6408,-79.56524
+1037,Carlingview Dr At Disco Rd South Side,43.6993099,-79.60133
+1056,Dundas St West At The East Mall Cres West Side,43.63019,-79.5513299
+1084,Renforth Dr At Convair Dr,43.6720399,-79.5930899
+1096,York Mills Rd At Highland Cres,43.7453699,-79.39653
+1187,Kennedy Rd At Eglinton Ave South Side,43.73185,-79.2679899
+1264,Carlingview Dr At Worcester Rd South Side,43.69323,-79.59857
+1321,Danforth Ave At Sibley Ave,43.6903499,-79.29247
+1340,Martin Grove Rd At Eglinton Ave West North Side,43.6748999,-79.56316
+1356,York Mills Rd At Bayview Ave West Side,43.7480099,-79.38482
+1357,Danforth Rd At Warden Ave,43.6976699,-79.2747799
+1438,Davean Dr At Woodsworth Rd West Side,43.76265,-79.3645999
+1452,Carlingview Dr At Dixon Rd,43.68704,-79.59577
+1509,York Mills Rd At Banbury Rd (East),43.7526399,-79.36527
+1522,Eringate Dr At Sanctbury Pl,43.6616399,-79.57866
+1524,York Mills Rd At Bayview Ave,43.74789,-79.3844799
+1573,The East Mall At Yarn Rd,43.6322799,-79.55347
+1613,115 Skyway Ave,43.68384,-79.58302
+1645,Kennedy Rd At Danforth Rd North Side,43.71559,-79.26097
+1688,44 Longbourne Dr,43.6801299,-79.56879
+1697,York Mills Rd At Upper Highland Cres,43.74554,-79.3962899
+1767,York Mills Rd At Hedgewood Rd East Side,43.7448899,-79.39873
+1780,519 Kennedy Rd,43.7195599,-79.2624099
+1812,615 The East Mall,43.6570199,-79.56675
+1815,Bannatyne Dr At Riderwood Dr,43.7580099,-79.36435
+1817,Dundas St West At Shorncliffe Rd,43.63191,-79.5448599
+1825,Willowridge Rd At Earldown Dr South Side,43.67617,-79.57013
+1828,Opposite 519 Kennedy Rd (Cemetery),43.7194299,-79.2625799
+1844,Eringate Dr At Wellesworth Dr,43.66097,-79.5806099
+1852,York Mills Rd At Old Yonge St,43.74492,-79.3991999
+1860,339 The West Mall,43.6379299,-79.56407
+1872,Wellesworth Dr At Torrington Dr North Side,43.6553699,-79.5765999
+1876,Kennedy Rd At St Clair Ave East North Side,43.7168499,-79.26127
+1971,Danforth Ave At Leyton Ave West Side,43.6935199,-79.27836
+2014,Dundas St West At Paulart Dr East Side,43.63109,-79.5464899
+2025,York Mills Rd At Old York Mills Rd,43.7442,-79.4044499
+2029,Renforth Dr At Convair Dr,43.6723699,-79.59362
+2149,Renforth Dr At Eglinton Ave West South Side,43.6658299,-79.58699
+2196,Wellesworth Dr At Dixfield Dr (North),43.65689,-79.57728
+2201,Gentian Dr At Renforth Dr,43.66497,-79.5854099
+2245,Danforth Ave At Pharmacy Ave,43.6924399,-79.2832
+2255,York Mills Rd At Cedarwood Ave West Side,43.7459299,-79.39451
+2272,300 Danforth Rd,43.70178,-79.2716899
+2327,546 The West Mall,43.6516599,-79.5698699
+2358,The East Mall At Keane Ave North Side,43.6491899,-79.56031
+2416,Danforth Ave At August Ave,43.6929099,-79.28109
+2443,241 Woodsworth Rd,43.76497,-79.36803
+2476,87 Skyway Ave,43.68538,-79.58405
+2507,Davean Dr At Dunlace Dr,43.7613999,-79.36833
+2561,Banatyne Dr At Beaverhall Dr,43.7591999,-79.36609
+2644,The West Mall At Holiday Dr,43.6491999,-79.5684899
+2669,Opposite 340 The East Mall,43.63928,-79.55682
+2684,Danforth Ave At Leyton Ave,43.6934199,-79.27806
+2706,The East Mall At West Deane Park Dr South Side,43.6590999,-79.5691099
+2722,Rangoon Rd At Eringate Dr,43.66235,-79.57663
+2839,Banatyne Dr At Dunlace Dr,43.7617099,-79.37223
+2865,The East Mall At Keane Ave,43.64871,-79.56029
+2889,The East Mall At West Deane Park Dr,43.65907,-79.56888
+2933,Danforth Rd At Marsh Rd,43.71182,-79.2628399
+2965,Dundas St West At Wilmar Rd,43.63493,-79.5412899
+2996,65 Skyway Ave,43.6866,-79.58568
+3011,Dundas St West At Highway 427,43.6288299,-79.55511
+3036,Martin Grove Rd At Sedgeley Dr,43.6792699,-79.5651599
+3052,York Mills Rd At Chipstead Rd,43.75134,-79.3705499
+3106,The West Mall At Bloor St West,43.6352299,-79.5618699
+3150,Danforth Rd At McDonald Ave West Side,43.69578,-79.2758299
+3219,Dundas St West At The West Mall Cres East Side,43.62745,-79.56086
+3225,Dundas St West At Shaver Ave South,43.6323199,-79.54459
+3558,Kennedy Rd At Merrian Rd South Side,43.7271599,-79.2659599
+3612,Kennedy Rd At Corvette Ave,43.7251999,-79.2648499
+3645,The East Mall At Valhalla Inn Rd,43.6415799,-79.5578299
+3653,Danforth Ave At Dawes Rd,43.6891599,-79.29705
+3686,Dundas St West At Acorn Ave,43.6375099,-79.53898
+3709,Attwell Dr At Carlson Crt,43.6891899,-79.58719
+3722,Dundas St West At Highway 427,43.6292299,-79.55477
+3742,The West Mall At Eva Rd,43.6394299,-79.5649399
+3812,The West Mall Cres At Dundas St West South Side,43.6268799,-79.5621
+3853,The West Mall Cres At The West Mall,43.62711,-79.55966
+3854,Dundas St West At Aukland Rd,43.6382299,-79.53802
+3904,Opposite 366 The East Mall,43.64355,-79.55838
+3960,Danforth Ave At Victoria Park Ave,43.69139,-79.2880099
+3965,Danforth Rd At Cotton Ave East Side,43.71251,-79.26211
+4040,Belfield Rd At Attwell Dr East Side,43.69794,-79.5923699
+4067,Kennedy Rd At Foxridge Dr,43.72417,-79.26468
+4101,Davean Dr At Bannatyne Dr,43.76044,-79.3685899
+4115,York Mills Rd At Sandfield Rd,43.75039,-79.3750999
+4156,The East Mall At Bloor St West,43.6371799,-79.5569799
+4190,Wellesworth Dr At Eringate Dr,43.66064,-79.5806099
+4238,Leslie St At Farmstead Rd,43.7549299,-79.3605499
+4244,York Mills Rd At Glenridge Ave,43.7474799,-79.38646
+4249,Leslie St At Coldwater Rd,43.7547199,-79.36022
+4275,The West Mall At Bloor St West North Side,43.63602,-79.56235
+4302,The East Mall At Gordon Park Dr South Side,43.63433,-79.5568299
+4377,2681 Danforth Ave,43.6887299,-79.29897
+4481,International Blvd At Voyager Crt South,43.6774899,-79.58819
+4512,Wellesworth Dr At Clumber Rd South Side,43.65721,-79.57754
+4524,Wellesworth Dr At Rangoon Rd,43.66623,-79.57912
+4607,Kennedy Rd At Summer Dr South Side,43.7218699,-79.2636399
+4613,347 Danforth Rd,43.70343,-79.2702099
+4660,Woodsworth Rd At Northey Dr (East),43.7646699,-79.3652699
+4841,Opposite 347 Danforth Rd,43.7034399,-79.27049
+4905,York Mills Rd At Cedarwood Ave East Side,43.7459299,-79.39383
+4906,Skyway Avewnue At Meridian Rd (South),43.6824699,-79.58172
+4933,551 The West Mall,43.65175,-79.56975
+4936,The West Mall At Civic Centre Crt South Side,43.6416399,-79.5657599
+4977,Eringate Dr At Sigmont Rd,43.6619299,-79.57715
+4984,The West Mall At Rathburn Rd,43.6527899,-79.5723299
+5009,399 The West Mall (Etobicoke Civic Centre),43.6432599,-79.56653
+5027,Opposite 195 Galaxy Boulevard,43.67715,-79.58382
+5199,375 Danforth Rd,43.70487,-79.2692799
+5221,400 The West Mall,43.64316,-79.56674
+5289,The West Mall At Leavenworth Cres South Side,43.63427,-79.5613399
+5341,Danforth Ave At Byng Ave,43.6929499,-79.28028
+5343,Dundas St West At Wilmar Rd,43.63423,-79.5417399
+5407,Dundas St West At The East Mall Cres,43.63039,-79.5491699
+5423,Opposite 200 Brockport Dr,43.7015799,-79.5885099
+5424,Gentian Dr At Sagamore Cres,43.66503,-79.5848499
+5452,The East Mall At West Deane Valley Rd,43.6668899,-79.5724299
+5458,The East Mall At Capri Rd,43.6528499,-79.56338
+5485,The East Mall At Burnhamthorpe Rd,43.6460899,-79.55973
+5488,Kennedy Rd At Kenmark Blvd,43.7302899,-79.2673199
+5506,Wellesworth Dr At Torrington Dr,43.6551799,-79.5765499
+5534,Opposite 900 The East Mall,43.6697699,-79.57172
+5562,The West Mall At Burnhamthorpe Rd,43.64468,-79.56744
+5608,Bannatyne Dr At Riderwood Dr,43.75819,-79.3640799
+5627,The West Mall Cres At The West Mall West Side,43.6272399,-79.55948
+5730,211 The West Mall,43.6300599,-79.5593399
+5836,The East Mall At Burnhamthorpe Rd South Side,43.6459,-79.55997
+5874,International Blvd At Carlingview Dr East Side,43.6769399,-79.5905
+5915,Bannatyne Dr At Silvergrove Rd,43.7637299,-79.37375
+5936,Rangoon Rd At Hagersville Crt,43.6639599,-79.5776099
+6010,The East Mall At Valhalla Inn Rd North Side,43.64189,-79.55768
+6062,York Mills Rd At Old York Mills Rd,43.7444499,-79.40491
+6150,Danforth Rd At Hubert Ave,43.7139299,-79.26155
+6253,Kennedy Rd At Merrian Rd,43.72737,-79.26577
+6355,Bannatyne Dr At Leslie St West Side,43.75865,-79.3619299
+6364,The West Mall At Leavenworth Cres,43.63421,-79.56115
+6389,York Mills Rd At Birchwood Ave,43.7465499,-79.39143
+6405,The West Mall At Civic Centre Crt,43.6420599,-79.5657399
+6433,900 The East Mall,43.6695699,-79.57245
+6492,340 The East Mall,43.63912,-79.5570399
+6513,Danforth Rd At Landry Ave,43.6948099,-79.27626
+6551,Richgrove Dr At Martin Grove Rd,43.6766999,-79.56461
+6605,Wellesworth Dr At Rangoon Road West Side,43.66619,-79.5794999
+6672,The East Mall At Yarn Rd South Side,43.6319999,-79.5533399
+6695,The West Mall At Burnhamthorpe Rd,43.6443299,-79.5669299
+6698,Wellesworth Dr At The West Mall,43.6551621,-79.5726784
+6721,Dundas St West At The East Mall Cres,43.63069,-79.5489799
+6752,Danforth Rd At Birchmount Rd West Side,43.7066599,-79.26847
+6775,Banatyne Dr At Davean Dr,43.76033,-79.3684
+6805,Longbourne Dr At Willowridge Rd,43.6779699,-79.57186
+6850,Carlingview Dr At Meteor Dr South Side,43.6805299,-79.5928099
+6853,400 Danforth Rd (Birchmount Garage),43.7053399,-79.26928
+6863,Disco Rd At Brockport Rd West Side,43.7024099,-79.59014
+6895,Carlingview Dr At Renforth Dr,43.6773899,-79.59141
+6911,Bannatyne Dr At Leslie St,43.75863,-79.3615699
+6934,Opposite 451 The West Mall,43.6470599,-79.5678999
+6998,York Mills Rd At Sandfield Rd,43.75067,-79.3746999
+7008,Dundas St West At Subway Cres,43.6358499,-79.5401
+7063,Danforth Rd At Medford Ave,43.6987199,-79.27362
+7068,The East Mall At West Deane Valley Rd,43.6666799,-79.5722099
+7136,Brockport Dr At Belfield Rd North Side,43.6999699,-79.58794
+7164,Danforth Ave At Dawes Rd,43.68942,-79.2966099
+7237,Wellesworth Dr At Faversham Cres North Side,43.6587699,-79.5793699
+7242,Danforth Rd At Medford Ave,43.69914,-79.2735799
+7253,The West Mall At Eva Rd,43.6391599,-79.5646099
+7266,Kennedy Rd At Corvette Ave,43.72537,-79.26515
+7307,Woodsworth Rd At Northey Dr (West),43.76498,-79.3702199
+7361,Danforth Ave At Emmott Ave,43.6918899,-79.2851
+7436,Longbourne Dr At Redgrave Dr,43.6792299,-79.57006
+7448,Willowridge Rd At Richgrove Dr,43.6756899,-79.56858
+7488,York Mills Rd At Harrison Rd,43.7495999,-79.37889
+7491,Danforth Ave At St Dunstan Dr West Side,43.6918599,-79.2858399
+7532,Danforth Rd At Mack Ave,43.70027,-79.2728199
+7545,Woodsworth Rd At Hopperton Dr (East),43.76493,-79.37145
+7596,Kennedy Rd At Summer Dr North Side,43.7222299,-79.2635399
+7625,The East Mall At Capri Rd North Side,43.6526599,-79.5630999
+7627,2666 Danforth Ave,43.6887999,-79.29932
+7632,Martin Grove Rd At Richgrove Dr North Side,43.67731,-79.56424
+7637,Wellesworth Dr At Faversham Cres,43.65887,-79.57961
+7641,10 Disco Rd,43.70185,-79.5926099
+7773,Opposite 111 Disco Rd (West Detention Centre),43.7003399,-79.59929
+7796,Leslie St At Kirkwood Rd,43.75652,-79.36091
+7972,Wellesworth Dr At Gentian Dr,43.6653499,-79.58142
+7997,The East Mall At Bloor St West,43.6368099,-79.55638
+8029,295 Danforth Rd,43.70147,-79.2716299
+8115,The East Mall At Rathburn Rd,43.6547499,-79.5639999
+8271,451 West Mall,43.6467599,-79.5677
+8454,The East Mall At Talgarth Rd,43.66269,-79.57068
+8496,International Blvd At Galaxy Blvd,43.67808,-79.5856899
+8498,Opposite 385-387 Carlingview Dr,43.69598,-79.59983
+8536,The East Mall At Gordon Park Dr,43.63409,-79.55641
+8585,The East Mall At Eglinton Ave West,43.6716699,-79.5710099
+8589,Kennedy Rd At St Clair Ave East,43.71676,-79.26154
+8636,Martin Grove Rd At Eglinton Ave West,43.67464,-79.56341
+8703,630 The East Mall,43.6567899,-79.5665099
+8705,Danforth Rd At Birchmount Rd,43.70612,-79.2685399
+8754,Danforth Ave At Elward Blvd,43.69251,-79.2822299
+8762,Kennedy Rd At Kenmark Blvd,43.72996,-79.26689
+8815,York Mills Rd At Fenn Ave,43.74711,-79.3887999
+8817,The East Mall At Rathburn Rd,43.6551899,-79.5644299
+8834,Attwell Dr At Farnboro Rd,43.69133,-79.58741
+8856,Danforth Ave At Sibley Ave,43.6901099,-79.29282
+8885,The West Mall At Bloor St West,43.63576,-79.56244
+8922,Carlingview Dr At Fasken Dr South Side,43.6911099,-79.5976099
+8925,244 The West Mall,43.632,-79.56036
+9058,Kennedy Rd At Danforth Rd,43.7150099,-79.26106
+9097,Opposite 215 Carlingview Dr,43.68318,-79.59403
+9206,Banatyne Dr At Beaverhall Dr,43.7589399,-79.3658999
+9235,The East Mall At Eglinton Ave West South Side,43.6713499,-79.57111
+9238,Danforth Rd At Warden Ave,43.69677,-79.2748699
+9257,328 The West Mall,43.63728,-79.5637399
+9308,Danforth Ave At Main St East Side,43.6882299,-79.30111
+9314,Attwell Dr At Marmac Dr,43.6958299,-79.5895999
+9336,The East Mall At Talgarth Rd,43.6624999,-79.5704499
+9374,York Mills Rd At Birchwood Ave,43.74633,-79.3919999
+9401,24 Davean Dr,43.76206,-79.3675099
+9480,Danforth Rd At Mack Ave,43.7001099,-79.27265
+9516,Skyway Ave At Dixon Rd,43.68764,-79.58654
+9558,Rangoon Rd At Hagersville Crt North Side,43.6639799,-79.5775
+9572,York Mills Rd At York Ridge Rd,43.74443,-79.4013799
+9584,247 The West Mall,43.6320599,-79.5602199
+9651,Longbourne Dr At Martin Grove Rd West Side,43.6808199,-79.56655
+9681,Danforth Ave At Victoria Park Ave,43.6910699,-79.28874
+9728,The West Mall At Rathburn Rd South Side,43.6526399,-79.57244
+9892,Dundas St West At Acorn Ave,43.637,-79.5390899
+9893,York Mills Rd At Fenn Ave,43.74694,-79.3890599
+9925,Woodsworth Rd At Hopperton Dr (West),43.7648099,-79.3729
+9959,York Mills Rd At Banbury Rd (West),43.7516199,-79.37025
+10010,York Mills Rd At Harrison Rd,43.74989,-79.3786699
+10127,York Mills Rd At Banbury Rd (East),43.75236,-79.3656299
+10129,Dundas St West At Poplar Ave,43.6362699,-79.54007
+10246,366 The East Mall,43.6435299,-79.5586599
+10252,Wellesworth Dr At Dixfield Dr (South),43.6553299,-79.57287
+10257,210 The West Mall,43.62971,-79.55938
+10385,Dundas St West At Paulart Dr,43.6312799,-79.5465899
+10409,Eglinton Ave West At Commerce Blvd East Side,43.6627599,-79.59061
+14228,Kennedy Station,43.7324999,-79.26331
+14235,Kipling Station,43.6372199,-79.53611
+14236,Kipling Station,43.6373399,-79.53595
+14257,Main Street Station,43.6891599,-79.30148
+14326,York Mills Station,43.7452599,-79.40658
+14679,Danforth Rd At North Woodrow Blvd,43.7100499,-79.26476
+14813,The West Mall At Holiday Dr,43.64948,-79.56878
+14842,Danforth Rd At North Woodrow Blvd,43.71037,-79.2645799
+15475,Renforth Station,43.6622299,-79.59204
+15681,Renforth Station,43.6623499,-79.59214

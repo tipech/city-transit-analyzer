@@ -8,6 +8,7 @@ name = "pypi"
 requests = "*"
 networkx = "*"
 matplotlib = "*"
+googlemaps = "*"
 
 
 [dev-packages]
