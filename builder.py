@@ -28,8 +28,8 @@ def main():
 	# With the "distances" argument, calculate the distances between stops
 	elif len(sys.argv) > 2 and (sys.argv[1] == "distances" or sys.argv[1] == "-d" ):
 
-		#calculate_distances(sys.argv[2])
-		calculate_road_distance(["263", "265"], ["311", "359"], sys.argv[2])
+		calculate_distances(sys.argv[2])
+		#calculate_road_distance(["263", "265"], ["311", "359"], sys.argv[2])
 
 	# With wrong arguments, print usage help message
 	else:
@@ -85,7 +85,7 @@ def get_routes_list(agencies):
 		# convert to list
 		routes_list = routes_list + list(routes_map)
 
-	return routes_list[100:104] # DEBUG only the first 10 routes
+	return routes_list #[100:104] # DEBUG only the first 10 routes
 
 
 def get_route_stops(route_xml):
@@ -167,14 +167,24 @@ def calculate_distances(directory):
 	# read the previously-built network data
 	stops_list = read_stops_file(directory)
 	connections_list = read_connections_file(directory)
+	
+	# Decide on radius of earth
+	if directory == 'ttc':
+		radius = 6368.262
+	elif directory == 'lametro':
+		radius = 6371.57
+	elif directory == 'sf-muni':
+		radius = 6370.158
+	else: # Radius of the Earth in kilometeres, used for 37 degrees north, also 6371.001 on average
+		radius = 6373
 
-	connections_list = list(map(lambda connection: build_single_connection(connection, stops_list), connections_list))
+	connections_list = list(map(lambda connection: build_single_connection(connection, stops_list,  radius), connections_list))
 		
 	# pprint(connections_list)
 	write_connections_distances_file(directory, connections_list)
 
 
-def build_single_connection(connection,stops_list):
+def build_single_connection(connection,stops_list, radius):
 	"""Calculate the distance for a single connection and return it as a dictionary object"""
 
 	stop1 = connection['from']
@@ -182,8 +192,8 @@ def build_single_connection(connection,stops_list):
 	routes = connection['routes']
 	flag1 = 0
 
-	#Radius of the Earth in kilometeres, used for 37 degrees, like Washington D.C.
-	R = 6373
+	#Radius of the Earth in kilometeres
+	R = radius
 
 	for stop in stops_list: 
 		if (stop['tag'] == stop1):
@@ -284,6 +294,22 @@ def call_transit_API(agency, command, route = "", stop = ""):
 			},
 		'nextTrain':{
 			'api_base':"sadda"
+			}, 
+		'lametro':{
+			'api_base':"http://webservices.nextbus.com/service/publicXMLFeed?a=lametro&command=",
+			'route_option':"&r=",
+			'commands':{
+				'route_list':"routeList",
+				'route_data':"routeConfig"
+				}
+			}, 
+		'sf-muni':{
+			'api_base':"http://webservices.nextbus.com/service/publicXMLFeed?a=sf-muni&command=",
+			'route_option':"&r=",
+			'commands':{
+				'route_list':"routeList",
+				'route_data':"routeConfig"
+				}
 			}
 		}
 
