@@ -28,14 +28,14 @@ def main():
 	# With the "distances" argument, calculate the distances between stops
 	elif len(sys.argv) > 2 and (sys.argv[1] == "distances" or sys.argv[1] == "-d" ):
 
-		calculate_distances(sys.argv[2])
-		#calculate_road_distance(["263", "265"], ["311", "359"], sys.argv[2])
+		#calculate_distances(sys.argv[2])
+		calculate_road_distances(sys.argv[2])
+		#calculate_road_distance_per_row(["262", "264", "265", "266", "267", "268", "269", "270", "271", "271", "273"], ["4907", "4165", "10375", "7773", "4040", "5109", "9687", "5231", "280", "7497", "2768"], sys.argv[2])
+		#calculate_road_distance_per_row(["269", "270", "271", "271"], ["9687", "5231", "280", "7497"], sys.argv[2])
 
 	# With wrong arguments, print usage help message
 	else:
 		print("Usage: builder <static|distances> <agency>[,<agency_2>,...]")
-
-		
 
 
 # ===============================================
@@ -85,7 +85,7 @@ def get_routes_list(agencies):
 		# convert to list
 		routes_list = routes_list + list(routes_map)
 
-	return routes_list #[100:104] # DEBUG only the first 10 routes
+	return routes_list[100:104] # DEBUG only the first 10 routes
 
 
 def get_route_stops(route_xml):
@@ -220,13 +220,82 @@ def build_single_connection(connection,stops_list, radius):
 
 	return {"from": stop1, "to": stop2, "routes": routes, "straight-distance": str(d), "road-distance": str(0)}
 
+def calculate_road_distances(directory):
+	#
+	
+	# read the previously-built network data
+	connections_list = read_connections_file(directory)
+	stops_list = read_stops_file(directory)
 
-def calculate_road_distance(from_stops, to_stops,  directory):
+	#Set google client key
+	gmaps = googlemaps.Client(key="AIzaSyB2yJoPRC-bIAPE9CQZBmyyjL_5r--OJSI")
+	
+	#Create a list of latitudes and longtitudes for origins and destinations
+	from_stops_lat_lon = []
+	to_stops_lat_lon = []
+	
+	# counter used to point to connections_list
+	c1 = 1
+	
+	# limit for each api call
+	api_call_limit = 10
+	
+	len_c = len(connections_list)
+	
+	while c1 <= len_c:
+		if len_c - c1 < api_call_limit:
+			c3 = len_c - c1 + 1
+		else:
+			c3 = api_call_limit		
+		from_stops_lat_lon = []
+		to_stops_lat_lon = []
+		c2 = 1
+		for connection in connections_list: # If considered ordered, we could change to while, to change the pointer of where to start
+			from_stop = connection['from']
+			to_stop = connection['to']
+	
+			flag1 = 0
+			for stop in stops_list: 
+				if (stop['tag'] == from_stop):
+					lat1 = stop['lat']
+					lon1 = stop['lon']
+					if flag1 == 0:
+						flag1 = 1
+						continue
+					elif flag1 == 1:
+						break
+				if (stop['tag'] == to_stop):
+					lat2 = stop['lat']
+					lon2 = stop['lon']
+					if flag1 == 0:
+						flag1 = 1
+						continue
+					elif flag1 == 1:
+						break
+	
+			from_stops_lat_lon.append([lat1, lon1])
+			to_stops_lat_lon.append([lat2, lon2])
+			
+			c2 = c2 + 1
+			if c2 > c3:
+				break
+	
+		#Call to google distance matrix api
+		google_result = gmaps.distance_matrix(origins = from_stops_lat_lon, destinations = to_stops_lat_lon,  mode = "driving")
+		
+		for stop1 in range(0, c3):
+			single_distance = google_result['rows'][stop1]['elements'][stop1]['distance']['value']
+			connections_list[c1-1]['road_distance'] = single_distance			
+		
+		c1 = c1 + c3
+	write_connections_file(directory, connections_list)
+
+def calculate_road_distance_per_row(from_stops, to_stops,  directory):
 	# input: lists of tags of stops, from_stops and to_stops, and directory
 	#
 	# len(from_stops) <= 25
 	# len(to_stops) <= 25
-	#
+	# len (from_stops) = len (to_stops)
 	# return [
 	#   {'distance': 17451, 'from': '263', 'to': '311'},
 	#   {'distance': 19553, 'from': '263', 'to': '359'},
@@ -260,9 +329,9 @@ def calculate_road_distance(from_stops, to_stops,  directory):
 	#Format output from the resulting google maps api call
 	distances = []
 	for stop1 in range(0, len(from_stops)):
-		for stop2 in range(0, len(to_stops)):
-			single_distance = google_result['rows'][stop1]['elements'][stop2]['distance']['value']
-			distances.append({"from":from_stops[stop1], "to":to_stops[stop2], "distance":single_distance})
+		#for stop2 in range(0, len(to_stops)):
+		single_distance = google_result['rows'][stop1]['elements'][stop1]['distance']['value']
+		distances.append({"from":from_stops[stop1], "to":to_stops[stop1], "distance":single_distance})
 	return distances
 
 # ===============================================
