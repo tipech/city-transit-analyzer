@@ -85,17 +85,17 @@ def get_routes_list(agencies):
 		# convert to list
 		routes_list = routes_list + list(routes_map)
 
-	return routes_list[100:104] # DEBUG only the first 10 routes
+	return routes_list # DEBUG only the first 10 routes
 
 
 def get_route_stops(route_xml):
 	"""Extract the list of stops for this route."""
 
 	# keep only stop xml elements
-	stops_map = filter((lambda x: x.tag=="stop" and not '_' in x.attrib['tag']), route_xml)
+	stops_map = filter((lambda x: x.tag=="stop"), route_xml)
 
 	# lambda function to turn xml attributes into dictionary keys
-	stop_dict_func = lambda x: {'tag': x.attrib['tag'], 'title': x.attrib['title'], 'lat': x.attrib['lat'], 'lon': x.attrib['lon']}
+	stop_dict_func = lambda x: {'tag': x.attrib['tag'].split("_")[0], 'title': x.attrib['title'], 'lat': x.attrib['lat'], 'lon': x.attrib['lon']}
 	stops_map = map(stop_dict_func, stops_map)
 
 	return list(stops_map)
