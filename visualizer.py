@@ -51,20 +51,20 @@ def draw_static_network(directory):
 	# plt.show()
 	# plt.savefig("network_1200", dpi=800)
 
-	print("Total length:")
-	print(sum(connection['straight-distance'] for connection in connections_list))
+	#print("Total length:")
+	#print(sum(connection['straight-distance'] for connection in connections_list))
 
-	print("Average connection length:")
-	print(sum(connection['straight-distance'] for connection in connections_list) / len(connections_list))
+	#print("Average connection length:")
+	#print(sum(connection['straight-distance'] for connection in connections_list) / len(connections_list))
 
-	print("Average shortest path:")
-	print(nx.average_shortest_path_length(G,weight='straight-distance'))
+	#print("Average shortest path:")
+	#print(nx.average_shortest_path_length(G,weight='straight-distance'))
 
 	# print("Center:")
 	# print(nx.center(G))
 
-	# print("Connectivity:")
-	# print(nx.all_pairs_node_connectivity(G))
+	print("Connectivity:")
+	print(nx.all_pairs_node_connectivity(G))
 
 
 

@@ -216,7 +216,8 @@ def merge_nearby_stops(stops_list, connections_list, directory):
 	initial_length = len(stops_list)
 
 	for i in reversed(range(0, initial_length)):
-		for j in reversed(range(i+1, initial_length)):
+		new_length = len(stops_list)
+		for j in reversed(range(i+1, new_length)):
 
 			distance = calculate_straight_distance(stops_list[i], stops_list[j], radius)
 
@@ -240,8 +241,6 @@ def merge_nearby_stops(stops_list, connections_list, directory):
 					del stops_list[j]
 
 					stops_merged = stops_merged + 1
-
-
 		print("Calculated distances for " + str( initial_length - i + 1 ) + "/" + str(initial_length) + " stops", end="\r")
 
 	print("\nComparison done! Merged: " + str(stops_merged) + " pairs of nearby stops.")
