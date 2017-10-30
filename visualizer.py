@@ -47,9 +47,8 @@ def draw_static_network(directory):
 
 	# G = nx.connected_components(G)
 
-	# nx.draw_networkx(G,node_size=0.1,with_labels=False,arrows=False,pos=convert_stops_to_positions(stops_list))
+	nx.draw_networkx(G,node_size=0.1,with_labels=False,edge_color="#AAAAAA",node_color="black",arrows=False,pos=convert_stops_to_positions(stops_list))
 	# plt.show()
-	# plt.savefig("network_1200", dpi=800)
 
 	#print("Total length:")
 	#print(sum(connection['straight-distance'] for connection in connections_list))
@@ -60,11 +59,25 @@ def draw_static_network(directory):
 	#print("Average shortest path:")
 	#print(nx.average_shortest_path_length(G,weight='straight-distance'))
 
+	print("Bridges:")
+	bridges = list(nx.bridges(G))
+	print(bridges)
+
+	non_bridges = [edge for edge in G.edges if edge not in bridges]
+
+	G2 = G
+	G2.remove_edges_from(non_bridges)
+	G2.remove_nodes_from(list(nx.isolates(G2)))
+	nx.draw_networkx(G2,node_size=0.1,edge_color="red",with_labels=False,arrows=False,pos=convert_stops_to_positions(stops_list))
+	plt.show()
+	# plt.savefig("bridges_800", dpi=800)
+
+
 	# print("Center:")
 	# print(nx.center(G))
 
-	print("Connectivity:")
-	print(nx.all_pairs_node_connectivity(G))
+	# print("Connectivity:")
+	# print(nx.all_pairs_node_connectivity(G))
 
 
 
