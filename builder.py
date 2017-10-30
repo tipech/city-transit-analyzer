@@ -213,7 +213,7 @@ def merge_nearby_stops(stops_list, connections_list, directory):
 	connections_dict = {connection['from'] + "_" + connection['to'] : connection for connection in connections_list}
 
 	stops_merged = 0
-	initial_length = str(len(stops_list))
+	initial_length = len(stops_list)
 
 	for i in reversed(range(0, initial_length)):
 		for j in reversed(range(i+1, initial_length)):
