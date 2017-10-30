@@ -31,7 +31,6 @@ tag,title,lat,lon
 46,7th / Hoover,34.05962,-118.28396
 47,7th / Maclay,34.2939799,-118.4272099
 49,7th / Patton,33.7378599,-118.3057199
-51,St Bernard High School,33.9531999,-118.43332
 55,Adams / Fairfax,34.0323599,-118.37049
 56,Adams / Vermont,34.0326699,-118.2912
 57,California Yacht Club,33.98363,-118.44589
@@ -51,6 +50,8 @@ tag,title,lat,lon
 77,Alamo / 60th,33.9831199,-118.17456
 78,Alamo / Gage,33.9770599,-118.17551
 79,Alamo / Randolph,33.98004,-118.1750199
+85,Allen / Colorado,34.14627,-118.11301
+86,Allen / Washington,34.1694099,-118.11287
 87,Allesandro / Baxter,34.09244,-118.2565199
 88,Allesandro / Ewing,34.0908699,-118.25836
 89,Allesandro / Oak Glen,34.0937599,-118.25518
@@ -94,7 +95,6 @@ tag,title,lat,lon
 134,Arlington / Washington,34.0397,-118.31758
 136,Temple / Hill,34.0564499,-118.2442099
 137,Beverly / San Vicente,34.0765999,-118.37981
-138,Woodward / Garfield,34.0976699,-118.12829
 139,Van Nuys / Arleta,34.25408,-118.4383399
 140,Artesia / Ainsworth,33.8727,-118.3392099
 141,Artesia / Amie,33.87271,-118.34804
@@ -113,7 +113,7 @@ tag,title,lat,lon
 160,Woodman / Moorpark,34.15064,-118.4310799
 161,Atlantic / Martin Luther King Jr,33.9213799,-118.1872
 162,Atlantic / Patata,33.95584,-118.18388
-163,Atlantic / Abbott,33.9337099,-118.1825799
+163,Atlantic / Abbott,33.93371,-118.1825799
 164,Atlantic / Agnes,33.91419,-118.1901699
 165,Atlantic / Arlington,33.9067,-118.1932799
 166,Atlantic / Beechwood,33.9256999,-118.18573
@@ -124,7 +124,6 @@ tag,title,lat,lon
 172,Atlantic / Artesia,33.87466,-118.18596
 173,Atlantic / Elizabeth,33.9635,-118.18624
 175,Atlantic / Fernwood,33.9164499,-118.18923
-176,Rayo / Southern,33.9465699,-118.17977
 177,Atlantic / Firestone,33.9514999,-118.18281
 178,Atlantic / Florence,33.97006,-118.1878499
 179,Atlantic / Gage,33.97827,-118.1867599
@@ -524,7 +523,6 @@ tag,title,lat,lon
 695,Chase / Ranchito,34.22658,-118.4372199
 696,Van Nuys / Chase,34.2244899,-118.4489099
 697,Chase / Woodman,34.2277999,-118.4345399
-698,Lurline / Vintage,34.2519499,-118.58426
 699,Louise / Chatsworth,34.2651199,-118.51086
 701,Buena Vista / Alameda,34.1583699,-118.32834
 702,Riverside / Laurel Canyon,34.1575399,-118.39671
@@ -536,14 +534,14 @@ tag,title,lat,lon
 708,Cal State La Transit Center,34.0631799,-118.16869
 709,Western / Pacific Coast,33.78929,-118.3074499
 711,Western / Pacific Coast,33.7892099,-118.30775
-712,City Terrace / Lafler,34.0574399,-118.17353
+712,City Terrace / Lafler,34.05744,-118.1735299
 713,City Terrace / Alma,34.0487499,-118.19201
-714,City Terrace / Bonnie Beach,34.0557299,-118.18114
+714,City Terrace / Bonnie Beach,34.05573,-118.1811399
 715,City Terrace / Ditman,34.0488399,-118.18926
-717,City Terrace / Herbert,34.0553599,-118.1834
-718,City Terrace / Rowan,34.0542899,-118.18754
+717,City Terrace / Herbert,34.05536,-118.1833999
+718,City Terrace / Rowan,34.05429,-118.1875399
 719,City Terrace / Pomeroy,34.0509,-118.18869
-720,City Terrace / Van Pelt,34.0558999,-118.17679
+720,City Terrace / Van Pelt,34.0559,-118.1767899
 721,Civic Center / Malibu Perf Arts Ctr,34.0365699,-118.68744
 722,Civic Center / Webb,34.03594,-118.6903499
 723,Civic Center / Winter Canyon,34.0370399,-118.6993399
@@ -607,8 +605,9 @@ tag,title,lat,lon
 812,Compton / 81st,33.9656099,-118.2474999
 813,Compton / 83rd,33.9630899,-118.24749
 814,Compton / 95th,33.95044,-118.24598
-815,Compton / 96th,33.9488699,-118.24604
-817,Compton / Century,33.9454999,-118.24611
+815,Compton / 96th,33.94887,-118.2460399
+816,Compton / 98th,33.9474799,-118.2461
+817,Compton / Century,33.9455,-118.2461099
 818,Compton / Florence,33.97453,-118.2475
 819,Compton / Gage,33.98186,-118.24754
 820,Imperial / Compton,33.9296099,-118.2465699
@@ -626,8 +625,8 @@ tag,title,lat,lon
 841,Hooper / 55th,33.9928799,-118.25197
 842,Corbin / Prairie,34.2389799,-118.56218
 843,Corbin / Nordhoff Way,34.2322699,-118.56218
+846,Crenshaw / Venice,34.0450399,-118.32807
 847,Crenshaw / 132nd,33.9123899,-118.32635
-848,144th / Crenshaw,33.9008999,-118.32636
 849,Hooper / 51st,33.99652,-118.25198
 850,Crenshaw / 147th,33.8985799,-118.32637
 851,Crenshaw / El Camino College,33.88561,-118.32632
@@ -674,11 +673,11 @@ tag,title,lat,lon
 905,Crenshaw / 78th,33.96895,-118.33069
 908,Crenshaw / 8th,34.05896,-118.3204499
 909,Crenshaw / 9th,34.05619,-118.3219699
-915,Crenshaw / El Segundo,33.9172299,-118.3263599
+915,Crenshaw / El Segundo,33.91723,-118.32636
 916,Crenshaw / Florence,33.9748099,-118.3306999
 918,Crenshaw / Olympic,34.05442,-118.3229399
 919,Crenshaw / Pico,34.0475899,-118.32668
-921,Crenshaw / Redondo Beach,33.8831899,-118.3263599
+921,Crenshaw / Redondo Beach,33.8831899,-118.32636
 922,Compton / Willowbrook,33.8958299,-118.22306
 924,Rosecrans / Crenshaw,33.9018,-118.32599
 925,Slauson / Crenshaw,33.9891499,-118.33114
@@ -801,7 +800,6 @@ tag,title,lat,lon
 1115,103rd / Alameda,33.94297,-118.2281299
 1117,103rd / Stanford,33.94327,-118.26299
 1118,103rd / Success,33.94314,-118.24879
-1119,Eagle Rock / York Terminal,34.1232899,-118.22212
 1120,103rd / Zamora Walk,33.9431499,-118.2517299
 1131,Main / 11th,34.0389,-118.2581099
 1133,Avalon / 120th,33.9235899,-118.26504
@@ -815,7 +813,7 @@ tag,title,lat,lon
 1156,1st / Ditman,34.03593,-118.1893299
 1157,1st / Evergreen,34.0404099,-118.2025799
 1158,1st / Ford,34.03689,-118.1693299
-1159,1st / Rowan,34.0359499,-118.18673
+1159,1st / Rowan,34.03595,-118.1867299
 1160,1st / Indiana,34.03593,-118.1921899
 1161,Downtown Long Beach Station,33.7681499,-118.19003
 1162,1st / Lorena,34.0369299,-118.1947699
@@ -836,7 +834,6 @@ tag,title,lat,lon
 1208,1st / Los Angeles,34.0517799,-118.2425199
 1209,6th / Gladys,34.04012,-118.24202
 1210,6th / Central,34.0393599,-118.24074
-1212,6th / Central,34.0386799,-118.23954
 1213,Central / 6th,34.0392,-118.23979
 1214,6th / Main,34.0450499,-118.24976
 1215,6th / San Pedro,34.04202,-118.24506
@@ -856,7 +853,6 @@ tag,title,lat,lon
 1235,8th / Euclid,34.0244799,-118.2109299
 1236,8th / Marietta,34.02589,-118.21468
 1238,8th / Concord,34.02274,-118.20709
-1239,Hawthorne / Rosecrans,33.9011499,-118.35289
 1240,8th / Grande Vista,34.02322,-118.20869
 1241,Lorena / 8th,34.02175,-118.20488
 1244,92nd / Compton,33.9534599,-118.2471999
@@ -898,8 +894,7 @@ tag,title,lat,lon
 1292,Broadway / Jackson,34.1462099,-118.24988
 1293,Broadway / Louise,34.14619,-118.2523899
 1296,Santa Monica / Canon,34.0726199,-118.40253
-1297,Santa Monica / Wilshire,34.06677,-118.4110799
-1298,Nebraska / Sepulveda,34.0457099,-118.4433
+1297,Santa Monica / Wilshire,34.0667699,-118.41108
 1303,Carson / Juan,33.83137,-118.07571
 1304,Carson / Pioneer,33.8316299,-118.0812699
 1306,Century / Avalon,33.9454799,-118.26542
@@ -910,10 +905,10 @@ tag,title,lat,lon
 1311,Colorado / Bonnie,34.14588,-118.1155099
 1314,Colorado / Allen,34.14589,-118.1133399
 1315,Colorado / Altadena,34.1459799,-118.09844
-1316,Colorado / Arroyo Pkwy,34.14568,-118.1473299
+1316,Colorado / Arroyo Pkwy,34.1456799,-118.14733
 1317,Colorado / Berkeley,34.14592,-118.1092999
-1318,Colorado / Catalina,34.14579,-118.1291799
-1319,Colorado / Chester,34.1458199,-118.12434
+1318,Colorado / Catalina,34.1457899,-118.12918
+1319,Colorado / Chester,34.14582,-118.1243399
 1320,Colorado / Craig,34.1459399,-118.10598
 1323,Colorado / Fair Oaks,34.14566,-118.1502099
 1324,Colorado / Garfield,34.1456999,-118.14402
@@ -924,7 +919,7 @@ tag,title,lat,lon
 1330,San Fernando / Cerritos,34.1251,-118.25649
 1331,Colorado / Lake,34.1457699,-118.132
 1334,Colorado / Madison,34.1457399,-118.13817
-1336,Colorado / Oak Knoll,34.1457699,-118.135
+1336,Colorado / Oak Knoll,34.14577,-118.1349999
 1339,Colorado / San Gabriel,34.14601,-118.0943299
 1340,Colorado / Sierra Bonita,34.14587,-118.1172199
 1341,Colorado / Sierra Madre,34.1459599,-118.10138
@@ -932,7 +927,7 @@ tag,title,lat,lon
 1343,Colorado / Wilson,34.1457999,-118.12782
 1346,Saticoy / De Soto,34.20843,-118.58881
 1347,Valley / Marianna,34.0669399,-118.1780699
-1348,Colorado / Raymond,34.1456699,-118.14866
+1348,Colorado / Raymond,34.14567,-118.1486599
 1349,Valley / Marianna,34.06685,-118.1769399
 1350,Compton / Alameda,33.89588,-118.2195099
 1351,Compton / Bradfield,33.89593,-118.2038199
@@ -977,20 +972,18 @@ tag,title,lat,lon
 1407,Telstar / Flair,34.0685299,-118.07016
 1409,Florence / Avalon,33.97462,-118.2648399
 1410,Florence Station,33.9746099,-118.24248
-1411,Florence / Centinela,33.96957,-118.3473099
+1411,Florence / Centinela,33.9695699,-118.34731
 1412,Florence / Compton,33.97463,-118.24792
 1415,Florence / Holmes,33.9746099,-118.2414999
 1416,Florence / Hooper,33.9746399,-118.2516499
 1417,Florence / Malabar,33.9745799,-118.2275299
 1419,Main / 3rd,34.0932599,-118.13049
 1420,Florence / Miramonte,33.97462,-118.24568
-1421,Florence / Mountain View,33.97353,-118.2173
+1421,Florence / Mountain View,33.9735299,-118.2172999
 1422,Florence / Hillcrest,33.9686399,-118.34908
 1423,Florence / Market,33.96622,-118.3517599
 1424,Florence / Prairie,33.9712299,-118.34383
 1425,Pacific / Florence,33.9739499,-118.2254399
-1426,George Burns / Gracie Allen,34.07516,-118.38152
-1427,San Vicente / Beverly,34.0760499,-118.37942
 1428,San Vicente / Gracie Allen,34.0748999,-118.37877
 1429,Florence / Roseberry,33.9746,-118.23316
 1431,Florence / Main,33.9745699,-118.27419
@@ -1011,7 +1004,6 @@ tag,title,lat,lon
 1448,Gage / Hooper,33.9819999,-118.2517199
 1449,Gage / McKinley,33.98184,-118.2615499
 1450,Gage / Central,33.9819,-118.2566299
-1451,Montana / Glendale Layover,34.0801199,-118.26091
 1453,Gage / San Pedro,33.98235,-118.2697099
 1454,Gage / Wilmington,33.98191,-118.2391799
 1455,Garvey / Central,34.0626199,-118.04714
@@ -1095,21 +1087,22 @@ tag,title,lat,lon
 1565,Mariposa / El Molino,34.18831,-118.13288
 1566,Mariposa / Santa Anita,34.1902199,-118.1387999
 1567,Corbin / Nordhoff Pl,34.23521,-118.5624099
-1568,Mariposa / Saint James,34.1899699,-118.1380399
+1568,Mariposa / Saint James,34.18997,-118.13804
 1569,Mission / Del Mar,34.0938399,-118.0991999
 1570,Mission / Lafayette,34.0924599,-118.0953199
 1571,Mission / San Gabriel,34.0907299,-118.0905499
 1573,Olive / Glenoaks,34.18307,-118.3065399
 1574,Olive / San Fernando,34.1807299,-118.30903
-1575,Olympic / 8th,34.01895,-118.1981899
+1575,Olympic / 8th,34.0189499,-118.19819
 1576,Olympic / Camulos,34.0223999,-118.2158099
 1577,Olympic / Southside,34.0134,-118.14447
 1578,Olympic / Fraser,34.0171299,-118.1631299
 1579,Olympic / Goodrich,34.0155799,-118.1557599
 1580,Olympic / Hooper,34.02944,-118.2413
 1581,Olympic / Lawrence,34.0269399,-118.2371099
-1582,Olympic / Los Palos,34.01872,-118.19566
+1582,Olympic / Los Palos,34.01872,-118.1956599
 1583,Olympic / Mateo,34.02581,-118.23184
+1584,Olympic / Calada,34.0187,-118.1981599
 1585,Olympic / Orme,34.02332,-118.21793
 1586,Olympic / Alameda,34.02762,-118.23929
 1587,Olympic / Arizona,34.0181699,-118.1680299
@@ -1145,6 +1138,7 @@ tag,title,lat,lon
 1619,Regent / Grevillea,33.9645099,-118.35502
 1620,Riggin / Garfield,34.0368399,-118.13083
 1622,Rosecrans / Avalon,33.9022299,-118.2656
+1623,Gage / Pomeroy,34.05096,-118.18534
 1624,Central / Glenoaks,34.1596199,-118.2577
 1625,Rosecrans / San Pedro,33.90209,-118.2693
 1628,Sierra Madre / Hastings Ranch,34.16145,-118.0723899
@@ -1221,6 +1215,7 @@ tag,title,lat,lon
 1731,Avalon Station Layover,33.9280599,-118.265
 1733,Washington / Sinaloa,34.1690199,-118.11511
 1734,Oxnard / Canoga,34.1791299,-118.59774
+1735,Woodbury / Santa Anita,34.18189,-118.1425999
 1736,Eagle Rock / York,34.1239499,-118.22126
 1737,Eagle Rock / York,34.1239199,-118.22085
 1738,Central / Imperial,33.9296499,-118.25441
@@ -1230,7 +1225,7 @@ tag,title,lat,lon
 1743,Eagle Rock / Moss,34.11055,-118.2370499
 1744,Eagle Rock / Avenue 45,34.12587,-118.2190399
 1745,Eagle Rock / Norwalk,34.1322199,-118.21597
-1746,Eagle Rock / Verdugo,34.1049399,-118.2379699
+1746,Eagle Rock / Verdugo,34.10494,-118.23797
 1747,Eagle Rock / Avenue 31,34.1079999,-118.23803
 1748,Eagle Rock / Avenue 33,34.1120099,-118.23667
 1749,Eagle Rock / Avenue 34,34.1138,-118.2361999
@@ -1289,6 +1284,7 @@ tag,title,lat,lon
 1847,Fair Oaks / Marathon,34.2005399,-118.14446
 1848,Fair Oaks / Painter,34.15993,-118.15044
 1849,Fair Oaks / Penn,34.1748,-118.15057
+1850,Glenarm / Fair Oaks,34.12745,-118.1499699
 1851,Fair Oaks / Washington,34.1691199,-118.1505099
 1853,Fair Oaks / Monterey,34.1120399,-118.15014
 1854,Alvarado / Wilshire,34.0570899,-118.27624
@@ -1343,7 +1339,7 @@ tag,title,lat,lon
 1912,Firestone / Lakewood,33.9358299,-118.12416
 1913,Lakewood / Firestone,33.9357999,-118.12368
 1915,Firestone / Long Beach,33.95546,-118.21988
-1916,Crenshaw / Martin Luther King Jr,34.0111499,-118.3352599
+1916,Crenshaw / Martin Luther King Jr,34.0111499,-118.33526
 1917,Maie / Firestone,33.9598799,-118.24425
 1918,Washington / Exposition Sta Dwy,34.0277799,-118.38751
 1919,Firestone / Old River School,33.94719,-118.1485299
@@ -1365,7 +1361,6 @@ tag,title,lat,lon
 1936,Firestone / Zamora,33.96004,-118.25155
 1937,Foothill / Bledsoe,34.3209599,-118.4475199
 1938,Foothill / Roxford,34.32248,-118.45994
-1940,Manchester / Sepulveda Westway,33.9597399,-118.39737
 1943,Flair / Fletcher,34.0719699,-118.05994
 1944,Fletcher / Telstar,34.06959,-118.0600899
 1946,Fletcher / Ripple,34.10757,-118.2544599
@@ -1387,14 +1382,13 @@ tag,title,lat,lon
 1970,Florence / El Selinda,33.9672599,-118.1602999
 1971,Florence / Emil,33.96287,-118.14798
 1974,Florence / Gard,33.9351799,-118.0885299
-1975,Florence Garfield L.O.,33.9663699,-118.15206
 1976,Florence / Garfield,33.9654999,-118.15194
 1977,Florence / Haledon,33.9454299,-118.1133599
 1978,Florence / Jaboneria,33.9670499,-118.1579699
 1979,Florence / Lakewood,33.9472399,-118.11693
-1980,Florence / Mission,33.9729799,-118.2121699
+1980,Florence / Mission,33.97298,-118.21217
 1982,Florence / Newville,33.94095,-118.10452
-1984,Florence / Otis,33.97082,-118.194
+1984,Florence / Otis,33.9708199,-118.194
 1985,Florence / Paramount,33.95332,-118.12979
 1986,Florence / Pioneer,33.9351799,-118.0815
 1987,Florence / Ringwood,33.93517,-118.08472
@@ -1486,6 +1480,7 @@ tag,title,lat,lon
 2103,Wilcox / Gage,33.9767099,-118.17656
 2104,Gage / Atlantic,33.97786,-118.18664
 2105,Gage / Bear,33.97901,-118.19746
+2106,Gage / Cesar E Chavez,34.04033,-118.18471
 2107,Gage / Colmar,33.97468,-118.15714
 2108,Gage / Darwell,33.97405,-118.15052
 2109,Gage / Eastern,33.97541,-118.16392
@@ -1598,7 +1593,6 @@ tag,title,lat,lon
 2252,Glenoaks / Roscoe North Jog,34.22273,-118.35933
 2253,Glenoaks / Hollywood Way,34.2133199,-118.3483399
 2254,Glenoaks / Sheldon,34.24647,-118.38415
-2255,Glenoaks / Osborne,34.2652499,-118.40234
 2256,Glenoaks / Truesdale,34.2494499,-118.3873099
 2257,Glenoaks / Tuxford,34.2342199,-118.3711899
 2258,Glenoaks / Van Nuys,34.2739799,-118.4117799
@@ -1624,8 +1618,8 @@ tag,title,lat,lon
 2305,Griffith Park / Hyperion,34.1068199,-118.27253
 2306,Saint George / Griffith Park,34.1087299,-118.27491
 2315,Harbor Transitway / 37th St / USC,34.0176599,-118.27992
-2316,Gayley / Le Conte,34.0640299,-118.44806
 2318,Del Amo / Rr-Xing,33.84652,-118.21059
+2319,Hawthorne / Lennox Station,33.9334499,-118.35245
 2320,Harbor Transitway / Manchester,33.9597999,-118.2805599
 2321,Harbor Transitway / Rosecrans,33.9017499,-118.2864099
 2322,Harbor Transitway / Slauson,33.9886899,-118.2802
@@ -1640,7 +1634,7 @@ tag,title,lat,lon
 2340,Alameda / 223rd,33.8247199,-118.22871
 2341,1st / Boyle,34.04709,-118.2195
 2342,Pacific Coast / Busch,34.0165999,-118.81837
-2343,La Brea / Regent,33.9646,-118.35352
+2343,La Brea / Regent,33.9646,-118.3535199
 2344,Florencita / Ocean View,34.20665,-118.22751
 2345,Terminal 25,34.0638899,-118.25134
 2346,Orangedale / Honolulu,34.20734,-118.2323499
@@ -1677,10 +1671,10 @@ tag,title,lat,lon
 2392,Rosemead / Broadway,34.0986199,-118.0735999
 2393,Hawthorne / Lomita,33.8161999,-118.35096
 2394,Hawthorne / Los Verdes,33.75518,-118.3960099
-2395,Florence / Rugby,33.97423,-118.22668
+2395,Florence / Rugby,33.9742299,-118.2266799
 2396,Wilshire / Highland,34.0619899,-118.33782
 2397,Grand / 2nd,34.05432,-118.2502099
-2398,Hawthorne / Manhattan Beach,33.88767,-118.35221
+2398,Hawthorne / Manhattan Beach,33.8876699,-118.35221
 2399,Hawthorne / Marine,33.8944399,-118.3522199
 2400,Hawthorne / Palos Verdes Dr N,33.7879899,-118.35767
 2401,Hawthorne / Newton,33.7996999,-118.35098
@@ -1841,7 +1835,7 @@ tag,title,lat,lon
 2615,Imperial / Benwell,33.93193,-118.1992399
 2617,Imperial / Brookshire,33.9200499,-118.1439999
 2618,Imperial / Bullis,33.93177,-118.19724
-2619,Imperial / California,33.9305399,-118.2083899
+2619,Imperial / California,33.93054,-118.20839
 2620,Imperial / Columbia,33.91689,-118.1337899
 2621,Imperial / Cornish,33.9313,-118.19196
 2622,Sepulveda / Magnolia,34.16449,-118.4663199
@@ -1851,7 +1845,6 @@ tag,title,lat,lon
 2627,Imperial Terminal,33.9315499,-118.4077199
 2628,Imperial / Fairford,33.9169799,-118.0944999
 2629,Imperial / Felton,33.9308099,-118.36519
-2630,Wright / Imperial L.O.,33.9315199,-118.18062
 2631,Imperial / Garfield,33.92972,-118.16783
 2632,Imperial / Garfield Pl.,33.9299599,-118.1700099
 2633,Imperial / Hughes,33.93071,-118.3929899
@@ -1863,7 +1856,7 @@ tag,title,lat,lon
 2640,Imperial / Lakewood,33.91692,-118.1382599
 2641,San Fernando / Arvia,34.0950599,-118.2308899
 2642,Imperial / Lewis,33.93155,-118.19476
-2643,Imperial / Long Beach,33.93043,-118.21122
+2643,Imperial / Long Beach,33.9304299,-118.21122
 2645,Imperial / Douglas,33.9307999,-118.38283
 2646,Sepulveda / Walnut,33.92936,-118.3960999
 2647,Sepulveda / Walnut,33.9292299,-118.39641
@@ -1910,7 +1903,6 @@ tag,title,lat,lon
 2710,2001 John S Gibson,33.75867,-118.2875399
 2712,Firestone / Rives,33.9445699,-118.1417199
 2713,J.s. Gibson / Harbor Fwy Ramp,33.7565,-118.2894499
-2714,Josephine / Atlantic,33.9153699,-118.19042
 2715,Palm / Seville,33.9637299,-118.2227199
 2716,Palm / Seville,33.9639799,-118.2233499
 2719,Kanan / Canwood,34.1491599,-118.76036
@@ -1924,13 +1916,17 @@ tag,title,lat,lon
 2730,Martin Luther King Jr / 9th,34.01078,-118.3272099
 2731,Martin Luther King Jr / Arlington,34.01094,-118.3180699
 2732,Martin Luther King Jr / Budlong,34.01074,-118.29557
+2733,Martin Luther King Jr / Bullis,33.9282399,-118.1993199
 2734,Martin Luther King Jr / Coliseum,34.0177999,-118.3461999
 2735,Martin Luther King Jr / Degnan,34.0108,-118.33157
 2736,Martin Luther King Jr / Denker,34.01073,-118.3047999
+2737,Martin Luther King Jr / Ernestine,33.92726,-118.19713
 2738,Martin Luther King Jr / Figueroa,34.0109999,-118.28199
 2739,Martin Luther King Jr / Gramercy,34.0107199,-118.31407
 2742,Martin Luther King Jr / Hillcrest,34.0165599,-118.34425
 2743,Martin Luther King Jr / Hoover,34.01094,-118.2874799
+2744,Martin Luther King Jr / Imperial,33.9311599,-118.2029399
+2745,Martin Luther King Jr / Beechwood,33.9247399,-118.1932399
 2746,Martin Luther King Jr / Nicolet,34.01972,-118.34924
 2747,Martin Luther King Jr / Normandie,34.0107399,-118.30043
 2748,Martin Luther King Jr / Norton,33.93302,-118.20413
@@ -2064,7 +2060,6 @@ tag,title,lat,lon
 2925,Laurel Canyon / Van Nuys,34.2584899,-118.43203
 2926,Laurel Canyon / Vanowen,34.1936799,-118.39662
 2927,Laurel Canyon / Ventura Freeway,34.15466,-118.39662
-2928,Federal Bldg Rdway,34.0554499,-118.44842
 2929,Laurel Canyon / Wicks,34.22906,-118.40076
 2934,Do Not Announce This Stop!,34.0509599,-118.23331
 2936,Le Conte / Gayley,34.06358,-118.44791
@@ -2165,6 +2160,7 @@ tag,title,lat,lon
 3053,Los Feliz / Revere,34.1259799,-118.2635
 3054,Los Feliz / Wayne,34.1129499,-118.28102
 3055,Colorado / Los Robles,34.1457199,-118.1411
+3056,Los Robles / Maple,34.1522999,-118.14129
 3062,Lower Azusa / Arden,34.09155,-118.0424499
 3063,Baldwin / Lower Azusa,34.09119,-118.04873
 3064,Lower Azusa / Birchland,34.0910299,-118.04604
@@ -2247,7 +2243,6 @@ tag,title,lat,lon
 3176,Figueroa / Sycamore Grove Park,34.0995799,-118.20381
 3177,Sherman Way / Hayvenhurst,34.20105,-118.49272
 3178,Marmion / Figueroa,34.0907799,-118.2111
-3179,4th / Arizona,34.0179199,-118.4970099
 3180,Marmion / Avenue 45,34.0970699,-118.2084
 3181,Marmion / Museum,34.09845,-118.2064499
 3184,Mason / Chatsworth,34.2647899,-118.5797399
@@ -2267,7 +2262,6 @@ tag,title,lat,lon
 3200,Imperial / Erickson,33.9278899,-118.1589699
 3201,Hollywood / Gower,34.10153,-118.3218599
 3202,Melrose / Arden,34.0833699,-118.32619
-3203,Arden Layover,34.0829299,-118.32611
 3204,Glendale Fwy / Colorado,34.1430499,-118.2263
 3205,Melrose / Heliotrope,34.08346,-118.2954699
 3206,Melrose / Huntley,34.0818599,-118.38052
@@ -2331,7 +2325,7 @@ tag,title,lat,lon
 3269,Mission / Meridian,34.11562,-118.1575399
 3270,Mission / Orange Grove,34.11559,-118.16073
 3271,Mission / Park,34.11541,-118.1479199
-3273,Imperial / Mona,33.92918,-118.23089
+3273,Imperial / Mona,33.9291799,-118.2308899
 3274,Mona / Industry,33.9264399,-118.2295999
 3275,Montana / Veteran,34.07027,-118.45518
 3277,Montana / Bentley,34.0689999,-118.45975
@@ -2378,10 +2372,17 @@ tag,title,lat,lon
 3331,Alameda / Arcadia,34.05489,-118.2375399
 3332,Alameda / Los Angeles,34.0565599,-118.23721
 3333,Allen / Braeburn,34.18767,-118.11147
+3334,Allen / Brigden,34.16633,-118.1129199
+3335,Allen / Casa Grande,34.16353,-118.1129599
+3337,Allen / Mountain,34.1620699,-118.11297
+3338,Allen / Orange Grove,34.1581699,-118.1130199
 3340,Allen / Walnut,34.1498399,-118.11301
+3341,Allen / Layton,34.1727499,-118.11265
+3342,Allen / Loma Vista,34.1607,-118.1129899
 3343,Allen / Meadowbrook,34.1834099,-118.11133
 3344,Allen / Mendocino,34.18577,-118.11104
-3345,Allen / Monte Vista,34.15622,-118.11301
+3345,Allen / Monte Vista,34.1562199,-118.1130099
+3346,Allen / Oakwood,34.1751099,-118.11235
 3347,Altadena / Brigden,34.1661299,-118.09849
 3348,Washington / Altadena,34.1692199,-118.09862
 3349,Altadena / Crary,34.1730999,-118.09809
@@ -2446,10 +2447,10 @@ tag,title,lat,lon
 3441,Central / 131st,33.91315,-118.2542999
 3442,Central / Brazil,33.89852,-118.2523
 3444,Central / Piru,33.9084599,-118.25435
-3451,Eastern / City Terrace,34.05786,-118.17202
+3451,Eastern / City Terrace,34.0578599,-118.17202
 3452,Eastern / City Terrace,34.05781,-118.17232
 3453,Eastern / Converse,34.0826899,-118.1779199
-3455,Eastern / Ramona,34.05937,-118.17264
+3455,Eastern / Ramona,34.05937,-118.1726399
 3458,Edison / Evergreen,34.1783999,-118.3558299
 3459,Edison / Maple,34.1771099,-118.3534699
 3464,Fair Oaks / Chestnut,34.15069,-118.15036
@@ -2515,7 +2516,9 @@ tag,title,lat,lon
 3543,Fremont / Main,34.0949399,-118.1519199
 3546,Gaffey / Summerland,33.7480299,-118.2928799
 3548,Gaffey / Westmont,33.7642099,-118.2932999
+3549,Gage / Blanchard,34.04562,-118.1847499
 3550,1st / Gage,34.0361,-118.1848499
+3552,Gage / Harris,34.04904,-118.18476
 3556,Garfield / Alhambra,34.10038,-118.13068
 3558,Garfield / Grand,34.09933,-118.1296
 3560,Garfield / McLean,34.10192,-118.13176
@@ -2634,8 +2637,22 @@ tag,title,lat,lon
 3743,Long Beach / Willow,33.8046499,-118.18906
 3744,Los Angeles / 1st,34.0517,-118.2421199
 3745,Los Angeles / Temple,34.0536,-118.2405899
+3747,Los Robles / Atchison,34.17602,-118.14148
+3748,Los Robles / Buckeye,34.16002,-118.14139
+3750,Los Robles / Claremont,34.1671399,-118.1414499
 3752,Los Robles / Colorado,34.1461099,-118.14127
-3759,Los Robles / Union,34.1475,-118.14127
+3753,Los Robles / Howard,34.17233,-118.14147
+3754,Los Robles / Ladera,34.1715,-118.14147
+3755,Los Robles / Montana,34.1803499,-118.14149
+3756,Los Robles / Mountain,34.16181,-118.1414
+3757,Los Robles / Villa,34.1540699,-118.1413299
+3758,Los Robles / Orange Grove,34.1580899,-118.1413799
+3759,Los Robles / Union,34.1474999,-118.14127
+3760,Los Robles / Walnut,34.1498099,-118.1412799
+3762,Los Robles / Washington,34.16918,-118.14147
+3763,Los Robles / Highland,34.17834,-118.14149
+3764,Los Robles / Jackson,34.16389,-118.14143
+3765,Los Robles / Penn,34.17468,-118.14148
 3766,Maclay / 4th,34.2865999,-118.43656
 3767,Maclay / 5th,34.28872,-118.4336499
 3768,Maclay / Glenoaks,34.29112,-118.4303599
@@ -2723,6 +2740,10 @@ tag,title,lat,lon
 3896,San Gabriel / La Tierra,34.15155,-118.0940199
 3897,San Gabriel / Sheffield,34.1169699,-118.0910599
 3902,San Vicente / Santa Monica,34.08527,-118.38417
+3903,Santa Anita / Alameda,34.1845799,-118.14147
+3904,Santa Anita / Calaveras,34.1863799,-118.14065
+3905,Santa Anita / Mendocino,34.18856,-118.1396499
+3906,Santa Anita / Sacramento,34.1827699,-118.1423
 3907,Santa Anita / Virginia,34.1600599,-118.0316699
 3908,Santa Anita / Santa Clara,34.14252,-118.03134
 3909,Santa Anita / Colorado,34.14578,-118.03141
@@ -2739,12 +2760,16 @@ tag,title,lat,lon
 3934,Spring / Temple,34.0552699,-118.24238
 3935,Spring / Temple,34.0547,-118.2426999
 3937,Temple / Spring,34.0549199,-118.24284
-3944,Kingston / Marengo,34.05715,-118.2094899
 3945,Sunset / Michillinda,34.13442,-118.06724
 3946,Temple / Alvarado,34.0702299,-118.2682999
 3947,Temple / Rosemont,34.07108,-118.27089
-3950,Verdugo / Broadway,34.14598,-118.2347899
+3950,Verdugo / Broadway,34.1459799,-118.2347899
+3951,Verdugo / Glenoaks,34.15759,-118.2369199
+3952,Verdugo / Wilson,34.14789,-118.23533
+3953,Verdugo / Monterey,34.15476,-118.23725
+3955,Verdugo / Glendale,34.1612699,-118.23604
 3956,Foothill / Fernglen,34.25223,-118.29428
+3957,Verdugo / Towne,34.16833,-118.2290199
 3960,Vermont / Clinton,34.08206,-118.2915599
 3961,Vermont / Hollywood - South,34.0992899,-118.29192
 3962,Vermont / Finley,34.1075499,-118.2916399
@@ -2753,7 +2778,7 @@ tag,title,lat,lon
 3965,Vermont / Prospect,34.1021399,-118.29162
 3968,Vermont / Lexington,34.0933199,-118.29159
 3969,Vermont / Lockwood,34.08889,-118.29188
-3970,Vermont / Melrose,34.0838,-118.29186
+3970,Vermont / Melrose,34.0837999,-118.2918599
 3971,Vermont / Monroe,34.0855199,-118.29156
 3974,Vermont / Rosewood,34.0789099,-118.2915399
 3976,Vermont / Sunset,34.0984299,-118.29161
@@ -2863,9 +2888,17 @@ tag,title,lat,lon
 4147,Osborne / Laurel Canyon,34.2469599,-118.41915
 4148,Osborne / San Fernando,34.2541,-118.4098299
 4149,Osborne / Telfair,34.2518499,-118.41291
+4150,Abbott / Fracar,33.93507,-118.19615
+4151,Otis / Clara,33.9662,-118.1946299
+4152,Otis / Live Oak,33.96847,-118.1942899
+4153,Otis / Salt Lake,33.96387,-118.1947399
 4154,Olympic / Western,34.0525199,-118.3088
 4155,Olympic / Normandie,34.0525,-118.2997399
+4156,Otis / Independence,33.95692,-118.1960399
+4157,Otis / Liberty,33.95887,-118.1957499
+4158,Otis / Southern,33.95029,-118.1969899
 4159,Olympic / Vermont,34.05237,-118.29141
+4160,Otis / Tweedy,33.94354,-118.1977299
 4161,Overhill / Slauson,33.9890899,-118.35393
 4162,Overhill / Northridge,33.99406,-118.35529
 4163,Overhill / La Brea,33.99696,-118.35763
@@ -2893,7 +2926,7 @@ tag,title,lat,lon
 4187,Oxnard / Radford,34.1793399,-118.39226
 4188,Oxnard / Ranchito,34.17932,-118.4357
 4189,Oxnard / St Clair,34.1793299,-118.39994
-4190,Topanga Canyon / Oxnard,34.17892,-118.6053999
+4190,Topanga Canyon / Oxnard,34.1789199,-118.6053999
 4191,Oxnard / Tujunga,34.17934,-118.3791699
 4192,Oxnard / Tyrone,34.1793099,-118.44451
 4193,Oxnard / Van Nuys,34.1793,-118.44903
@@ -2953,7 +2986,6 @@ tag,title,lat,lon
 4253,Olympic / Western,34.0527699,-118.3093
 4254,Olympic / Crenshaw,34.0548799,-118.3235899
 4255,Avenue 26 / Figueroa,34.0840199,-118.2227499
-4257,Solar Way Layover Zone,34.0567499,-118.41672
 4261,Palos Verdes / Barkentine,33.7455899,-118.3866199
 4262,Palos Verdes / Seacove,33.7447799,-118.38389
 4264,Paramount / Somerset,33.8962199,-118.1602499
@@ -3090,7 +3122,6 @@ tag,title,lat,lon
 4482,Reseda / Ventura,34.1690899,-118.53586
 4483,Reseda / Ventura Fwy,34.17383,-118.53615
 4484,Reseda / Victory,34.18633,-118.53618
-4485,Paul Revere Junior High,34.0548099,-118.49555
 4486,Mission / Richmond,34.0588,-118.2164099
 4487,Rinaldi / Gothic,34.2790799,-118.4887699
 4488,Rinaldi / Hayvenhurst,34.2791099,-118.49356
@@ -3205,7 +3236,6 @@ tag,title,lat,lon
 4638,Telstar County Child Services,34.0688899,-118.06658
 4639,Ikea / Angeleno,34.1786899,-118.3087399
 4642,1st / Olive,34.1796299,-118.30977
-4643,Ikea / Tujunga,34.1781699,-118.30778
 4644,3rd / Angeleno,34.1816699,-118.3067599
 4645,3rd / Tujunga,34.18082,-118.30562
 4650,Alameda / Dominguez,33.83904,-118.2229299
@@ -3229,7 +3259,7 @@ tag,title,lat,lon
 4670,Arizona / Verona,34.0205099,-118.16754
 4671,Arizona / Whittier,34.02264,-118.1668599
 4672,Raymond / California,34.13636,-118.1487
-4673,Raymond / Del Mar,34.1415799,-118.14875
+4673,Raymond / Del Mar,34.14158,-118.14875
 4674,Artesia / Santa Fe,33.87412,-118.21405
 4677,Atlantic / Alondra,33.8890599,-118.19275
 4678,Atlantic / Compton,33.8964099,-118.1932599
@@ -3473,7 +3503,6 @@ tag,title,lat,lon
 5039,Figueroa / Manchester,33.9603599,-118.2825499
 5040,Figueroa / Olympic,34.0451299,-118.26365
 5041,Figueroa / Pico,34.0408,-118.2677199
-5044,Market / Centinela,33.9753399,-118.35666
 5045,Centinela / La Brea,33.9760999,-118.3572899
 5046,Figueroa / Slauson,33.98941,-118.28251
 5047,Figueroa / Vernon,34.00357,-118.28254
@@ -3539,7 +3568,8 @@ tag,title,lat,lon
 5152,Hoover / 32nd,34.02538,-118.28376
 5153,Hoover / Adams,34.0319799,-118.2838199
 5154,Hoover / Washington,34.03954,-118.28391
-5158,Indiana / 5th,34.0301699,-118.1925099
+5158,Indiana / 5th,34.03017,-118.1925099
+5162,Indiana / Whittier,34.02368,-118.19216
 5163,Inglewood / Lennox,33.9383299,-118.36146
 5164,Inglewood / 104th,33.94154,-118.36147
 5165,Inglewood / 111th,33.9346899,-118.3614799
@@ -3550,7 +3580,7 @@ tag,title,lat,lon
 5171,La Brea / Coliseum,34.01868,-118.35547
 5172,La Brea / Dockweiler,34.0518599,-118.34402
 5176,La Brea / Hardy,33.94895,-118.3524899
-5180,La Brea / Queen,33.96276,-118.3532
+5180,La Brea / Queen,33.9627599,-118.3532
 5181,La Brea / Market,33.95697,-118.35239
 5182,La Brea / Edgewood,34.05442,-118.34375
 5183,La Brea / Ferndale,34.03033,-118.3518299
@@ -3571,7 +3601,7 @@ tag,title,lat,lon
 5198,La Brea / 8th,34.0603699,-118.34457
 5199,La Brea / 9th,34.05868,-118.3452299
 5200,La Brea / Adams,34.0322899,-118.35087
-5201,La Brea / Century,33.9457299,-118.35249
+5201,La Brea / Century,33.94573,-118.35249
 5202,La Brea / Jefferson,34.0253599,-118.35475
 5203,La Brea / Olympic,34.0569899,-118.34568
 5204,La Brea / Pico,34.0476499,-118.34458
@@ -3698,8 +3728,8 @@ tag,title,lat,lon
 5376,Olive / 23rd,34.029,-118.26895
 5377,1st / Hill,34.0544199,-118.2469599
 5382,Olive / 7th,34.0467699,-118.25526
-5386,Santa Monica / Vine,34.09059,-118.3263299
-5387,Santa Monica / Normandie,34.0906999,-118.29978
+5386,Santa Monica / Vine,34.0905899,-118.32633
+5387,Santa Monica / Normandie,34.0907,-118.2997799
 5388,Olive / Pico,34.0380799,-118.26325
 5389,Olive / Washington,34.03215,-118.2675699
 5391,Pacific / Hamilton,33.7227199,-118.2878299
@@ -3710,6 +3740,7 @@ tag,title,lat,lon
 5396,Pacific / 15th,33.7304699,-118.28779
 5397,Pacific / 17th,33.72865,-118.2877999
 5399,1st / Pacific,33.74338,-118.28821
+5400,Sunset / Alvarado,34.0775399,-118.26322
 5401,Pacific / 19th,33.7268299,-118.28782
 5402,Pacific / 26th,33.7204399,-118.2878099
 5403,Pacific / 28th,33.71877,-118.28779
@@ -3769,7 +3800,6 @@ tag,title,lat,lon
 5477,San Pedro / 116th,33.9283999,-118.2697099
 5478,San Pedro / 118th,33.92662,-118.26969
 5479,San Pedro / 11th,34.0354299,-118.25221
-5481,Webb / Stuart Ranch,34.0353299,-118.6914799
 5482,San Pedro / 14th,34.03138,-118.2550999
 5483,San Pedro / 21st,34.02606,-118.2586199
 5484,San Pedro / 23rd,34.0242399,-118.25978
@@ -3913,7 +3943,8 @@ tag,title,lat,lon
 5691,Vermont / Gage,33.98244,-118.2913199
 5692,Vermont / Imperial,33.93079,-118.29143
 5693,Vermont / Jefferson,34.0252899,-118.29138
-5695,Vermont / Olympic,34.0523199,-118.29145
+5694,Vermont / Manchester,33.9603099,-118.29151
+5695,Vermont / Olympic,34.05232,-118.29145
 5696,Vermont / Pico,34.0469899,-118.2914399
 5697,Vermont / Sepulveda,33.8104099,-118.29018
 5698,Vermont / Slauson,33.9889299,-118.2913
@@ -3922,7 +3953,6 @@ tag,title,lat,lon
 5702,Vermont / Wilshire,34.0620799,-118.29147
 5708,Western / Exposition,34.0179899,-118.30904
 5710,Western / Santa Monica Fwy,34.03751,-118.30883
-5711,St Andrews / Manchester L.O.,33.9594899,-118.31125
 5712,Western / Venice,34.0438399,-118.3088599
 5713,Western / Venice,34.0440899,-118.3088599
 5714,Western / 104th,33.94171,-118.3088599
@@ -3975,7 +4005,7 @@ tag,title,lat,lon
 5789,Willowbrook / Stockwell,33.91119,-118.22837
 5790,Willowbrook / Caldwell,33.8848899,-118.2231699
 5791,Willowbrook / Compton,33.8957399,-118.22384
-5795,Wilmington / 119th,33.9251499,-118.2389
+5795,Wilmington / 119th,33.92515,-118.2389
 5800,Wilton / 9th,34.0556899,-118.31412
 5801,Wilton / Wilshire,34.0614799,-118.31415
 5803,Westfield Mall Santa Anita,34.1328699,-118.05051
@@ -4036,14 +4066,12 @@ tag,title,lat,lon
 5881,San Pedro / 79th,33.9680199,-118.26963
 5883,San Pedro / 16th,34.0300799,-118.256
 5886,San Vicente / Cynthia,34.08696,-118.38551
-5898,San Vicente / Gracie Allen,34.0748299,-118.37839
 5899,San Vicente / Hauser,34.0541499,-118.3543799
 5900,San Vicente / Keniston,34.04891,-118.33979
 5901,San Vicente / La Brea,34.05005,-118.34441
 5903,San Vicente / Mc Carthy Vista,34.0614099,-118.3672699
 5907,San Vicente / Cochran,34.05294,-118.35097
 5908,San Vicente / Curson,34.0554199,-118.3581799
-5909,San Vicente / Carrillo L.O.,34.0610799,-118.3677
 5910,San Vicente / Fairfax,34.05858,-118.36394
 5914,San Vicente / La Brea,34.0504299,-118.3439899
 5915,San Vicente / Redondo,34.0518999,-118.3480499
@@ -4078,6 +4106,7 @@ tag,title,lat,lon
 5958,Santa Anita / Tyler,34.0849399,-118.0311
 5959,Santa Anita / Valley Mall,34.07535,-118.04113
 5961,Santa Anita Fashion Park,34.13436,-118.05414
+5963,Santa Fe / Firestone,33.9558499,-118.22462
 5964,Santa Gertrudes / Lambert,33.93384,-117.9929699
 5966,Santa Gertrudes / Leffingwell,33.93149,-117.9930299
 5967,Santa Gertrudes / Santa Fe,33.9359399,-117.99296
@@ -4085,7 +4114,7 @@ tag,title,lat,lon
 5971,Santa Monica / Cloverfield,34.03126,-118.4766499
 5972,Santa Monica / 11th,34.0216199,-118.48855
 5974,Santa Monica / 14th,34.02392,-118.4857099
-5977,Santa Monica / 20th,34.0288,-118.4796699
+5977,Santa Monica / 20th,34.0287999,-118.47967
 5978,Santa Monica / 23rd,34.0301099,-118.47807
 5979,Santa Monica / 26th,34.0331399,-118.47433
 5980,Crescent Heights / Fountain,34.0942699,-118.36581
@@ -4112,32 +4141,32 @@ tag,title,lat,lon
 6016,Santa Monica / Genesee,34.0909499,-118.3583499
 6017,Santa Monica / Gower,34.0906299,-118.32243
 6018,Santa Monica / Highland,34.09085,-118.3389199
-6019,Santa Monica / Highland,34.0905699,-118.33819
+6019,Santa Monica / Highland,34.09057,-118.33819
 6020,Santa Monica / Hobart,34.09063,-118.30484
 6021,Santa Monica / Hoover,34.09076,-118.2847399
-6023,Santa Monica / La Brea,34.09059,-118.3442999
+6023,Santa Monica / La Brea,34.09059,-118.3443
 6024,Santa Monica / La Peer,34.0828,-118.3867199
 6025,Santa Monica / Las Palmas,34.0905999,-118.33644
 6026,Santa Monica / Madison,34.09075,-118.28945
 6028,Santa Monica / Orange,34.0905899,-118.3417699
 6030,Santa Monica / Roxbury,34.06871,-118.4077499
-6031,Santa Monica / Sweetzer,34.09059,-118.3704399
+6031,Santa Monica / Sweetzer,34.09059,-118.37044
 6032,Santa Monica / Van Ness,34.09064,-118.3158899
 6033,Santa Monica / Vermont,34.0907699,-118.29203
 6034,Santa Monica / Virgil,34.09074,-118.2869099
 6036,Santa Monica / Wilton,34.09064,-118.31373
 6037,Santa Monica / Overland,34.0512699,-118.43298
 6039,Santa Monica / Barrington,34.04375,-118.4557799
-6040,Santa Monica / Beverly Glen,34.0576899,-118.42372
-6041,Santa Monica / Bundy,34.04057,-118.4630399
+6040,Santa Monica / Beverly Glen,34.05769,-118.4237199
+6041,Santa Monica / Bundy,34.0405699,-118.46304
 6042,Sepulveda / Santa Monica,34.0472499,-118.4441799
 6043,Santa Monica / Westgate,34.0422099,-118.45926
 6045,Santa Monica / San Vicente,34.0849499,-118.3844
 6046,Santa Monica / Sawtelle,34.0463499,-118.44853
 6048,Santa Monica / Thayer,34.0558199,-118.42643
 6049,Santa Monica / Veteran,34.04873,-118.4402099
-6050,Santa Monica / Wilshire,34.0668199,-118.41049
-6052,Santa Monica / Vista,34.09064,-118.35214
+6050,Santa Monica / Wilshire,34.06682,-118.4104899
+6052,Santa Monica / Vista,34.0906399,-118.3521399
 6053,Santa Monica / Century Park West,34.0591499,-118.42091
 6054,Santa Monica / Wellesley,34.03943,-118.4655699
 6055,Santa Monica / Westbourne,34.0875399,-118.37945
@@ -4502,7 +4531,6 @@ tag,title,lat,lon
 6555,Thousand Oaks / Lake Lindero,34.15464,-118.7888099
 6556,Thousand Oaks / Lindero Canyon,34.15576,-118.79467
 6557,Thousand Oaks / Reyes Adobe,34.1555299,-118.78088
-6560,Peachtree Layover,33.9834799,-118.16209
 6561,Tobias / Parthenia,34.2276599,-118.4515599
 6562,Tobias / Parthenia,34.2262299,-118.45155
 6564,Topanga Canyon / Mall,34.1894599,-118.60576
@@ -4518,7 +4546,7 @@ tag,title,lat,lon
 6578,Topanga Canyon / Lassen,34.2497199,-118.60618
 6579,Topanga Canyon / Lopez,34.1613199,-118.6056799
 6580,Topanga Canyon / Collins,34.17469,-118.6059199
-6583,Topanga Canyon / Oxnard,34.17952,-118.60536
+6583,Topanga Canyon / Oxnard,34.1795199,-118.6053599
 6584,Topanga Canyon / Parthenia,34.2286799,-118.6033
 6585,Plummer / Topanga Canyon,34.24257,-118.6062199
 6586,Topanga Canyon / Prairie,34.2392399,-118.6062699
@@ -4529,6 +4557,7 @@ tag,title,lat,lon
 6593,Topanga Canyon / Sherman Way,34.2012999,-118.60576
 6594,Topanga Canyon / Strathern,34.2158299,-118.6058199
 6596,Victory / Topanga Canyon,34.1869899,-118.6062499
+6597,Victory / Topanga Canyon,34.18695,-118.60516
 6598,Topanga Canyon / Victory,34.18668,-118.6060399
 6599,Topanga Canyon / Ybarra,34.1546999,-118.60565
 6600,Torrance / Broadway,33.8380999,-118.38616
@@ -4536,6 +4565,9 @@ tag,title,lat,lon
 6604,Tracy / Myra,34.10827,-118.28018
 6605,Trancas Canyon / Pacific Coast,34.0315199,-118.84339
 6608,Main / Mission,34.06554,-118.20749
+6609,Truba / Illinois,33.95102,-118.2244499
+6610,Truba / Missouri,33.9483899,-118.22484
+6611,Truba / Southern,33.95277,-118.22417
 6613,Truman / Brand,34.2822899,-118.4394999
 6614,Ikea / Angeleno,34.1787899,-118.3086299
 6615,Truman / Hubbard,34.2907299,-118.44879
@@ -4573,7 +4605,6 @@ tag,title,lat,lon
 6654,Tyler / Santa Anita,34.0848499,-118.03079
 6655,Tyler / Valley,34.07472,-118.0352799
 6656,Lankershim / James Stewart,34.14176,-118.36077
-6660,Pomeroy / Brittania,34.0556499,-118.20947
 6674,Valley / Beatie,34.07143,-118.1726599
 6675,Valley / Block,34.0731699,-118.17053
 6677,Valley / Fremont,34.0767999,-118.15106
@@ -4782,15 +4813,17 @@ tag,title,lat,lon
 6972,Venice / Westmoreland,34.0434599,-118.3067
 6974,Venice Way / Riviera,33.98735,-118.46869
 6975,Ventura / Balboa,34.1590799,-118.50083
+6977,Ventura / Laurel Canyon,34.1434799,-118.39492
 6978,Ventura / Laurel Canyon,34.1434399,-118.39542
 6979,Ventura / Reseda,34.1685799,-118.53586
 6980,Ventura / Reseda,34.1690699,-118.53631
 6982,Ventura / Topanga Canyon,34.1683799,-118.6055
+6983,Ventura / Van Nuys,34.1506999,-118.44829
 6984,Ventura / Vineland,34.1405199,-118.36999
 6986,Ventura / Chalk Hill,34.1677799,-118.58008
 6987,Ventura / Colfax,34.14107,-118.38746
 6988,Ventura / Laurelgrove,34.14299,-118.4004799
-6989,Ventura / Tujunga,34.1398699,-118.37857
+6989,Ventura / Tujunga,34.13987,-118.3785699
 6990,Ventura / Radford,34.1434099,-118.3926599
 6991,12616 B Ventura,34.1438199,-118.4082899
 6992,Ventura / Alhama,34.1668499,-118.5929499
@@ -4805,6 +4838,7 @@ tag,title,lat,lon
 7001,Ventura / Coldwater Canyon,34.14484,-118.41276
 7002,Ventura / Carpenter,34.1424699,-118.3905999
 7004,Coldwater Canyon / Ventura,34.14572,-118.41364
+7005,Ventura / Coldwater Canyon,34.14489,-118.4132
 7007,Ventura / Corbin,34.17247,-118.5623399
 7008,Ventura / Crebs,34.1712999,-118.5425799
 7010,Ventura / Del Moreno,34.16933,-118.5750299
@@ -4830,26 +4864,30 @@ tag,title,lat,lon
 7036,Ventura / Riverton,34.1391799,-118.3672999
 7037,Ventura / Sale,34.1672399,-118.61906
 7038,Ventura / San Feliciano,34.16864,-118.61053
-7039,Ventura / Sepulveda,34.1536599,-118.46591
+7039,Ventura / Sepulveda,34.15366,-118.46591
 7040,Ventura / Sherman Oaks,34.15411,-118.46854
 7041,Ventura / Shirley,34.17265,-118.5575099
 7042,Ventura / Shoup,34.1686399,-118.61462
 7043,Ventura / Stern,34.1485199,-118.4349799
 7044,Ventura / Sunnyslope,34.14725,-118.42728
-7045,Ventura / Tampa,34.17255,-118.55313
+7045,Ventura / Tampa,34.17255,-118.5531299
+7046,Ventura / Topanga Canyon,34.1683699,-118.60517
+7047,Ventura / Vineland,34.1400399,-118.3695
 7048,Ventura / Beverly Glen,34.1502799,-118.4455399
 7049,Ventura / Vanalden,34.17245,-118.55023
 7050,Ventura / Vantage,34.14328,-118.3971899
 7051,Ventura / Vineland,34.1401699,-118.36982
-7052,Ventura / White Oak,34.1621499,-118.5180299
+7052,Ventura / White Oak,34.16215,-118.51803
 7053,Ventura / Whitsett,34.1426,-118.40485
 7054,Ventura / Wilbur,34.17219,-118.54493
 7055,Ventura / Cedros,34.1512199,-118.4512099
 7056,Winnetka / Ventura Fwy,34.17216,-118.57078
 7057,Ventura / Woodley,34.15621,-118.48331
+7058,Ventura / Woodman,34.14785,-118.43091
 7060,Ventura / Zelzah,34.1636299,-118.5225999
+7065,Verdugo / Delevan,34.1227099,-118.2308299
 7066,Verdugo / Eagle Rock,34.1180599,-118.23229
-7068,Canada / Towne,34.16864,-118.2290999
+7068,Canada / Towne,34.1686399,-118.2291
 7069,Canada / Verdugo Park,34.1721399,-118.22885
 7070,Verdugo / Bagdad,34.1935099,-118.2280999
 7071,Montrose / Waltonia,34.2067999,-118.22463
@@ -4858,8 +4896,13 @@ tag,title,lat,lon
 7074,Verdugo / Ocean View,34.20094,-118.2277899
 7075,Verdugo / Glencoe,34.19823,-118.2291099
 7076,Verdugo / Honolulu,34.2048599,-118.22516
-7078,Verdugo / Rock Glen,34.14011,-118.2334
+7077,Verdugo / Palmer,34.1334199,-118.2332299
+7078,Verdugo / Rock Glen,34.1401099,-118.2334
+7079,Verdugo / Shasta Circle North,34.1307699,-118.2326999
+7080,Verdugo / Shasta Circle South,34.12927,-118.2324
 7081,Verdugo / Sunview,34.2024599,-118.22676
+7082,Verdugo / Wawona,34.1269899,-118.2319399
+7083,Verdugo / York,34.1248999,-118.2315199
 7084,Vermont / 35th,34.02379,-118.29138
 7087,Vermont / Lockwood,34.08861,-118.29158
 7088,Vermont / Melbourne,34.10348,-118.29162
@@ -5069,7 +5112,6 @@ tag,title,lat,lon
 7384,7th / Cabrillo,33.7378099,-118.2946999
 7386,7th / Coronado,34.05887,-118.28228
 7389,7th / Gaffey,33.7377999,-118.2925599
-7390,Harbor - UCLA Medical Center,33.8311899,-118.29042
 7396,7th / Mesa,33.7377899,-118.28587
 7397,7th / Meyler,33.7378199,-118.2968999
 7398,7th / Olive,34.0468799,-118.2556899
@@ -5365,8 +5407,6 @@ tag,title,lat,lon
 7826,Manchester / Prairie,33.9597,-118.3441599
 7827,Manchester / 5th,33.9598599,-118.3222899
 7828,Manchester / Ash,33.96149,-118.36792
-7830,Manchester Layover,33.9598499,-118.2681
-7831,Hall / Lakewood,33.9316699,-118.12612
 7832,Manchester / Eucalyptus,33.96158,-118.3591999
 7833,Manchester / Fir,33.9616,-118.3575299
 7834,Manchester / Glasgow,33.96092,-118.3719799
@@ -5411,6 +5451,7 @@ tag,title,lat,lon
 7884,Olympic / Serrano,34.05248,-118.30649
 7885,Olympic / Spaulding,34.0574499,-118.3600499
 7886,Olympic / Saint Andrews,34.0525199,-118.31131
+7888,Vermont / Olympic,34.05227,-118.2917599
 7891,Olympic / Windsor,34.0549,-118.32589
 7892,Olympic / Stearns,34.0584999,-118.3677199
 7894,Olympic / Valencia,34.0483499,-118.2725999
@@ -5446,7 +5487,7 @@ tag,title,lat,lon
 7935,Riggin / Gerhart,34.03645,-118.1438399
 7936,Rosecrans / Broadway,33.90184,-118.2780099
 7937,Rosecrans / Main,33.9020999,-118.2737699
-7946,Santa Monica / La Cienega,34.08933,-118.3760799
+7946,Santa Monica / La Cienega,34.0893299,-118.37608
 7947,Sierra Madre / Claridge,34.16205,-118.0384299
 7948,Sierra Madre / Hermosa,34.16173,-118.0573699
 7949,Sierra Madre / Lima,34.16173,-118.0599499
@@ -5518,7 +5559,7 @@ tag,title,lat,lon
 8034,Sunset / Crescent Heights,34.09788,-118.3657999
 8037,Sunset / Edgemont,34.09802,-118.2959699
 8039,Fairfax / San Vicente,34.0589799,-118.36359
-8040,Sunset / Figueroa,34.0626699,-118.2465099
+8040,Sunset / Figueroa,34.0626699,-118.24651
 8041,Sunset / Poinsettia,34.09788,-118.34849
 8042,Sunset / Gardner,34.0979099,-118.3529999
 8045,Sunset / Highland,34.09786,-118.3388099
@@ -5670,7 +5711,6 @@ tag,title,lat,lon
 8243,Washington / Tierra Alta,34.1690399,-118.1097599
 8244,Washington / Pickford,34.03973,-118.3375199
 8245,Washington / Palawan,33.9838999,-118.45875
-8251,Westchester High School,33.9558899,-118.42997
 8254,Western / Martin Luther King Jr,34.01067,-118.30875
 8255,Wilcox / Gage,33.97665,-118.1768099
 8260,Westlake / Townsgate,34.1538299,-118.82768
@@ -5808,6 +5848,7 @@ tag,title,lat,lon
 8490,Winnetka / Strathern,34.2158699,-118.5708799
 8491,Winnetka / Valerio,34.2045699,-118.5708499
 8492,Winnetka / Vanowen,34.1940899,-118.57082
+8493,Ventura / Winnetka,34.1706599,-118.5714
 8495,Winnetka / Victory,34.1859999,-118.57078
 8497,Woodlake / Cohasset,34.2062499,-118.63203
 8498,Woodlake / Saticoy,34.2079599,-118.6323299
@@ -5892,7 +5933,7 @@ tag,title,lat,lon
 8593,Jefferson Loop Layover,34.0251699,-118.32884
 8594,Jefferson / 10th,34.0257299,-118.32807
 8597,120th / Augustus F Hawkins,33.9245,-118.2421999
-8598,Santa Monica / Normandie,34.0909599,-118.30109
+8598,Santa Monica / Normandie,34.0909599,-118.3010899
 8601,120th / Doty,33.92358,-118.3396799
 8604,San Pedro / 12th,34.0338199,-118.25302
 8607,15105 Sherman Way,34.20132,-118.4623
@@ -5930,6 +5971,7 @@ tag,title,lat,lon
 8681,Alamo / Randolph,33.98067,-118.1750999
 8683,Jefferson / Alla,33.9748699,-118.42423
 8685,Altadena / Allen,34.1908199,-118.1126999
+8687,Allen / Washington,34.16887,-118.1131799
 8688,Allesandro / Baxter,34.09246,-118.2567599
 8689,Allesandro / Ewing,34.0909,-118.2581299
 8690,Allesandro / Oak Glen,34.0936299,-118.25509
@@ -5988,13 +6030,13 @@ tag,title,lat,lon
 8760,Atlantic / Abbott,33.9338199,-118.18226
 8761,Atlantic / Agnes,33.9141499,-118.19051
 8762,Atlantic / Arlington,33.90704,-118.1934599
-8763,Atlantic / Beechwood,33.9257399,-118.18539
+8763,Atlantic / Beechwood,33.92574,-118.1853899
 8764,Atlantic / Carlin,33.91012,-118.1921699
 8765,Atlantic / Cecelia,33.95814,-118.1849599
 8766,Atlantic / Clara,33.9652899,-118.1869999
 8767,Atlantic / Cortland,33.91842,-118.1887399
 8768,Atlantic / Elizabeth,33.96291,-118.1863999
-8769,Atlantic / Elmwood,33.9279099,-118.1845
+8769,Atlantic / Elmwood,33.92791,-118.1844999
 8770,Atlantic / Fernwood,33.91679,-118.1894199
 8771,Firestone / Target,33.926,-118.10648
 8773,Atlantic / Florence,33.96922,-118.18799
@@ -6022,7 +6064,6 @@ tag,title,lat,lon
 8805,Avalon / Carson Mall,33.8433799,-118.2632899
 8806,Avalon / Del Amo,33.84725,-118.26487
 8807,Avalon / Harry Bridges,33.77147,-118.26193
-8808,Avalon Station Layover,33.9273999,-118.26532
 8811,Avalon / Victoria,33.8672699,-118.26599
 8813,14715 Avalon,33.8984399,-118.2654699
 8814,14800 Avalon (Hesse Co),33.89843,-118.2651099
@@ -6200,9 +6241,9 @@ tag,title,lat,lon
 9031,Bledsoe / Foothill,34.32113,-118.4477299
 9032,Reagan / Eisenhower,34.3250799,-118.4443699
 9033,California / El Molino,34.1357299,-118.13646
-9034,Indiana / Gleason,34.0351499,-118.1925099
+9034,Indiana / Gleason,34.0351499,-118.19251
 9035,Borden / Hubbard,34.3021699,-118.4364399
-9036,Indiana Station,34.0346799,-118.1922599
+9036,Indiana Station,34.0346799,-118.19226
 9037,Borden / Sayre,34.3045699,-118.4395699
 9040,Brand / Chevy Chase,34.13325,-118.25507
 9041,Brand / Maple,34.1380799,-118.2551199
@@ -6414,9 +6455,10 @@ tag,title,lat,lon
 9359,Compton / 76th,33.9709799,-118.2478199
 9360,Compton / 81st,33.9659399,-118.2478099
 9361,Compton / 83rd,33.96303,-118.2478
-9362,Compton / 95th,33.9507999,-118.2462
-9363,Compton / 96th,33.94875,-118.2462799
-9365,Compton / Century,33.9454399,-118.24635
+9362,Compton / 95th,33.9508,-118.2461999
+9363,Compton / 96th,33.9487499,-118.24628
+9364,Compton / 99th,33.9471099,-118.24634
+9365,Compton / Century,33.94544,-118.2463499
 9366,Compton / Florence,33.97497,-118.24781
 9367,Compton / Gage,33.98237,-118.24785
 9368,Compton / Imperial,33.9291499,-118.24636
@@ -6474,16 +6516,15 @@ tag,title,lat,lon
 9453,Crenshaw / 8th,34.05931,-118.3205899
 9454,Crenshaw / 9th,34.05654,-118.3221099
 9457,Crenshaw / Artesia,33.8730699,-118.32664
-9460,Crenshaw / Century,33.9446799,-118.32662
+9460,Crenshaw / Century,33.94468,-118.3266199
 9462,Crenshaw / Jefferson,34.02582,-118.33524
 9463,Crenshaw / Olympic,34.05409,-118.3234799
-9466,Crenshaw / Redondo Beach,33.88305,-118.32666
+9466,Crenshaw / Redondo Beach,33.8830499,-118.32666
 9469,Rosecrans / Crenshaw,33.9020599,-118.32626
 9471,Slauson / Crenshaw,33.9889099,-118.33048
 9477,Coldwater Canyon / Sherman Way,34.2010299,-118.4136699
 9479,Cross Creek / Malibu Theatre,34.03604,-118.68526
 9480,Cal State La Busway Station,34.0628399,-118.16799
-9484,53rd / Cudahy,33.9920999,-118.1846
 9501,Culver / Vista Del Mar,33.9591,-118.4483799
 9504,Cypress / Alice,34.09499,-118.22772
 9505,Cypress / Arvia,34.09619,-118.22957
@@ -6562,6 +6603,7 @@ tag,title,lat,lon
 9611,District / Loma Vista,33.9995099,-118.1967199
 9612,District / Maywood,34.0000299,-118.2017799
 9625,Division 15 Layover,34.2563899,-118.38982
+9629,Cypress / Verdugo,34.1043499,-118.23785
 9633,Dorothy / Chesebro,34.1421799,-118.74026
 9636,Duarte / City Of Hope Gold Line Station,34.1321799,-117.97009
 9638,Duarte / La Cadena,34.12695,-118.0497499
@@ -6590,7 +6632,7 @@ tag,title,lat,lon
 9689,1st / Marquez,34.04766,-118.22422
 9690,1st / Cummings,34.0454899,-118.2147199
 9691,1st / Dangler,34.0370599,-118.16524
-9692,1st / Ditman,34.03608,-118.1893299
+9692,1st / Ditman,34.0360799,-118.18933
 9693,1st / Evergreen,34.0404199,-118.2020999
 9694,1st / Ford,34.03703,-118.1689899
 9695,1st / Gage,34.0359599,-118.18478
@@ -6650,11 +6692,12 @@ tag,title,lat,lon
 9786,Adams / Central,34.0187599,-118.2551999
 9787,California / Marengo,34.13592,-118.1461799
 9788,Adams / San Pedro,34.0215699,-118.26154
+9794,Altadena / Lake,34.1899099,-118.13226
 9795,California / Arroyo,34.1359199,-118.1479899
 9796,Garfield / Main,34.0954299,-118.12687
 9798,Altadena / Maiden,34.19021,-118.1287899
 9799,Altadena / Marengo,34.1925699,-118.1415299
-9800,Raymond / Green,34.1443699,-118.1487899
+9800,Raymond / Green,34.14437,-118.1487899
 9801,Altadena / Holliston,34.19025,-118.12311
 9802,Altadena / Porter,34.1905599,-118.11747
 9803,Anaheim / Banning,33.7803999,-118.25709
@@ -6687,12 +6730,12 @@ tag,title,lat,lon
 9835,Century / San Pedro,33.94572,-118.2698499
 9836,Chevy Chase / Canyon,34.1517599,-118.23436
 9837,Chevy Chase / Glendale,34.1336599,-118.2523
-9838,Colorado / Bonnie,34.14613,-118.1159599
+9838,Colorado / Bonnie,34.1461299,-118.1159599
 9839,Colorado / Madre,34.1463599,-118.08144
 9840,Colorado / Marion,34.1461099,-118.11862
-9841,Colorado / Allen,34.14615,-118.1133699
+9841,Colorado / Allen,34.1461499,-118.11337
 9842,Colorado / Altadena,34.14623,-118.0988699
-9843,Colorado / Arroyo Pkwy,34.1459299,-118.14779
+9843,Colorado / Arroyo Pkwy,34.14593,-118.1477899
 9844,Colorado / Catalina,34.14604,-118.1296099
 9845,Colorado / Craig,34.1461899,-118.10641
 9849,Colorado / Fair Oaks,34.1459,-118.1506999
@@ -6705,8 +6748,7 @@ tag,title,lat,lon
 9858,Ford / Whittier,34.0231099,-118.17102
 9859,Colorado / Los Robles,34.1459699,-118.1417
 9860,Colorado / Lotus,34.1463999,-118.0762799
-9861,Colorado / Madison,34.14599,-118.1385999
-9863,Colorado / Mentor,34.1460299,-118.13067
+9861,Colorado / Madison,34.1459899,-118.1386
 9864,Colorado / Michigan,34.1460699,-118.12526
 9865,Colorado / Oak Knoll,34.1460199,-118.13543
 9867,Colorado / Raymond,34.1459199,-118.14909
@@ -6716,7 +6758,7 @@ tag,title,lat,lon
 9871,Ford / Humphreys,34.0259999,-118.17014
 9872,Colorado / Sierra Madre,34.1462099,-118.1019
 9873,Colorado / Sunnyslope,34.1462899,-118.09067
-9875,Colorado / Wilson,34.1460499,-118.12825
+9875,Colorado / Wilson,34.14605,-118.1282499
 9877,Ford / 6th,34.0276299,-118.16964
 9878,Compton / Avalon,33.89513,-118.2649399
 9880,Compton / Bradfield,33.89619,-118.2034899
@@ -6781,10 +6823,9 @@ tag,title,lat,lon
 9963,Florence / San Pedro,33.9748099,-118.26936
 9964,Florence / Santa Fe,33.9748699,-118.23075
 9965,Florence / Seville,33.97382,-118.22271
-9966,Florence / Stafford,33.9739399,-118.2213199
+9966,Florence / Stafford,33.97394,-118.22132
 9968,Florence / West,33.97457,-118.3350399
 9969,Florence / Wilson,33.97486,-118.23748
-9970,Maie / Florence,33.9744699,-118.24454
 9972,Eastern / 3rd,34.0335699,-118.17359
 9974,Foothill / Michillinda,34.1504199,-118.0683499
 9975,Gage / Avalon,33.9822099,-118.2654599
@@ -6875,6 +6916,7 @@ tag,title,lat,lon
 10112,Mariposa / Marengo,34.1911799,-118.1417399
 10113,1925 Marianna,34.0640699,-118.17879
 10114,Mariposa / Santa Rosa,34.1893699,-118.1361699
+10115,Mariposa / Saint James,34.18964,-118.13749
 10116,Mission / Del Mar,34.09434,-118.09978
 10117,Mission / Lafayette,34.0927299,-118.0952999
 10118,Mission / San Gabriel,34.09136,-118.0915
@@ -6882,29 +6924,28 @@ tag,title,lat,lon
 10122,Olive / Glenoaks,34.1829699,-118.3062499
 10123,Vineland / Lankershim,34.15719,-118.37017
 10125,Eastern / Valley,34.0664699,-118.18015
-10126,Olympic / Camulos,34.02249,-118.21538
+10126,Olympic / Camulos,34.0224899,-118.2153799
 10127,Eastern / Druid,34.0693799,-118.18032
 10128,Olympic / Northside,34.01355,-118.14383
 10129,Olympic / Fraser,34.01731,-118.16274
 10130,Olympic / Goodrich,34.01583,-118.15569
 10131,Olympic / Lawrence,34.0270999,-118.2366999
-10132,Olympic / Los Palos,34.0189699,-118.1952
+10132,Olympic / Los Palos,34.0189699,-118.1951999
 10133,Olympic / Mateo,34.02609,-118.23201
 10134,Olympic / Naomi,34.0300599,-118.2415799
-10135,Olympic / Orme,34.02342,-118.2175
-10136,Olympic / Downey,34.0190299,-118.17972
+10135,Olympic / Orme,34.0234199,-118.2174999
 10137,Olympic / Alameda,34.02765,-118.23879
 10138,Olympic / Arizona,34.0184199,-118.1679799
 10139,Olympic / Atlantic,34.0164799,-118.15881
 10140,Olympic / Boyle,34.0250699,-118.2212999
-10141,Olympic / Dacotah,34.02099,-118.21204
+10141,Olympic / Dacotah,34.0209899,-118.2120399
 10142,Olympic / Ditman,34.0189999,-118.18943
 10143,Olympic / Downey,34.01903,-118.1802599
 10145,Olympic / Fetterly,34.01792,-118.16558
 10146,Olympic / Ford,34.0190499,-118.17213
 10147,Olympic / Garfield,34.01165,-118.13112
 10148,Olympic / Gerhart,34.0141399,-118.14771
-10149,Olympic / Grande Vista,34.02032,-118.21055
+10149,Olympic / Grande Vista,34.0203199,-118.2105499
 10150,Olympic / Hendricks,34.0131,-118.14082
 10151,Olympic / Herbert,34.0190199,-118.18354
 10152,Eastern / Norelle,34.07266,-118.1802899
@@ -6914,10 +6955,10 @@ tag,title,lat,lon
 10158,Olympic / Rowan,34.0190099,-118.18743
 10159,Olympic / Santa Fe,34.0257299,-118.22967
 10160,Eastern / Lombardy,34.07766,-118.1782999
-10161,Olympic / Soto,34.0246999,-118.22046
+10161,Olympic / Soto,34.0246999,-118.2204599
 10162,Olympic / Vancouver,34.01698,-118.16118
 10163,Olympic / Saybrook,34.0123999,-118.1361099
-10164,Olympic / Spence,34.01892,-118.2025799
+10164,Olympic / Spence,34.0189199,-118.20258
 10166,Olympic / Indiana,34.0189899,-118.19247
 10167,Orange Grove / Altadena,34.15843,-118.09825
 10168,Orange Grove / Sunnyslope,34.1586199,-118.0891399
@@ -7002,7 +7043,7 @@ tag,title,lat,lon
 10280,Washington / Marengo,34.16896,-118.1464799
 10281,Washington / Roosevelt,34.16922,-118.1031899
 10287,Washington / Sinaloa,34.1692199,-118.11528
-10290,Eagle Rock / Glendale Fwy,34.1182299,-118.23295
+10290,Eagle Rock / Glendale Fwy,34.11823,-118.2329499
 10291,Collis / Yoakum,34.09435,-118.1810199
 10292,Eagle Rock / Chickasaw,34.13721,-118.2147999
 10293,Colorado / Eagle Rock,34.1390299,-118.21448
@@ -7013,9 +7054,9 @@ tag,title,lat,lon
 10298,Eagle Rock / Moss,34.1106599,-118.23733
 10299,Eagle Rock / Avenue 45,34.1262399,-118.21911
 10300,Eagle Rock / Norwalk,34.1326999,-118.21615
-10301,Eagle Rock / Verdugo,34.12004,-118.2292599
-10302,Eagle Rock / Verdugo,34.1050499,-118.2382799
-10303,Eagle Rock / Avenue 31,34.1080099,-118.23772
+10301,Eagle Rock / Verdugo,34.1200399,-118.22926
+10302,Eagle Rock / Verdugo,34.10505,-118.23828
+10303,Eagle Rock / Avenue 31,34.10801,-118.2377199
 10304,Eagle Rock / Avenue 33,34.1121099,-118.23696
 10306,Eagle Rock / Avenue 36,34.1172899,-118.23469
 10307,Eagle Rock / Avenue 41,34.12097,-118.2273199
@@ -7055,7 +7096,7 @@ tag,title,lat,lon
 10387,Coldwater Canyon / Raymer,34.20439,-118.41368
 10390,Exposition / Watt,34.0185299,-118.2886099
 10391,Coldwater Canyon / Saticoy,34.2068899,-118.4142599
-10392,Fair Oaks / Bellefontaine,34.1314599,-118.1504799
+10392,Fair Oaks / Bellefontaine,34.13146,-118.15048
 10393,Fair Oaks / Claremont,34.1665,-118.1508
 10394,Fair Oaks / Congress,34.1338999,-118.1504999
 10395,Fair Oaks / Corson,34.1507399,-118.15067
@@ -7166,13 +7207,13 @@ tag,title,lat,lon
 10531,Florence / Norwalk,33.9354699,-118.073
 10532,Florence / Orizaba,33.9525299,-118.1276099
 10533,Florence / Orr And Day,33.9354399,-118.0893899
-10534,Florence / Otis,33.97109,-118.19413
+10534,Florence / Otis,33.9710899,-118.19413
 10535,Florence / Paramount,33.9535799,-118.1297199
 10536,Florence / Pioneer,33.9354299,-118.0821599
 10537,Florence / Ringwood,33.9354199,-118.08478
 10538,Florence / Rives,33.9556899,-118.1339399
 10540,Florence / Scout,33.96158,-118.14534
-10541,Florence / State,33.9727,-118.20977
+10541,Florence / State,33.9726999,-118.2097699
 10543,Florence / Tecum,33.95907,-118.14069
 10544,Florence / Walker,33.9689399,-118.1741199
 10545,Florence / Wilcox,33.9693199,-118.1776399
@@ -7256,7 +7297,7 @@ tag,title,lat,lon
 10641,Gaffey / Channel,33.75395,-118.2924099
 10642,Gage / Perry,33.97366,-118.14459
 10643,Gage / Salt Lake,33.97998,-118.20414
-10644,Allen / Corson,34.1517299,-118.113
+10644,Allen / Corson,34.15173,-118.1129999
 10645,Gage / Atlantic,33.9781799,-118.1872599
 10646,Gage / Bear,33.9792799,-118.1975799
 10647,Cesar E Chavez / Gage,34.0404,-118.1843799
@@ -7272,7 +7313,7 @@ tag,title,lat,lon
 10657,Gage / Malabar,33.98177,-118.2275699
 10658,Gage / Marconi,33.98124,-118.21593
 10659,Gage / California,33.97971,-118.20164
-10660,Allen / Villa,34.15412,-118.11299
+10660,Allen / Villa,34.1541199,-118.11299
 10661,Gage / Otis,33.97877,-118.19276
 10662,Hill / Orange Grove,34.1580999,-118.12135
 10663,Gage / Pacific,33.9817699,-118.22497
@@ -7386,7 +7427,6 @@ tag,title,lat,lon
 10855,Harbor Transitway / Harbor Fwy Station,33.9287299,-118.28082
 10857,Harry Bridges / Island,33.7712099,-118.2655
 10860,Harry Bridges / Wilmington,33.7707899,-118.27318
-10861,Highland / Hollywood,34.1011699,-118.33882
 10866,Harvey / Wilson,34.14626,-118.2300999
 10868,Haskell / San Fernando Mission,34.2721399,-118.47585
 10879,Hawthorn / Orange,34.1004199,-118.34105
@@ -7419,14 +7459,14 @@ tag,title,lat,lon
 10919,Hawthorne / Hawkhurst,33.7817099,-118.3695
 10920,Hawthorne / Broadway,33.9203199,-118.3527299
 10921,Orange Grove / Hill,34.1577,-118.1211299
-10922,Allen Station,34.1519999,-118.1133
+10922,Allen Station,34.152,-118.1133
 10923,Hawthorne / Carson,33.8312099,-118.3527
 10924,Walnut / Allen,34.1496599,-118.11349
 10927,Hawthorne / Crest,33.7607999,-118.3938
 10928,Hawthorne / Del Amo,33.84832,-118.3538799
 10930,Hawthorne / Verde Ridge,33.769,-118.3914
 10931,Hawthorne / Dupre,33.7524,-118.39553
-10932,Hawthorne / El Segundo,33.91669,-118.35272
+10932,Hawthorne / El Segundo,33.9166899,-118.35272
 10934,Hawthorne / Indian Peak,33.7768299,-118.37806
 10935,Hawthorne / Indian Valley,33.76575,-118.39071
 10936,Hawthorne / Lomita,33.8156499,-118.35127
@@ -7574,10 +7614,10 @@ tag,title,lat,lon
 11139,Hawthorne / Imperial,33.9306699,-118.35274
 11141,Imperial / Amery,33.9295699,-118.1642799
 11142,Atlantic / Imperial,33.9305199,-118.18376
-11143,Imperial / California,33.9308099,-118.20852
+11143,Imperial / California,33.9308099,-118.2085199
 11144,Imperial / Imperial Terminal,33.93123,-118.40843
 11145,Imperial / Fairford,33.9172399,-118.09466
-11146,Imperial / Fernwood,33.9304599,-118.22064
+11146,Imperial / Fernwood,33.93046,-118.2206399
 11148,Imperial / Garfield,33.9300399,-118.1684499
 11150,Imperial / Hughes,33.93103,-118.3922399
 11152,Imperial / Jersey,33.91723,-118.0859999
@@ -7594,8 +7634,9 @@ tag,title,lat,lon
 11165,Imperial / State,33.9305799,-118.2166199
 11167,Imperial / Wright,33.9310499,-118.18114
 11169,Imperial / California,33.93128,-118.4035899
-11177,Indiana / 3rd,34.0330299,-118.1924899
-11178,Indiana / Hubbard,34.0264499,-118.1924299
+11177,Indiana / 3rd,34.03303,-118.19249
+11178,Indiana / Hubbard,34.02645,-118.19243
+11179,Indiana / Lee,34.0220999,-118.19238
 11183,Rosecrans / Inglewood,33.90172,-118.3609499
 11184,Inglewood / Rosecrans,33.9021099,-118.36113
 11185,Irolo / San Marino,34.0541999,-118.3008999
@@ -7629,11 +7670,15 @@ tag,title,lat,lon
 11221,Oxnard / Kester,34.1793,-118.4571
 11222,Eastern / Cesar E Chavez,34.0406999,-118.17375
 11224,Martin Luther King Jr / Arlington,34.01069,-118.31846
+11225,Martin Luther King Jr / Atlantic,33.92135,-118.18764
+11226,Martin Luther King Jr / Harris,33.9237299,-118.1918599
 11227,Martin Luther King Jr / Budlong,34.01099,-118.2955099
+11228,Martin Luther King Jr / Ernestine,33.9277199,-118.1975099
 11229,Martin Luther King Jr / California,33.93616,-118.20809
 11230,Martin Luther King Jr / Coliseum,34.01746,-118.34618
 11231,Martin Luther King Jr / Degnan,34.0110499,-118.3311399
 11232,Martin Luther King Jr / Denker,34.01099,-118.3043699
+11233,Martin Luther King Jr / Muriel,33.92478,-118.19375
 11234,Martin Luther King Jr / Figueroa,34.01127,-118.28246
 11235,Coldwater Canyon / Elkwood,34.21232,-118.41426
 11236,Martin Luther King Jr / Gramercy,34.0109699,-118.3141299
@@ -7641,9 +7686,9 @@ tag,title,lat,lon
 11240,Martin Luther King Jr / Hoover,34.0111899,-118.2875599
 11241,Martin Luther King Jr / Nicolet,34.01944,-118.3493
 11242,Martin Luther King Jr / Normandie,34.01099,-118.3009899
-11243,Imperial / Martin Luther King Jr,33.9313799,-118.20332
+11243,Imperial / Martin Luther King Jr,33.93138,-118.2033199
 11244,Martin Luther King Jr / Roxton,34.01091,-118.3211799
-11247,Vermont / Martin Luther King Jr,34.01114,-118.29139
+11247,Vermont / Martin Luther King Jr,34.0111399,-118.29139
 11248,Martin Luther King Jr / Western,34.0109999,-118.3094099
 11249,Coldwater Canyon / Strathern,34.2161,-118.41426
 11250,Martin Luther King Jr / Westside,34.01102,-118.32678
@@ -7773,7 +7818,6 @@ tag,title,lat,lon
 11426,Le Conte / Broxton,34.0635899,-118.44673
 11427,Le Conte / Gayley,34.06372,-118.4480499
 11429,Le Conte / Tiverton,34.0637899,-118.44275
-11432,Fairfax / Sunset,34.0972999,-118.36168
 11433,Le Conte / Westwood,34.0637599,-118.4451
 11434,Rancho Los Amigos,33.9279599,-118.15657
 11437,Leffingwell / Arroyo,33.92607,-118.0155099
@@ -7849,6 +7893,8 @@ tag,title,lat,lon
 11540,Los Feliz / Commonwealth,34.11245,-118.2851399
 11541,Los Feliz / Revere,34.1260299,-118.26398
 11542,Los Feliz / Wayne,34.1132399,-118.2807499
+11543,Los Robles / Maple,34.1521099,-118.1415999
+11544,Los Robles / Woodbury,34.1810699,-118.1417999
 11550,Louise / Index,34.27542,-118.511
 11551,Louise / Rinaldi,34.2790599,-118.511
 11552,Louise / San Fernando Mission,34.2718099,-118.51102
@@ -7992,7 +8038,6 @@ tag,title,lat,lon
 11797,Montrose / Ocean View,34.2091499,-118.2277099
 11798,Montrose / Pennsylvania,34.22114,-118.24849
 11799,Montrose / Ramsdell,34.21869,-118.24452
-11800,Moorpark / Van Nuys,34.1517099,-118.44682
 11801,Moorpark / Van Nuys,34.1515899,-118.44701
 11803,Avenue San Luis / Mulholland,34.1587799,-118.6361
 11804,Mulholland / Flamingo,34.1500299,-118.6180899
@@ -8004,13 +8049,21 @@ tag,title,lat,lon
 11813,1st / Olive,34.1794799,-118.30981
 11814,1st / Orange Grove,34.1802799,-118.3109099
 11817,Alameda / Los Angeles,34.0564699,-118.23754
+11818,Allen / Asbury,34.1663199,-118.11322
 11819,Allen / Braeburn,34.18788,-118.11183
-11821,Allen / Corson,34.1515899,-118.1132999
+11820,Allen / Brigden,34.16523,-118.1132399
+11821,Allen / Corson,34.1515899,-118.1133
+11822,Allen / Mountain,34.16153,-118.1132799
 11823,Allen / Orange Grove,34.15762,-118.1133299
 11824,Allen / Villa,34.1540899,-118.1133099
-11827,Allen / Las Lunas,34.15629,-118.1133199
+11825,Allen / Walnut,34.14929,-118.1133099
+11826,Allen / Elizabeth,34.1730599,-118.11292
+11827,Allen / Las Lunas,34.15629,-118.11332
+11828,Allen / Loma Vista,34.1601499,-118.1133
 11829,Allen / Meadowbrook,34.1832999,-118.11165
 11830,Allen / Mendocino,34.18603,-118.11136
+11831,Allen / Oakwood,34.17514,-118.1126599
+11832,Allen / Whitefield,34.16465,-118.1132499
 11833,Altadena / Brigden,34.1659999,-118.09819
 11834,Altadena / Cooley,34.1632399,-118.09853
 11835,Altadena / Crary,34.1727,-118.0983999
@@ -8085,7 +8138,6 @@ tag,title,lat,lon
 11949,Edison / Maple,34.17735,-118.35346
 11951,Eucalyptus / Florence,33.96524,-118.3595
 11956,Fair Oaks / Colorado,34.1460499,-118.1503
-11957,Raymond / Walnut Layover,34.1490799,-118.14882
 11958,Fair Oaks / Villa,34.15426,-118.15069
 11959,Fair Oaks / Walnut,34.1493599,-118.15068
 11962,Fair Oaks / Orange Grove,34.1575299,-118.1507199
@@ -8147,6 +8199,8 @@ tag,title,lat,lon
 12036,Vermont / Anaheim,33.7828399,-118.29731
 12037,Gaffey / Channel,33.7540599,-118.29209
 12038,Gaffey / Westmont,33.76403,-118.29357
+12040,Gage / Hammel,34.04248,-118.1847599
+12042,Gage / Michigan,34.0383,-118.18471
 12045,Garfield / Grand,34.0988199,-118.1295999
 12048,Garfield / McLean,34.1024599,-118.1318299
 12049,Garfield / Pine,34.10454,-118.13355
@@ -8221,7 +8275,7 @@ tag,title,lat,lon
 12156,Lake / Calaveras,34.1839299,-118.13173
 12157,Lake / Claremont,34.16675,-118.1325099
 12159,Lake Station,34.1514,-118.13251
-12160,Lake / Mariposa,34.18795,-118.1315599
+12160,Lake / Mariposa,34.18795,-118.13156
 12161,Lake / Mendocino,34.18554,-118.1316599
 12162,Lake / Mountain,34.16138,-118.1326599
 12164,Lake / Orange Grove,34.15758,-118.13263
@@ -8258,9 +8312,21 @@ tag,title,lat,lon
 12231,Long Beach / Wardlow,33.8186399,-118.1894399
 12232,Long Beach / Willow,33.8041299,-118.18951
 12237,Long Beach / Del Amo,33.8464299,-118.19387
+12244,Los Robles / Atchison,34.1754699,-118.1417899
+12245,Los Robles / Buckeye,34.15934,-118.14169
+12246,Los Robles / Claremont,34.16659,-118.14175
 12248,Los Robles / Colorado,34.14557,-118.1415899
+12249,Los Robles / Howard,34.1718899,-118.14177
+12250,Los Robles / Ladera,34.17123,-118.14177
+12251,Los Robles / Mountain,34.1612599,-118.1416999
+12253,Los Robles / Orange Grove,34.15754,-118.14167
 12254,Los Robles / Union,34.1469499,-118.14157
-12256,Los Robles / Walnut,34.1488999,-118.1415899
+12255,Los Robles / Villa,34.1539199,-118.1416299
+12256,Los Robles / Walnut,34.1489,-118.1415899
+12257,Los Robles / Washington,34.16863,-118.14176
+12259,Los Robles / Highland,34.17748,-118.1417899
+12260,Los Robles / Jackson,34.16348,-118.1417199
+12261,Los Robles / Penn,34.1743,-118.14178
 12262,Maclay / 4th,34.2864299,-118.43725
 12263,Maclay / 5th,34.28883,-118.4339799
 12264,Maclay / Glenoaks,34.29149,-118.4303199
@@ -8349,6 +8415,10 @@ tag,title,lat,lon
 12377,San Vicente / Beverly,34.0768599,-118.3796799
 12378,San Vicente / Wilshire,34.0638599,-118.37097
 12379,San Vicente / Santa Monica,34.0844299,-118.3839099
+12380,Santa Anita / Alameda,34.1844999,-118.14169
+12381,Santa Anita / Calaveras,34.1866899,-118.14069
+12382,Santa Anita / Mendocino,34.1881,-118.1400399
+12383,Santa Anita / Sacramento,34.18308,-118.1423399
 12384,Santa Anita / Perkins,34.1591,-118.0318899
 12385,Santa Anita / Santa Clara,34.14237,-118.03157
 12386,Santa Anita / Colorado,34.14522,-118.0316399
@@ -8377,8 +8447,15 @@ tag,title,lat,lon
 12428,Venice / Meade,33.9927999,-118.45579
 12429,Venice / Shell,33.9910099,-118.4594
 12430,Venice Bl / Venice Wy,33.98775,-118.4659399
+12431,Verdugo / Broadway,34.14634,-118.23521
+12432,Verdugo / Glenoaks,34.1579,-118.2371599
 12433,Verdugo / Mountain,34.1648899,-118.2324
+12434,Verdugo / Wilson,34.1482,-118.23573
+12435,Verdugo / Monterey,34.1546599,-118.2375399
+12437,Verdugo / Glendale,34.1611399,-118.23638
+12439,Vermont / Beverly,34.07648,-118.2918299
 12441,Vermont / Clinton,34.08192,-118.29186
+12442,Vermont / Hollywood - North,34.0998499,-118.29161
 12443,Vermont / Finley,34.10783,-118.29194
 12444,Vermont / Fountain,34.0957099,-118.2919
 12445,Vermont / Franklin,34.1055399,-118.29193
@@ -8407,6 +8484,7 @@ tag,title,lat,lon
 12485,National / Robertson,34.0312899,-118.3906799
 12489,New / Shorb,34.0812999,-118.1083999
 12494,New High / Ord,34.0598799,-118.23881
+12495,New York / Allen,34.1786699,-118.11253
 12496,New York / Harding,34.17466,-118.10147
 12497,New York / Midlothian,34.17644,-118.10909
 12498,New York / Allen,34.17814,-118.11163
@@ -8500,7 +8578,16 @@ tag,title,lat,lon
 12627,Osborne / Laurel Canyon,34.2467899,-118.41984
 12628,Osborne / San Fernando,34.2539999,-118.4095
 12629,Osborne / Telfair,34.2514699,-118.41296
+12631,Otis / Clara,33.9665799,-118.19433
+12632,Otis / Live Oak,33.9685099,-118.19404
+12633,Otis / Salt Lake,33.96397,-118.1949699
 12634,Santa Ana / Otis,33.96194,-118.19497
+12635,Otis / Firestone,33.9530299,-118.19637
+12636,Otis / Independence,33.9565599,-118.19585
+12637,Otis / Liberty,33.95891,-118.1955099
+12638,Otis / Southern,33.95025,-118.1967399
+12639,Otis / Tenaya,33.9378499,-118.19839
+12640,Otis / Tweedy,33.94311,-118.1975399
 12642,Overhill / Northridge,33.99452,-118.35555
 12643,Overhill / Stocker,33.9965599,-118.3577199
 12645,Owensmouth / Prairie,34.23926,-118.6019599
@@ -8992,7 +9079,7 @@ tag,title,lat,lon
 13370,Crenshaw / 90th,33.95594,-118.3266399
 13371,Crenshaw / Arbor Vitae,33.95208,-118.32663
 13372,Crenshaw / Hardy,33.9492599,-118.3266299
-13373,Crenshaw / Imperial,33.9306399,-118.32664
+13373,Crenshaw / Imperial,33.93064,-118.3266399
 13375,Crenshaw / Manchester,33.9601699,-118.32664
 13376,Del Mar / Marshall,34.0747899,-118.09971
 13377,Del Mar / Valley,34.0790799,-118.0997
@@ -9132,7 +9219,8 @@ tag,title,lat,lon
 13609,Hoover / 28th,34.0294999,-118.2840999
 13612,Hoover / Adams,34.0314299,-118.2841199
 13613,Hoover / Washington,34.03967,-118.28422
-13617,Indiana / 6th,34.0281899,-118.1924499
+13617,Indiana / 6th,34.02819,-118.19245
+13618,Indiana / Whittier,34.0242299,-118.1924099
 13619,Inglewood / Century,33.9451699,-118.36117
 13620,La Brea / Coliseum,34.01857,-118.35571
 13621,La Brea / Dockweiler,34.05208,-118.3442599
@@ -9183,7 +9271,7 @@ tag,title,lat,lon
 13682,Locust / Manchester,33.96202,-118.35028
 13684,Long Beach / Bennett,33.8827599,-118.2054399
 13687,Long Beach / Myrrh,33.8925099,-118.2078799
-13688,Olympic / Lorena,34.0188899,-118.2062899
+13688,Olympic / Lorena,34.0188899,-118.20629
 13691,Los Robles / Cordova,34.14188,-118.1415199
 13695,Del Mar / Los Robles,34.14028,-118.1410299
 13697,Los Robles / Green,34.1442799,-118.1415699
@@ -9422,8 +9510,8 @@ tag,title,lat,lon
 14011,Van Ness / Slauson,33.9893099,-118.31766
 14012,Venice / Lincoln,33.9940899,-118.45322
 14013,Verdugo / Colorado,34.1424599,-118.23412
-14015,Verdugo / Garfield,34.1375099,-118.2337299
-14016,Verdugo / Maple,34.13999,-118.2337099
+14015,Verdugo / Garfield,34.1375099,-118.23373
+14016,Verdugo / Maple,34.1399899,-118.2337099
 14017,Vermont / Exposition,34.0185099,-118.29169
 14018,Vermont / Leighton,34.01337,-118.29169
 14019,Vermont / Lomita,33.79792,-118.2909499
@@ -9440,6 +9528,7 @@ tag,title,lat,lon
 14038,Vermont / 29th,34.0288299,-118.29169
 14039,Vermont / 36th,34.0217899,-118.29169
 14041,Vermont / 39th,34.01563,-118.2916999
+14042,Vermont / 3rd,34.06878,-118.2918
 14043,Vermont / 42nd,34.0074699,-118.29169
 14044,Vermont / 46th,34.00138,-118.29168
 14045,Vermont / 48th,33.99934,-118.29167
@@ -9458,7 +9547,6 @@ tag,title,lat,lon
 14063,Vermont / 88th,33.9576999,-118.29191
 14064,Vermont / 8th,34.0579,-118.29178
 14065,Vermont / 90th,33.95552,-118.2920199
-14067,Vermont / 92nd,33.9539599,-118.29202
 14068,Vermont / 93rd,33.9523,-118.2920299
 14069,Vermont / 94th,33.9511,-118.29203
 14071,Vermont / James M Wood,34.0560999,-118.2917699
@@ -9471,6 +9559,7 @@ tag,title,lat,lon
 14078,Vermont / Imperial,33.9307,-118.2920799
 14079,Vermont / Jefferson,34.0256999,-118.29169
 14080,Vermont / Manchester,33.9596999,-118.29182
+14081,Vermont / Manchester,33.9598099,-118.29182
 14082,Vermont / Olympic,34.0527599,-118.29176
 14083,Vermont / Pico,34.0468799,-118.2917399
 14084,Vermont / Sepulveda,33.80987,-118.2904899
@@ -9514,7 +9603,6 @@ tag,title,lat,lon
 14145,Imperial / Western,33.9310999,-118.30937
 14147,Western / Imperial,33.9321899,-118.30886
 14148,Western / Jefferson,34.0257499,-118.3090499
-14149,Western / Manchester,33.9601099,-118.30912
 14152,Western / Olympic,34.0523499,-118.3091999
 14154,Western / Pico,34.0473399,-118.3091799
 14156,Western / Vernon,34.0033599,-118.3090599
@@ -9602,6 +9690,7 @@ tag,title,lat,lon
 14300,Santa Ana / Seville,33.9647699,-118.2222399
 14308,Santa Ana / California,33.9630099,-118.2050699
 14309,Santa Ana / Cypress,33.96412,-118.21576
+14311,Otis / Santa Ana,33.96167,-118.1953299
 14313,Santa Ana / South Gate,33.96384,-118.21317
 14314,Santa Ana / Victoria,33.96319,-118.20875
 14316,Santa Anita / Bodger,34.0644399,-118.0428099
@@ -9622,6 +9711,7 @@ tag,title,lat,lon
 14332,4900 Santa Anita,34.0938099,-118.0269399
 14333,Santa Anita / Amador,34.07044,-118.0423099
 14336,Santa Fe / Rr Xing,33.8715,-118.21399
+14340,Santa Fe / Southern,33.9532099,-118.2243199
 14341,Santa Gertrudes / Lambert,33.9339099,-117.99321
 14342,Santa Gertrudes / Starbuck,33.9400199,-117.99295
 14344,Santa Gertrudes / Leffingwell,33.9314499,-117.99328
@@ -9632,7 +9722,7 @@ tag,title,lat,lon
 14352,Santa Monica / 11th,34.02171,-118.4888799
 14353,Crescent Heights / Fountain,34.09414,-118.3660399
 14354,Santa Monica / 14th,34.0243,-118.4856899
-14357,Santa Monica / 20th,34.02859,-118.4803599
+14357,Santa Monica / 20th,34.0285899,-118.48036
 14358,Santa Monica / 21st,34.03029,-118.4782799
 14359,Santa Monica / 26th,34.03351,-118.4742999
 14360,Santa Monica / 4th,34.0166499,-118.49468
@@ -9661,14 +9751,14 @@ tag,title,lat,lon
 14390,Santa Monica / Edgemont,34.0909899,-118.29589
 14391,Santa Monica / Fairfax,34.0909599,-118.36122
 14392,Santa Monica / Fuller,34.0908899,-118.3503999
-14393,Santa Monica / Gardner,34.0909099,-118.3535699
+14393,Santa Monica / Gardner,34.09091,-118.35357
 14394,Santa Monica / Spaulding,34.09069,-118.35758
 14395,Santa Monica / Gower,34.0908799,-118.3221
 14396,4th / Broadway,34.0143599,-118.49288
 14398,Santa Monica / Hobart,34.09093,-118.3044499
 14399,Santa Monica / Hoover,34.0909899,-118.28442
 14400,Santa Monica / Kings,34.09081,-118.3728799
-14401,Santa Monica / La Brea,34.09085,-118.3445699
+14401,Santa Monica / La Brea,34.0908499,-118.34457
 14402,Santa Monica / La Jolla,34.0908799,-118.36787
 14403,Santa Monica / La Peer,34.0833799,-118.38671
 14404,Santa Monica / Las Palmas,34.09086,-118.3361099
@@ -9677,7 +9767,7 @@ tag,title,lat,lon
 14408,Santa Monica / Palm,34.07743,-118.3955299
 14409,Santa Monica / Rexford,34.0736999,-118.40096
 14410,Santa Monica / Roxbury,34.06909,-118.4076799
-14411,Santa Monica / Sweetzer,34.0908399,-118.37062
+14411,Santa Monica / Sweetzer,34.0908399,-118.3706199
 14412,Santa Monica / Van Ness,34.09089,-118.31606
 14414,Santa Monica / Virgil,34.0909999,-118.2864999
 14416,Santa Monica / Wilton,34.09089,-118.3133899
@@ -9692,7 +9782,7 @@ tag,title,lat,lon
 14429,Santa Monica / Thayer,34.0557999,-118.42693
 14430,Santa Monica / Veteran,34.04905,-118.4407899
 14431,Santa Monica / Sepulveda,34.0476099,-118.44489
-14432,Santa Monica / Vine,34.09087,-118.32695
+14432,Santa Monica / Vine,34.0908699,-118.32695
 14433,Santa Monica / Century Park West,34.0592499,-118.42194
 14434,Santa Monica / Wellesley,34.03978,-118.4654199
 14435,Santa Monica / Westbourne,34.0877299,-118.38005
@@ -10078,6 +10168,8 @@ tag,title,lat,lon
 14969,Topanga Canyon / Ybarra,34.15456,-118.6059499
 14970,Torrance / Broadway,33.8381099,-118.3868699
 14973,Tracy / Ames,34.1084199,-118.27893
+14977,Truba / Illinois,33.9513799,-118.22463
+14978,Truba / Missouri,33.94876,-118.2250299
 14980,Verdugo / 3rd,34.17969,-118.3044599
 14981,Truman / Maclay,34.28322,-118.44092
 14983,Truman / Hubbard,34.2903599,-118.44884
@@ -10096,6 +10188,7 @@ tag,title,lat,lon
 15003,Tweedy / Long Beach,33.9454799,-118.21593
 15004,Tweedy / Orange,33.9421299,-118.1855499
 15005,Tweedy / Otis,33.9434399,-118.1974599
+15006,Tweedy / Alameda,33.9467699,-118.22776
 15007,Tweedy / San Juan,33.94403,-118.20285
 15008,Tweedy / San Vincente,33.94367,-118.19952
 15009,2751 Tweedy,33.94616,-118.22206
@@ -10318,10 +10411,13 @@ tag,title,lat,lon
 15322,Venice / Westmoreland,34.04372,-118.3063699
 15323,Venice Way / Riviera,33.9875099,-118.46837
 15324,Ventura / Balboa,34.1594699,-118.50138
+15325,Ventura / Laurel Canyon,34.1436799,-118.39561
 15326,Ventura / Laurel Canyon,34.1437199,-118.39512
 15328,Oxnard / Van Nuys,34.1794999,-118.44837
 15329,Topanga Canyon / Ventura,34.1687899,-118.60567
+15330,Ventura / Topanga Canyon,34.1686299,-118.6051
 15331,Ventura / Van Nuys,34.1511999,-118.44945
+15332,Ventura / Vineland,34.1408299,-118.3708
 15336,12632 Ventura,34.14408,-118.40817
 15337,Ventura / Alhama,34.1671299,-118.5930399
 15338,Ventura / Amestoy,34.16041,-118.50574
@@ -10337,6 +10433,7 @@ tag,title,lat,lon
 15348,Canoga / Ventura,34.16814,-118.5972599
 15349,Ventura / Carpenter,34.14295,-118.39103
 15351,Ventura / Chalk Hill,34.1680099,-118.58024
+15352,Ventura / Coldwater Canyon,34.14539,-118.41444
 15353,Ventura / Colfax,34.1415299,-118.3879299
 15355,Ventura / Corbin,34.1727099,-118.56253
 15357,Ventura / Del Moreno,34.1695099,-118.5753
@@ -10367,32 +10464,40 @@ tag,title,lat,lon
 15388,Ventura / Campo De Cahuenga,34.1396199,-118.3676899
 15389,Ventura / Sale,34.16747,-118.6191599
 15391,Ventura / Sepulveda,34.1537699,-118.4650499
+15393,Ventura / De Soto,34.1665699,-118.5886099
 15394,Ventura / Sherman Oaks,34.1544799,-118.4693199
 15395,Ventura / Shirley,34.1729099,-118.5576599
 15396,Ventura / Shoup,34.16883,-118.6148799
 15398,Ventura / Sunnyslope,34.14753,-118.42744
-15399,Ventura / Tampa,34.1728199,-118.5537799
+15399,Ventura / Tampa,34.1728199,-118.55378
 15400,Ventura / Topanga Canyon,34.1686399,-118.60604
-15401,Ventura / Tujunga,34.1400899,-118.37872
+15401,Ventura / Tujunga,34.14009,-118.3787199
 15402,Ventura / Ethel,34.14607,-118.41861
-15403,Warner Center Transit Hub,34.1805899,-118.60139
 15404,Ventura / Vanalden,34.17271,-118.55039
 15405,Ventura / Vantage,34.14347,-118.3978799
 15406,Ventura / White Oak,34.16275,-118.51908
 15407,Ventura / Wilbur,34.17234,-118.54453
 15408,Ventura / Willis,34.15216,-118.45537
-15409,Ventura / Woodley,34.1564799,-118.4837799
+15409,Ventura / Woodley,34.15648,-118.48378
 15410,Ventura / Woodman,34.1482099,-118.4315
+15411,Ventura / Woodman,34.1482399,-118.4316699
+15413,Ventura / Reseda,34.1691299,-118.53646
 15415,Reseda Station,34.1804399,-118.5368
 15416,Reseda Station,34.18034,-118.5352399
+15417,Verdugo / Verdugo Mesa,34.12852,-118.23248
+15418,Verdugo / Filion,34.12313,-118.23148
 15419,Verdugo / Glencoe,34.19855,-118.2293399
 15420,Magnolia / Vineland,34.1650599,-118.37089
 15421,Verdugo / La Crescenta,34.1969199,-118.2296999
 15422,Verdugo / Ocean View,34.2010099,-118.22809
+15423,Verdugo / Orilla,34.13322,-118.2335
+15424,Verdugo / Shasta Circle North,34.1309999,-118.2330499
 15425,Verdugo / Sunview,34.20282,-118.2268599
 15426,Verdugo / Triangle,34.19982,-118.2288999
+15427,Verdugo / Wawona,34.12725,-118.2323
+15428,Verdugo / York,34.12513,-118.23188
 15429,Vermont / 35th,34.02365,-118.29169
-15431,Vermont / Martin Luther King Jr,34.01105,-118.29169
+15431,Vermont / Martin Luther King Jr,34.0110499,-118.29169
 15432,Canoga Station,34.1909699,-118.59624
 15433,Vermont / Melbourne,34.1037199,-118.2919299
 15434,Hollywood / New Hampshire,34.1019099,-118.29312
@@ -10962,7 +11067,7 @@ tag,title,lat,lon
 16225,Riggin / Findlay,34.0367699,-118.13828
 16226,Riggin / Gerhart,34.0366999,-118.1445
 16229,Rosecrans / Main,33.90184,-118.2742299
-16240,Santa Monica / La Cienega,34.08988,-118.3760399
+16240,Santa Monica / La Cienega,34.0898799,-118.37604
 16241,Sierra Madre / Claridge,34.16186,-118.0377699
 16242,Sierra Madre / La Ramada,34.16186,-118.0349
 16243,Sierra Madre / Baldwin,34.1620199,-118.05293
@@ -11039,7 +11144,7 @@ tag,title,lat,lon
 16325,Sunset / Doheny Drive,34.0904999,-118.38991
 16326,Sunset / Doheny Drive,34.0907499,-118.38958
 16327,Sunset / Edgemont,34.0982699,-118.29646
-16329,Sunset / Figueroa,34.06294,-118.24641
+16329,Sunset / Figueroa,34.0629399,-118.24641
 16330,Sunset / Gardner,34.0981599,-118.35266
 16332,Sunset / Highland,34.09812,-118.3384799
 16334,Sunset / Kings,34.09542,-118.3725899
@@ -11256,6 +11361,7 @@ tag,title,lat,lon
 16652,Wilcox / Florence,33.9689599,-118.17798
 16654,Wilcox / Live Oak,33.96712,-118.1782699
 16657,Wilmington / 120th,33.92434,-118.2392099
+16659,Wilmington / 108th,33.9374699,-118.23919
 16662,Wilshire / Brighton,34.06722,-118.40572
 16663,Wilshire / Camden,34.06721,-118.40296
 16664,Wilshire / Crescent Heights,34.0635,-118.36492
@@ -11331,7 +11437,6 @@ tag,title,lat,lon
 16766,Wilshire / Saint Paul,34.0517899,-118.2617799
 16768,Wilshire / Valencia,34.05463,-118.26815
 16769,Wilshire / Vermont,34.0619299,-118.2913
-16770,Veteran Federal Building,34.0570199,-118.44728
 16771,Wilshire / Veteran,34.05794,-118.4476299
 16773,Wilshire / Warner,34.0641999,-118.43239
 16774,Wilshire / Western,34.0618299,-118.3094
@@ -11354,6 +11459,7 @@ tag,title,lat,lon
 16801,Winnetka / Strathern,34.2157399,-118.5711899
 16802,Winnetka / Valerio,34.2044299,-118.5711599
 16803,Winnetka / Vanowen,34.1935299,-118.57112
+16804,Ventura / Winnetka,34.1709699,-118.5713
 16805,Winnetka / Victory,34.18545,-118.57108
 16806,Woodlake / Cohasset,34.2061099,-118.6322599
 16808,Woodlawn / Martin Luther King Jr,34.0114199,-118.27272
@@ -11454,7 +11560,7 @@ tag,title,lat,lon
 16924,Long Beach / 6th,33.77387,-118.1895499
 16925,Manchester / Harbor,33.8127699,-117.91515
 16926,Orangethorpe / Magnolia,33.85902,-117.97695
-16927,Cesar E Chavez / Grand,34.0608999,-118.24398
+16927,Cesar E Chavez / Grand,34.0609,-118.24398
 16928,Figueroa / Sunset,34.0621099,-118.24644
 16931,Santa Fe / 8th,34.02972,-118.2301
 16932,Atlantic / Glendon,34.07407,-118.13461
@@ -11475,7 +11581,6 @@ tag,title,lat,lon
 16952,Spring / 4th,34.0484999,-118.24872
 16955,Washington / Figueroa,34.0346299,-118.27225
 16956,Cesar E Chavez / Rowan,34.0403899,-118.18668
-16961,Fountain / Bates,34.0958899,-118.28145
 16963,Rosecrans / Sepulveda,33.9017499,-118.39568
 16966,Park / Douglas,33.9044199,-118.38344
 16967,Rosecrans / Long Beach,33.9033299,-118.20812
@@ -11707,7 +11812,7 @@ tag,title,lat,lon
 17299,Rosecrans / Isis,33.9019699,-118.3742
 17300,Alondra / Escalona,33.8882599,-118.0113
 17302,Compton / Alameda,33.89613,-118.2196799
-17306,Sunset / Parkman,34.0829599,-118.2735299
+17306,Sunset / Parkman,34.08296,-118.27353
 17307,Boyle / Hollenbeck,34.0379699,-118.2195899
 17308,Vermont / Hollywood,34.1008699,-118.29192
 17309,Boyle / 4th,34.04292,-118.21949
@@ -12329,12 +12434,13 @@ tag,title,lat,lon
 19122,Willowbrook / Myrrh,33.89259,-118.22368
 19124,Avalon / Lanzit,33.93253,-118.265
 19129,7th / Magnolia,34.0597399,-118.2863499
-19131,Avalon / 103rd,33.9429799,-118.26531
 19136,Strathern / Vineland,34.2156099,-118.3699799
 19137,Woodruff / Rosecrans,33.9025799,-118.11652
 19138,Woodruff / Foster,33.90967,-118.11656
 19140,Woodruff / Imperial,33.9167999,-118.11678
 19142,Woodruff / Foster,33.90995,-118.1167899
+19144,92nd / Alameda,33.95337,-118.23159
+19146,92nd / Alameda,33.95316,-118.2307399
 19147,Western / Adams,34.0328499,-118.3087999
 19148,Western / Adams,34.0325699,-118.3091099
 19149,Marine / Redondo Beach Station,33.8950699,-118.36984
@@ -12577,7 +12683,7 @@ tag,title,lat,lon
 20248,Park Granada / Calabasas,34.1559299,-118.6426599
 20249,Avenue San Luis / Us-101 S Exit 28,34.16359,-118.6245499
 20250,Avenue San Luis / Abbeyville,34.1607199,-118.63296
-20251,Ventura / Sepulveda,34.1539099,-118.46586
+20251,Ventura / Sepulveda,34.15391,-118.46586
 20252,Ventura / Canoga,34.16768,-118.59712
 20253,Ventura / Winnetka,34.1707399,-118.57118
 20254,Ventura / Reseda,34.1683399,-118.53528
@@ -12654,7 +12760,6 @@ tag,title,lat,lon
 20344,Empire / Hollywood Way,34.1921499,-118.3486699
 20345,Lankershim / Erwin,34.18299,-118.38534
 20346,Lankershim / Neenach,34.23108,-118.38762
-20348,Chinatown,34.0618899,-118.23607
 20424,Valley Circle / Victory,34.18493,-118.6556599
 20430,Ventura / Balboa,34.1593599,-118.50091
 20432,Ventura / Reseda,34.1688699,-118.53585
@@ -12706,6 +12811,7 @@ tag,title,lat,lon
 25000,Oxnard / Van Nuys Layover,34.1792999,-118.4499
 25001,Santa Monica / Highland Layover,34.0889899,-118.33842
 25002,Highland / Santa Monica,34.0909999,-118.33844
+25003,Wilmington / 105th,33.9407899,-118.23917
 25006,Beach / Commonwealth,33.86961,-117.99832
 25007,Beach / Auto Center Drive,33.8673199,-117.9982999
 25008,Beach / Auto Center Drive,33.86787,-117.99798
@@ -12714,11 +12820,9 @@ tag,title,lat,lon
 25014,Beach / Artesia,33.8739299,-117.9980399
 25015,Beach / Cascade,33.88196,-117.9979599
 25017,Alondra / La Barca,33.8883399,-118.00123
-25201,Short / Soto Layover,34.0262199,-118.21997
 25258,Maple / 36th,34.0147399,-118.27088
 25260,San Pedro / 77th,33.9697799,-118.2696399
 25500,Western / Slauson,33.98887,-118.30908
-25501,Division 1 Layover,34.0374999,-118.23889
 25502,Compton / Vernon,34.0037599,-118.2476
 28259,Main / Slauson,33.9890799,-118.27377
 28265,Beverly / Wilshire,34.0668899,-118.3989499
@@ -12751,17 +12855,30 @@ tag,title,lat,lon
 30021,Burbank Airport Ritc,34.1934299,-118.35145
 31693,Paramount / 55th,33.8570799,-118.1597
 32033,Soto / Washington,34.01756,-118.21989
-32036,Indiana / Hubbard,34.0265799,-118.1922
+32034,Indiana / Olympic,34.0191399,-118.19212
+32035,Indiana / Lee,34.0217199,-118.1921399
+32036,Indiana / Hubbard,34.0265799,-118.1921999
 32037,Indiana / 6th,34.0280799,-118.1922099
 32038,Indiana / 5th,34.03006,-118.19223
+32039,Gage / 1st,34.0362199,-118.18453
+32040,Gage / Michigan,34.0379099,-118.1845399
+32041,Gage / Cesar E Chavez,34.04027,-118.18454
+32042,Gage / Blanchard,34.04596,-118.18458
+32044,Gage / Harris,34.0492799,-118.18466
+32045,Pomeroy / City Terrace,34.0509799,-118.18857
 32046,Soto / Rio Vista,34.0211999,-118.2202999
 32059,Holmes / Florence,33.9748999,-118.24125
 32061,Maie / Nadeau,33.96724,-118.2445199
 32062,Maie / 82nd,33.96438,-118.2445099
 32065,92nd / Rr Xing,33.95318,-118.24338
 32068,103rd / Graham,33.9430999,-118.2427
-32076,103rd / Wilmington,33.9432699,-118.2393699
-32079,92nd / Maie,33.95337,-118.24391
+32070,Wilmington / 111th,33.9344399,-118.23919
+32072,Wilmington / 114th,33.9313599,-118.23889
+32073,Wilmington / 111th,33.93416,-118.2388899
+32074,Wilmington / Santa Ana,33.93768,-118.2388799
+32075,Wilmington / 105th,33.9404599,-118.23886
+32076,103rd / Wilmington,33.94327,-118.23937
+32079,92nd / Maie,33.95337,-118.2439099
 32080,Maie / 88th,33.9572599,-118.24407
 32083,Maie / 82nd,33.9636299,-118.2443399
 32084,Maie / Nadeau,33.9672399,-118.24435
@@ -12776,8 +12893,11 @@ tag,title,lat,lon
 32120,183rd / Alburtis,33.86564,-118.0840999
 32121,Telegraph / Paramount,33.9673499,-118.11585
 32123,Telegraph / Calif Commerce Club,33.99802,-118.14607
+32140,Gage / Hammel,34.0426299,-118.1845599
+32141,Pomeroy / City Terrace,34.0511299,-118.18851
 32142,Maie / 88th,33.9570099,-118.2442399
 32143,103rd / Wilmington,33.94302,-118.23928
+32144,Wilmington / 113th,33.9324699,-118.2391999
 32147,6th / Witmer,34.0554799,-118.2658399
 32148,Whittier / Lorena,34.02777,-118.20125
 32149,Whittier / Indiana,34.0239099,-118.1924999
@@ -12823,7 +12943,8 @@ tag,title,lat,lon
 36498,Downey Transit Center,33.9395699,-118.13423
 36499,Imperial / Figueroa,33.9308699,-118.28282
 36500,119th / Willowbrook,33.92451,-118.2352
-36501,Imperial / Croesus,33.92928,-118.23327
+36501,Imperial / Croesus,33.9292799,-118.2332699
+36502,Imperial / Mona,33.9289,-118.2305199
 36503,Imperial / Fernwood,33.9300999,-118.22076
 36505,Imperial / Downey,33.92119,-118.14658
 36506,Imperial / Brookshire,33.9195599,-118.1436399
@@ -12842,7 +12963,6 @@ tag,title,lat,lon
 36522,Imperial / Lewis,33.9318,-118.19473
 36523,Imperial / Bullis,33.93202,-118.19721
 36524,Imperial / Benwell,33.9321999,-118.19937
-36552,Corby / Rosecrans,33.9015499,-118.08359
 36554,Sepulveda / La Tijera,33.95745,-118.3960699
 36555,Sepulveda / Manchester,33.95966,-118.3960599
 36557,Green Valley / Sepulveda,33.98386,-118.3938899
@@ -12873,6 +12993,7 @@ tag,title,lat,lon
 43422,Wilshire / Plymouth,34.06195,-118.32268
 43423,Pacific / Colorado,34.14269,-118.2642299
 43425,White Oak / Oxnard,34.1799799,-118.51836
+43426,Warner Center Transit Hub,34.1811,-118.60163
 55223,Gage / Wilcox,33.9771199,-118.17736
 73400,Sepulveda / Ventura,34.1545599,-118.46601
 78921,Jefferson / San Pedro,34.0154299,-118.26506
@@ -12921,6 +13042,7 @@ tag,title,lat,lon
 123629,Glenoaks / Sayre,34.30215,-118.44241
 123631,Glenoaks / Hubbard,34.29977,-118.43935
 125444,Boyle / Boyle,34.0391399,-118.2197399
+125445,Pomeroy / Eastman,34.0511999,-118.1855899
 125449,State / 1st,34.0467,-118.21742
 125454,Hollenbeck Home,34.03999,-118.2199299
 125455,Whittier / Hollins,34.03522,-118.21795
@@ -12964,9 +13086,9 @@ tag,title,lat,lon
 140754,Central / Century,33.94588,-118.2542199
 140755,Central / 105th,33.94112,-118.2542699
 140756,Imperial / Stanford,33.93116,-118.26197
-140758,Wilmington / 118th,33.9258299,-118.2389099
+140758,Wilmington / 118th,33.92583,-118.23891
 140760,Compton / Martin Luther King Jr,34.01144,-118.2493299
-140761,Compton / 92nd,33.953,-118.2461099
+140761,Compton / 92nd,33.9529999,-118.24611
 140762,Century / Club,33.94535,-118.33299
 140763,103rd / Central,33.9431799,-118.2543199
 140765,Rives / Imperial,33.92667,-118.1561799
@@ -13040,27 +13162,37 @@ tag,title,lat,lon
 140916,Beverly / Wilshire,34.0668899,-118.3992499
 140917,Beverly / Robertson,34.0770699,-118.3839599
 140918,Beverly / Larchmont,34.0761,-118.3233899
-140920,Manhattan / Beverly Layover,34.0758099,-118.31016
 140921,Slauson / Sepulveda,33.98852,-118.39565
 140926,62nd / Western,33.98346,-118.30927
 140927,Central / 55th,33.99278,-118.25629
 140928,Santa Monica / La Jolla,34.09063,-118.3677899
 140929,Western / Pico,34.047,-118.30887
-140930,Vermont / Washington,34.0404299,-118.2913999
+140930,Vermont / Washington,34.04043,-118.2914
 140932,Western / Exposition,34.0188599,-118.30874
 140937,Imperial / Crenshaw,33.9310999,-118.32682
+140939,Fillmore Station,34.13323,-118.14867
 140940,Sierra Madre Villa Station,34.1484499,-118.08092
 140944,Westlake / Wilshire,34.0569599,-118.27507
-140945,Vermont / Century,33.94578,-118.2914099
-140948,Vermont / Santa Monica,34.0911499,-118.2915899
-140951,Vermont / Jefferson,34.0252399,-118.2916799
+140945,Vermont / Century,33.9457799,-118.29141
+140947,Vermont / 3rd,34.0693299,-118.2914999
+140948,Vermont / Santa Monica,34.0911499,-118.29159
+140950,Vermont / Washington,34.0397399,-118.2917099
+140951,Vermont / Jefferson,34.0252399,-118.29168
+140952,Vermont / Vernon,34.0034299,-118.2916999
 140953,Vermont / Slauson,33.9888799,-118.29161
+140954,Vermont / Century,33.94523,-118.2920399
 140955,Vermont / Manchester,33.9604399,-118.29151
+140956,Vermont / Florence,33.9750399,-118.29144
+140957,Vermont / Jefferson,34.0259199,-118.29138
+140958,Vermont / Beverly,34.07675,-118.29153
 140959,Vermont / Sunset,34.0976599,-118.29191
 140960,Vermont / Beverly,34.07661,-118.29184
+140963,Vermont / Pico,34.04768,-118.29144
+140965,Vermont / Florence,33.97441,-118.2917499
+140967,Vermont / Pico,34.0470199,-118.2917499
 140968,Vermont / Venice,34.0445199,-118.2914199
 140969,Vermont / 6th,34.0634999,-118.2914799
-140970,Vermont / Melrose,34.0834099,-118.29155
+140970,Vermont / Melrose,34.08341,-118.29155
 140971,Vermont / 3rd,34.0692499,-118.2918099
 140972,Vermont / 6th,34.06382,-118.29179
 140974,La Brea / Plymouth,33.9743999,-118.3574899
@@ -13136,7 +13268,16 @@ tag,title,lat,lon
 142002,Wilcox / Santa Ana,33.96037,-118.1790499
 142005,Seville / Live Oak,33.9715199,-118.2224999
 142006,Seville / Grand,33.9690199,-118.2224899
+142009,Otis / Firestone,33.9529899,-118.19662
+142010,Imperial / Croesus,33.92905,-118.2337299
+142011,Martin Luther King Jr / Bullis,33.9280099,-118.1994199
+142012,Martin Luther King Jr / Harris,33.9232699,-118.1916799
+142013,Abbott / Atlantic,33.9341099,-118.1826199
+142014,Otis / Abbott,33.9356,-118.1984099
+142015,Otis / Tenaya,33.93824,-118.1981099
+142016,Otis / Santa Ana,33.9616499,-118.19509
 142017,Florence / California,33.97191,-118.20192
+142018,Raymond / Glenarm,34.1278099,-118.14862
 142020,Manhattan Beach / Pacific,33.8872599,-118.4029899
 142021,Manhattan Beach / Poinsettia,33.88725,-118.4005599
 142022,Manhattan Beach / Sepulveda,33.8872499,-118.39568
@@ -13182,7 +13323,7 @@ tag,title,lat,lon
 142075,Marmion / Mount Washington,34.0933999,-118.21152
 142076,Marmion / Avenue 43,34.09532,-118.2095799
 142079,Piedmont / Figueroa,34.1143099,-118.18607
-142080,City Terrace / Hazard,34.05557,-118.1786099
+142080,City Terrace / Hazard,34.05557,-118.17861
 142082,Heathercliff / Pacific Coast,34.02187,-118.8087899
 142083,Dume / Grayfox,34.01278,-118.8063699
 142086,Cypress / Division,34.1024299,-118.2362399
@@ -13190,6 +13331,11 @@ tag,title,lat,lon
 142099,Colorado / Campus,34.14289,-118.2314099
 142100,Colorado / Verdugo,34.14288,-118.23384
 142101,Broadway / Colorado,34.143,-118.22498
+142103,Verdugo / Eagle Rock,34.12037,-118.22893
+142104,Verdugo / Acacia,34.1359799,-118.23344
+142105,Verdugo / Plumas,34.1354399,-118.2337499
+142106,Verdugo / Lexington,34.15159,-118.23633
+142107,Verdugo / Chevy Chase,34.15103,-118.23651
 142108,Foothill / Sierra Madre Villa,34.1501699,-118.08285
 142109,Foothill / Santa Paula,34.15013,-118.0858499
 142110,Foothill / Sunnyslope,34.15006,-118.0907799
@@ -13217,6 +13363,8 @@ tag,title,lat,lon
 142135,Yosemite / Del Rosa Walk,34.13479,-118.21311
 142136,Santa Anita Fashion Park,34.13423,-118.0544799
 142137,Baldwin / Huntington,34.1321,-118.05431
+142140,Mariposa / Santa Anita,34.1900399,-118.1386999
+142141,Los Robles / Douglas,34.16603,-118.14144
 142144,San Gabriel / Del Mar,34.14187,-118.0947699
 142145,Avenue 26 / Pasadena,34.0771699,-118.2158799
 142148,Mednik / Cesar E Chavez,34.0407799,-118.16175
@@ -13232,7 +13380,8 @@ tag,title,lat,lon
 142166,Glenoaks / Blackmore,34.14965,-118.2155
 142167,Glenoaks / Sleepy Hollow,34.1498099,-118.21248
 142168,Crenshaw / 39th,34.01483,-118.33495
-142169,Crenshaw / Stocker,34.00817,-118.33524
+142169,Crenshaw / Stocker,34.0081699,-118.3352399
+142170,Truba / Tweedy,33.9467699,-118.22511
 142172,120th / Hawthorne,33.92379,-118.35236
 142173,Yukon / 132nd,33.9125399,-118.3352899
 142174,Yukon / 135th,33.90885,-118.3352999
@@ -13336,6 +13485,7 @@ tag,title,lat,lon
 142408,Broadway / Verdugo,34.14601,-118.23442
 142409,Broadway / Verdugo,34.1463099,-118.23561
 142411,Colorado / Hill Layover,34.1458499,-118.12002
+142413,Abbott / Kauffman,33.9349699,-118.1921099
 142415,Long Beach / Palm,33.9644599,-118.22503
 142416,Figueroa / Pasadena,34.0906,-118.2114899
 142417,Pacific / Slauson,33.9888899,-118.22536
@@ -13423,7 +13573,7 @@ tag,title,lat,lon
 13000009,Artesia / Mackay,33.87273,-118.3681899
 13000010,Artesia / Felton,33.87275,-118.3644599
 13000011,Artesia / Inglewood,33.87275,-118.3614499
-13000012,Artesia / Kingsdale,33.87275,-118.35663
+13000012,Artesia / Kingsdale,33.8727499,-118.35663
 13000013,Artesia / Crenshaw,33.8727299,-118.32615
 13000014,Artesia / Casimir,33.87273,-118.3218099
 13000015,Artesia / Gramercy,33.8727499,-118.3137299
@@ -13506,21 +13656,27 @@ tag,title,lat,lon
 13000101,Bloomfield / Imperial,33.9169099,-118.0639999
 13000131,Disney Way / Harbor,33.80685,-117.91347
 13000134,Imperial / Bloomfield,33.9173099,-118.0642099
+13000138,Vermont / Athens Station,33.9287799,-118.29142
+13000139,Vermont / Santa Monica,34.0906299,-118.29189
+13000140,Vermont / Wilshire,34.0619699,-118.29178
+13000141,Vermont / Athens Station,33.9287599,-118.29209
 13000144,Vine / Hollywood,34.1017699,-118.3265
 13000145,Cahuenga / Yucca Layover,34.1044499,-118.33011
+13000146,Vermont / Vernon,34.00398,-118.29139
 13000148,Slauson / Templeton,33.98908,-118.22032
 13000149,Imperial / Hawthorne,33.93107,-118.3523599
 16500000,Topanga Canyon / Vanowen,34.19342,-118.6060499
 20400001,182nd / Hawthorne,33.8656499,-118.3546
 20400002,Hawthorne / Rosecrans,33.9024199,-118.35223
 20400003,Hawthorne / Lennox Station,33.93366,-118.35244
-20400004,Hawthorne / Lennox Station,33.9329699,-118.35241
 20400005,Hawthorne / Lennox Station,33.9336099,-118.35275
-20400011,71st / Crenshaw,33.9756099,-118.3312
+20400006,Hawthorne / Century,33.9451599,-118.3527999
+20400007,Florence / Crenshaw,33.9746599,-118.33117
 20400012,Selma / Argyle,34.0997299,-118.32483
 20400015,Firestone Station,33.9602799,-118.24315
 20400018,Paseo Del Mar / Shepard,33.7073699,-118.29453
 20400030,Manchester / Harbor Transitway,33.96022,-118.28019
+20400032,Vermont / Slauson,33.9889599,-118.2913
 20500001,7th / Channel,33.7751999,-118.11801
 20500002,Wilmington / 120th,33.92302,-118.2392199
 20500003,Wilmington / 123rd,33.9209999,-118.23922
@@ -13530,7 +13686,7 @@ tag,title,lat,lon
 20500008,Bloomfield / Civic Center,33.9148499,-118.06437
 20500009,Flotilla / Yates,34.00534,-118.12789
 20500010,Flotilla / Yates,34.00555,-118.12809
-20500011,Florence / Seville,33.9741899,-118.2234699
+20500011,Florence / Seville,33.97419,-118.22347
 20500012,Pershing / Imperial,33.9313999,-118.42908
 23200002,Sepulveda / Maple,33.92717,-118.3964399
 23200003,Mariposa / Sepulveda,33.92354,-118.39595
@@ -13650,9 +13806,9 @@ tag,title,lat,lon
 25400011,97th / Grape,33.94829,-118.23712
 25400012,Anzac / 95th,33.95069,-118.23731
 25400013,92nd / Fir,33.95338,-118.23755
-25400014,92nd / Bandera,33.9533899,-118.23978
+25400014,92nd / Bandera,33.9533899,-118.2397799
 25400019,Nadeau / Alameda,33.9673799,-118.23339
-25400020,Santa Fe / Broadway,33.96746,-118.23005
+25400020,Santa Fe / Broadway,33.9674599,-118.23005
 25400021,Santa Fe / Grand,33.96946,-118.23007
 25400022,Santa Fe / Live Oak,33.97205,-118.23007
 25400023,Santa Fe / Florence,33.97452,-118.2300899
@@ -13688,32 +13844,40 @@ tag,title,lat,lon
 25400101,Santa Fe / Saturn,33.9767099,-118.23038
 25400102,Santa Fe / Florence,33.9742999,-118.2304199
 25400103,Santa Fe / Live Oak,33.9723199,-118.2303799
-25400104,Santa Fe / Walter,33.9698299,-118.2303699
+25400104,Santa Fe / Walter,33.96983,-118.23037
 25400105,Santa Fe / Nadeau,33.9675299,-118.23036
 25400106,Nadeau / Alameda,33.9675699,-118.2334699
-25400110,92nd / Bandera,33.9531899,-118.23978
+25400110,92nd / Bandera,33.9531899,-118.2397799
 25400111,92nd / Anzac,33.95318,-118.23755
 25400112,Anzac / 95th,33.9506899,-118.2374899
 25400113,Grape / 97th,33.94802,-118.23684
 25400114,Grape / Century,33.9458399,-118.23681
 25400115,Grape / 103rd,33.9434199,-118.23682
 25400124,Slauson / La Cienega,33.9876099,-118.36969
+25400131,Crenshaw / Wilshire,34.06131,-118.3194799
+25400132,Crenshaw / Olympic,34.0543,-118.3233499
 25400133,Crenshaw / Pico,34.0475699,-118.32702
 25400134,Crenshaw / Washington,34.0395599,-118.3314
-25400135,Crenshaw / Adams,34.0322799,-118.33522
-25400138,Crenshaw / Vernon,34.0032199,-118.3317799
-25400144,Crenshaw / El Segundo,33.91607,-118.32667
-25400145,Crenshaw / Rosecrans,33.90214,-118.3266799
-25400146,Crenshaw / Manhattan Beach,33.8869899,-118.32668
-25400147,Crenshaw / Manhattan Beach,33.88775,-118.32638
+25400135,Crenshaw / Adams,34.03228,-118.3352199
+25400136,Crenshaw / Jefferson,34.0251899,-118.3352499
+25400138,Crenshaw / Vernon,34.00322,-118.33178
+25400140,Crenshaw / Florence,33.97415,-118.3309999
+25400144,Crenshaw / El Segundo,33.9160699,-118.3266699
+25400145,Crenshaw / Rosecrans,33.9021399,-118.32668
+25400146,Crenshaw / Manhattan Beach,33.88699,-118.32668
+25400147,Crenshaw / Manhattan Beach,33.8877499,-118.3263799
 25400148,Crenshaw / Rosecrans,33.9022699,-118.32637
 25400150,Crenshaw Station,33.9253599,-118.32634
-25400151,Crenshaw / Century,33.94589,-118.32631
+25400151,Crenshaw / Century,33.9458899,-118.32631
 25400152,Crenshaw / Manchester,33.9606799,-118.32634
+25400153,Crenshaw / Florence,33.97492,-118.3307
+25400154,Crenshaw / Slauson,33.9894399,-118.33066
 25400156,Crenshaw / Martin Luther King Jr,34.0112899,-118.33495
 25400157,Crenshaw / Jefferson,34.02601,-118.33494
 25400158,Crenshaw / Adams,34.0328999,-118.33474
-25400159,Crenshaw / Washington,34.0401999,-118.33071
+25400159,Crenshaw / Washington,34.0402,-118.3307099
+25400160,Crenshaw / Pico,34.0480899,-118.3264
+25400161,Crenshaw / Olympic,34.0549,-118.3226699
 25400168,Hillcrest / Nutwood,33.9605799,-118.34997
 25400175,La Brea / Manchester,33.96232,-118.35318
 25400178,Martin Luther King Jr / Crenshaw,34.0108199,-118.33465
@@ -13723,6 +13887,7 @@ tag,title,lat,lon
 25400200,Gaffey / 7th,33.7377399,-118.29218
 25400201,Albertoni / Main,33.87133,-118.2757999
 25400202,Albertoni / Main,33.87116,-118.2751299
+25400207,Abbott / Sampson,33.93448,-118.18953
 25400208,Civic Center / 20 Amc Theaters,33.9142899,-118.0708599
 25400209,Civic Center / 20 Amc Theaters,33.91411,-118.0713899
 25400211,Imperial / I-105 W Exit 2a,33.9310499,-118.37496
@@ -13731,6 +13896,11 @@ tag,title,lat,lon
 50100000,Alameda / Buena Vista,34.1582499,-118.32847
 50100001,Olive / Hollywood,34.1522299,-118.33915
 50100002,Olive / Hollywood,34.1520099,-118.33897
+61200001,Santa Fe / Firestone,33.9558199,-118.22485
+61200003,Santa Fe / Cole,33.96375,-118.23035
+61200004,Santa Fe / Cole,33.9637599,-118.23004
+61200005,Santa Fe / Independence,33.95936,-118.2256599
+61200006,Santa Fe / Ardmore,33.95919,-118.2253
 65300024,Main / Marine,33.9980299,-118.4794099
 65300025,Main / Pier,33.9983799,-118.48011
 65300029,Huntington / Rosemead,34.1301899,-118.0728
@@ -13773,7 +13943,6 @@ tag,title,lat,lon
 70500012,Olive / General Thaddeus Kosciuszko,34.0532599,-118.24915
 70500013,1st / Hope,34.0566499,-118.2499999
 70500026,Huntington / Collis,34.0861999,-118.1839799
-70500028,Harvey / Glenoaks,34.15265,-118.22578
 70500029,San Gabriel / Hill,34.0446299,-118.09032
 70500030,Rush / San Gabriel,34.0516199,-118.09028
 70500032,Fremont / Ross,34.07184,-118.15163

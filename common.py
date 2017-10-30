@@ -74,7 +74,12 @@ def read_connection_entry(connection_text):
 
 	# handle invalid lines
 	if len(connection_list) > 1 and connection_list[0] != "from":
-		return {"from": connection_list[0], "to": connection_list[1], "routes": connection_list[2].split("|")}
+		return {
+			"from": connection_list[0],
+			"to": connection_list[1],
+			"routes": connection_list[2].split("|"),
+			"straight-distance": float(connection_list[3]),
+			"road-distance": float(connection_list[4])}
 	else:
 		return None
 
@@ -96,22 +101,6 @@ def write_stops_file(directory, stops_list):
 
 
 def write_connections_file(directory, connections_list):
-	"""Creates a new or empties the existing connections file and fills it with the list of connections."""
-
-	# (Re)create empty connections file
-	create_agencies_folder(directory)
-	connections_file = open(directory + "/connections.csv", "w+")
-
-	# Write connections file
-	connections_file.write("from,to,routes\n")
-	for connection in connections_list:
-		connections_file.write(connection['from'] + "," + connection['to'] + "," + '|'.join(connection['routes']) + "\n" )
-
-	# Close the file
-	connections_file.close()
-
-
-def write_connections_distances_file(directory, connections_list):
 	"""Creates a new or empties the existing connections file and fills it with the list of connections with distances."""
 
 	# (Re)create empty connections file
@@ -124,9 +113,52 @@ def write_connections_distances_file(directory, connections_list):
 			  connection['from'] + ","
 			+ connection['to'] + ","
 			+ '|'.join(connection['routes']) + ","
-			+ connection['straight-distance'] + ","
-			+ connection['road-distance']
+			+ str(connection['straight-distance']) + ","
+			+ str(connection['road-distance'])
 			+ "\n" )
 
 	# Close the file
 	connections_file.close()
+
+
+# ===============================================
+# =				Graph manipulation				=
+# ===============================================
+
+def convert_stops_to_tuples(stops_list):
+	"""Convert the list of stops from list to tuple format."""
+
+	map_func = lambda x: (x['tag'], {'title':x['title'], 'lat':x['lat'], 'lon':x['lon']} )
+
+	return list(map(map_func, stops_list))
+
+
+def convert_stops_to_positions(stops_list):
+	"""Convert the list of stops from list to dictionary of stops:positions format."""
+
+	map_func = lambda x: (x['tag'], float(x['lat']), float(x['lon']) )
+	stops_matrix = list(map(map_func, stops_list))
+
+	transposed_stops_list = list(zip(*stops_matrix))
+
+	min_lat = min(transposed_stops_list[1])
+	max_lat = max(transposed_stops_list[1])
+	min_lon = min(transposed_stops_list[2])
+	max_lon = max(transposed_stops_list[2])
+	scale_lat = 1/ (max_lat - min_lat)
+	scale_lon = 1/ (max_lon - min_lon)
+
+	scale_func = lambda x: (x[0], ( (x[2] - min_lat) * scale_lat, (x[1] - min_lon) * scale_lon))
+	
+	return dict(map(scale_func, stops_matrix))
+
+
+def convert_connections_to_tuples(connections_list):
+	"""Convert the list of connections from list to tuple format."""
+
+	map_func = lambda x: (x['from'], x['to'], {'routes':x['routes'], 'straight-distance': x['straight-distance']} )
+
+	return list(map(map_func, connections_list))
+
+
+

@@ -1,5 +1,6 @@
 import requests, sys, os, math, googlemaps
 import xml.etree.ElementTree as ET
+import networkx as nx
 from itertools import groupby
 from functools import reduce
 from pprint import pprint
@@ -28,8 +29,8 @@ def main():
 	# With the "distances" argument, calculate the distances between stops
 	elif len(sys.argv) > 2 and (sys.argv[1] == "distances" or sys.argv[1] == "-d" ):
 
-		#calculate_distances(sys.argv[2])
-		calculate_road_distances(sys.argv[2])
+		calculate_distances(sys.argv[2])
+		# calculate_road_distances(sys.argv[2])
 		#calculate_road_distance_per_row(["262", "264", "265", "266", "267", "268", "269", "270", "271", "271", "273"], ["4907", "4165", "10375", "7773", "4040", "5109", "9687", "5231", "280", "7497", "2768"], sys.argv[2])
 		#calculate_road_distance_per_row(["269", "270", "271", "271"], ["9687", "5231", "280", "7497"], sys.argv[2])
 
@@ -61,11 +62,13 @@ def build_static_network(agencies):
 
 		print("Extracted data from " + str( index + 1 ) + "/" + str(len(routes_list)) + " routes", end="\r")
 
-	# # After all routes, consolidate data
+	# After all routes, consolidate data
 	stops_list = consolidate_stops(stops_list)
+	stops_list = remove_isolated_stops(stops_list, connections_list)
+	connections_list = add_walking_connections(stops_list, connections_list, ','.join(agencies))
 	connections_list = consolidate_connections(connections_list)
 
-	print("\nFound " + str(len(stops_list)) + " stops and " + str(len(connections_list)) + " connections")
+	print("Found " + str(len(stops_list)) + " stops and " + str(len(connections_list)) + " connections")
 
 	# Write results to files
 	write_stops_file(','.join(agencies), stops_list)
@@ -95,7 +98,13 @@ def get_route_stops(route_xml):
 	stops_map = filter((lambda x: x.tag=="stop"), route_xml)
 
 	# lambda function to turn xml attributes into dictionary keys
-	stop_dict_func = lambda x: {'tag': x.attrib['tag'].split("_")[0], 'title': x.attrib['title'], 'lat': x.attrib['lat'], 'lon': x.attrib['lon']}
+	stop_dict_func = lambda x: {
+		'tag': x.attrib['tag'].split("_")[0],
+		'title': x.attrib['title'],
+		'lat': x.attrib['lat'],
+		'lon': x.attrib['lon'],
+		'straight-distance': 0,
+		'road-distance': 0}
 	stops_map = map(stop_dict_func, stops_map)
 
 	return list(stops_map)
@@ -116,7 +125,12 @@ def get_route_connections(route_xml):
 			to_stop = (direction[i+1].attrib['tag']).split('_',1)[0]
 
 			# add the new connection between stops
-			connection_dict = {'from': from_stop, 'to': to_stop, 'routes': [route_xml.attrib['tag']]}
+			connection_dict = {
+				'from': from_stop,
+				'to': to_stop,
+				'routes': [route_xml.attrib['tag']],
+				'straight-distance': 0,
+				'road-distance': 0}
 			connections_list.append(connection_dict)
 
 	return connections_list
@@ -151,10 +165,68 @@ def consolidate_connections(connections_list):
 def merge_connections(connection_1, connection_2):
 	"""Merge two connections by comparing routes."""
 
-	routes = list(set(connection_1['routes'] + connection_2['routes']))
+	routes_set = set(connection_1['routes'] + connection_2['routes'])
+	
+	if "_W" in routes_set:
+		routes_set.remove("_W")
 
 
-	return {'from': connection_1['from'], 'to': connection_1['to'], 'routes': routes}
+	return {
+		'from': connection_1['from'],
+		'to': connection_1['to'],
+		'routes': list(routes_set),
+		'straight-distance': connection_1['straight-distance'],
+		'road-distance': connection_1['road-distance']}
+
+
+def remove_isolated_stops(stops_list, connections_list):
+
+	# Build the graph object, add stops and connections
+	G = nx.Graph()
+	G.add_nodes_from(convert_stops_to_tuples(stops_list))
+	G.add_edges_from(convert_connections_to_tuples(connections_list))
+
+	# remove isolated nodes that are in no connections
+	isolated_stops = list(nx.isolates(G))
+
+	return list(filter(lambda stop: stop['tag'] not in isolated_stops, stops_list))
+
+
+def add_walking_connections(stops_list, connections_list, directory):
+
+
+	# Decide on radius of earth
+	if directory == 'ttc':
+		radius = 6368.262
+	elif directory == 'lametro':
+		radius = 6371.57
+	elif directory == 'sf-muni':
+		radius = 6370.158
+	else: # Radius of the Earth in kilometeres, used for 37 degrees north, also 6371.001 on average
+		radius = 6373
+
+	new_connections_total = 0
+
+	for i in range(0,len(stops_list)):
+		for j in range(i+1,len(stops_list)):
+
+			distance = calculate_straight_distance(stops_list[i], stops_list[j], radius)
+
+			if distance < .05: # USER SET
+				new_connection = {
+					'from': stops_list[i]['tag'],
+					'to': stops_list[j]['tag'],
+					'routes': ["_W"],
+					'straight-distance': distance,
+					'road-distance': 0}
+				connections_list.append(new_connection)
+				new_connections_total = new_connections_total + 1
+
+
+		print("Calculated distances for " + str( i + 1 ) + "/" + str(len(stops_list)) + " stops", end="\r")
+
+	print("\nComparison done! found: " + str(new_connections_total) + " new walking connections.")
+	return connections_list
 
 
 # ===============================================
@@ -178,47 +250,53 @@ def calculate_distances(directory):
 	else: # Radius of the Earth in kilometeres, used for 37 degrees north, also 6371.001 on average
 		radius = 6373
 
-	connections_list = list(map(lambda connection: build_single_connection(connection, stops_list,  radius), connections_list))
+	stops_dict = {stop['tag']: stop for stop in stops_list}
+
+	connections_list = list(map(lambda connection: build_single_connection(connection, stops_dict,  radius), connections_list))
 		
 	# pprint(connections_list)
-	write_connections_distances_file(directory, connections_list)
+	write_connections_file(directory, connections_list)
 
 
-def build_single_connection(connection,stops_list, radius):
+def build_single_connection(connection, stops_dict, radius):
 	"""Calculate the distance for a single connection and return it as a dictionary object"""
 
-	stop1 = connection['from']
-	stop2 = connection['to']
+	stop_1 = stops_dict[connection['from']]
+	stop_2 = stops_dict[connection['to']]
 	routes = connection['routes']
-	flag1 = 0
 
-	#Radius of the Earth in kilometeres
-	R = radius
+	if '_W' not in connection['routes']:
+		straight_distance = calculate_straight_distance(stop_1, stop_2, radius)
+	else:
+		straight_distance = connection['straight-distance']
 
-	for stop in stops_list: 
-		if (stop['tag'] == stop1):
-			lat1 = float(stop['lat']) * (math.pi / 180)
-			lon1 = float(stop['lon']) * (math.pi / 180)
-			if flag1 == 0:
-				flag1 = 1
-				continue
-			elif flag1 == 1:
-			 	break
-		if (stop['tag'] == stop2):
-			lat2 = float(stop['lat']) * (math.pi / 180)
-			lon2 = float(stop['lon']) * (math.pi / 180)
-			if flag1 == 0:
-				flag1 = 1
-				continue
-			elif flag1 == 1:
-				break
-	dlon = lon2 - lon1
-	dlat = lat2 - lat1
-	a = ((math.sin(dlat/2))**2) + (math.cos(lat1) * math.cos(lat2) * ((math.sin(dlon/2))**2))
+
+	return {
+		"from": connection['from'],
+		"to": connection['to'],
+		"routes": routes,
+		"straight-distance": straight_distance,
+		"road-distance": str(0)}
+
+
+def calculate_straight_distance(stop_1, stop_2, radius):
+
+
+	lat_1 = float(stop_1['lat']) * (math.pi / 180)
+	lon_1 = float(stop_1['lon']) * (math.pi / 180)
+
+	lat_2 = float(stop_2['lat']) * (math.pi / 180)
+	lon_2 = float(stop_2['lon']) * (math.pi / 180)
+
+	dlon = lon_2 - lon_1
+	dlat = lat_2 - lat_1
+
+	a = ((math.sin(dlat/2))**2) + (math.cos(lat_1) * math.cos(lat_2) * ((math.sin(dlon/2))**2))
 	c = 2 * math.atan2(math.sqrt(a),  math.sqrt(1-a))
-	d = R * c
+	d = radius * c
 
-	return {"from": stop1, "to": stop2, "routes": routes, "straight-distance": str(d), "road-distance": str(0)}
+	return d
+
 
 def calculate_road_distances(directory):
 	#

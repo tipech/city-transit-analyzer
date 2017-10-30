@@ -100,7 +100,6 @@ tag,title,lat,lon
 3149,3rd St & Van Dyke Ave,37.72924,-122.3925899
 3150,3rd St & Williams Ave,37.72917,-122.3927799
 3153,Third Street & Mission Rock St.,37.77297,-122.38969
-3161,4th St & Market St,37.7855299,-122.40567
 3163,4th St & Townsend St,37.7771099,-122.3951299
 3164,4th St & Townsend St,37.7768899,-122.39489
 3166,5th St & Brannan St,37.7765399,-122.3985699
@@ -114,7 +113,6 @@ tag,title,lat,lon
 3178,6th Ave & Balboa St,37.77699,-122.46409
 3181,6th Ave & Clement St,37.78303,-122.46453
 3182,6th Ave & Cornwall St,37.7846699,-122.46448
-3183,6th Ave & Fulton St,37.7738099,-122.46374
 3184,6th Ave & Geary Blvd,37.7808799,-122.46418
 3185,6th Ave & Geary Blvd,37.7807699,-122.46435
 3187,6th St & Harrison St,37.7773199,-122.4042399
@@ -127,7 +125,6 @@ tag,title,lat,lon
 3195,7th St & Mission St,37.7793299,-122.4110299
 3196,7th St & Market St,37.7803099,-122.41239
 3197,7th St & Townsend St,37.7720299,-122.40182
-3200,8th Ave & Cabrillo St,37.77502,-122.4660899
 3201,8th Ave & Fulton St,37.7736399,-122.46581
 3202,8th Ave & Fulton St,37.7734799,-122.4659799
 3203,8th St & Brannan St,37.7715499,-122.4059
@@ -725,7 +722,6 @@ tag,title,lat,lon
 3920,Cashmere St & Hudson Ave,37.7357499,-122.38355
 3921,Cashmere St & La Salle Ave,37.7358499,-122.38695
 3922,Cashmere St & Whitney Young Cir,37.7365999,-122.3858799
-3923,Cabrillo St & 6th Ave,37.7754499,-122.4639699
 3924,Cabrillo St & 47th Ave,37.77342,-122.5077699
 3925,Cabrillo St & 47th Ave,37.7732899,-122.50798
 3927,Cabrillo St & La Playa,37.7735299,-122.51
@@ -3349,12 +3345,10 @@ tag,title,lat,lon
 7403,3rd St & Kirkwood/La Salle,37.7376399,-122.38969
 7404,3rd St & Hudson/Innes Ave,37.7399199,-122.38888
 7405,4th Street & King Street,37.7763199,-122.394
-7408,11th St Between Market & Mission,37.7754999,-122.41866
 7423,Market St & Hyde St,37.77878,-122.4147199
 7425,Monterey Blvd & San Anselmo Ave,37.7331499,-122.4654999
 7428,Newhall St & Faifax Ave,37.74141,-122.3871499
 7431,Silver Ave & Lisbon St,37.7286099,-122.42857
-7440,Metro East,37.7528699,-122.38688
 7444,California St & Battery St,37.79313,-122.4000999
 7447,The Embarcadero & Brannan St,37.7845999,-122.38795
 7448,19th Ave & Winston Dr,37.7272599,-122.4751
@@ -3445,7 +3439,6 @@ tag,title,lat,lon
 7733,Folsom St & 20th St,37.75899,-122.41462
 7736,Van Ness Ave & O'Farrell St,37.7849099,-122.42133
 7737,Pacific Ave & Stockton St,37.7967299,-122.40858
-7742,Morse St & Lowell St,37.7110199,-122.44621
 7744,Cesar Chavez & Bartlett St,37.7482199,-122.41902
 7746,Folsom St & Cesar Chavez St,37.7480799,-122.41376
 7747,Executive Park Blvd & Thomas Mellon Dr,37.71124,-122.39358
@@ -3468,7 +3461,6 @@ tag,title,lat,lon
 7769,16th Street & Wisconsin St,37.76629,-122.3998399
 7770,16th Street & Rhode Islandi St,37.76612,-122.4026299
 7772,New Hall & Hudson St,37.7399699,-122.3884
-7775,Beale St & Howard St,37.7899299,-122.39446
 7776,Townsend & 5th St St,37.7763199,-122.39613
 7777,Stockton St & Jackson Sts,37.79575,-122.40832
 7778,San Jose & Geneva,37.7212399,-122.44622
@@ -3517,7 +3509,6 @@ tag,title,lat,lon
 7867,Miguel St & Laidley St,37.7377599,-122.4282899
 7868,Miguel St & Laidley St,37.73775,-122.42825
 7869,47th Ave & Cutler Ave - Drop Off Only,37.7369899,-122.50541
-7883,Taravel St & 17th Ave,37.74309,-122.4733699
 7884,Golden Gate Ave & Leavenworth St,37.78183,-122.4137899
 7885,Quintra St & 43rd Ave,37.74758,-122.5015799
 7886,Bay Shore Blvd & Flower St,37.74238,-122.4056099
@@ -3525,19 +3516,15 @@ tag,title,lat,lon
 7888,Bay Shore Blvd & Oakdale Ave,37.74305,-122.4053999
 7899,San Bruno Ave & Harkness Ave,37.7180399,-122.4001099
 7900,San Bruno Ave & Felton St,37.7299099,-122.4046299
-7903,Embarcadero Station Right Outbound For Loop Jobs,37.79313,-122.39632
 7908,Potrero Ave & 21st St,37.75786,-122.40672
 7909,Potrero Ave & 19th St,37.7607399,-122.4070199
 7910,Potrero Ave & Mariposa St,37.76328,-122.40726
 7911,Potrero Ave & Mariposa St,37.76313,-122.40741
 7912,Potrero Ave & 19th St,37.7606099,-122.4071699
-13462,24th St & Castro St,37.7513599,-122.43425
-13464,24th St & Diamond St,37.75123,-122.4361799
 13567,43rd Ave & Clement St,37.7810099,-122.5042299
 13568,43rd Ave & Point Lobos Ave,37.77978,-122.50414
 13619,Alana Way & Executive Park Blvd,37.7089799,-122.39422
 13692,Blanken Ave & Tunnel Ave,37.71202,-122.40068
-14148,Cortland Ave & Bay Shore Blvd,37.7395699,-122.40703
 14575,Executive Park,37.7098299,-122.39289
 14576,Executive Park Blvd & Blanken Ave,37.7108799,-122.3947599
 14773,Golden Gate Br. Parking Lot,37.8075599,-122.47502
@@ -3574,7 +3561,6 @@ tag,title,lat,lon
 17383,Presidio Transit Center,37.8022999,-122.45576
 30913,Dublin St & La Grande Ave,37.7191899,-122.4258
 33093,Beach St & Polk St,37.8063799,-122.42319
-33095,Beach St & Stockton St,37.8078399,-122.41081
 33141,3rd St & Palou Ave,37.7340899,-122.39093
 33164,4th St & Townsend St,37.7768899,-122.39489
 33215,9th Ave & Judah St,37.7620399,-122.46624
@@ -3584,7 +3570,6 @@ tag,title,lat,lon
 33352,19th Ave & Buckingham Way,37.7257299,-122.47506
 33410,20th St & 3rd St,37.7605399,-122.38871
 33411,20th St & 3rd St,37.7604699,-122.38841
-33462,24th St & Castro St,37.7513599,-122.43425
 33476,24th St & Mission St,37.7523199,-122.41833
 33511,25th St & Potrero Ave,37.7514099,-122.40668
 33608,48th Ave & Point Lobos Ave,37.7790199,-122.50941
@@ -3595,20 +3580,16 @@ tag,title,lat,lon
 33927,Cabrillo St & La Playa,37.7735299,-122.51
 34015,Clay St & Drumm St,37.7954399,-122.39682
 34087,Coit Tower Parking Lot,37.8026599,-122.40579
-34148,Cortland Ave & Bay Shore Blvd,37.7395699,-122.40703
 34275,Geary Blvd & 32nd Ave,37.7796099,-122.49194
 34277,Geary Blvd & 33rd Ave,37.7797399,-122.49311
 34341,Daly City Bart Station,37.7057599,-122.46927
 34347,Davis St & Pine St,37.7926099,-122.39753
 34411,Divisadero St & Chestnut St,37.7999799,-122.44286
-34435,Divisadero St & Sutter St,37.7851499,-122.43994
 34568,Ellsworth St & Crescent Ave,37.7347099,-122.41491
-34575,Executive Park,37.7098299,-122.39289
 34603,Fillmore St & Bay St,37.8025899,-122.43668
 34648,Fitzgerald Ave & Keith St,37.7228999,-122.39484
 34728,Fort Cronkhite Parking Lot,37.8323799,-122.53867
 34729,Marina Blvd & Laguna St,37.8051199,-122.43218
-34735,Fulton St & 8th Ave,37.7733199,-122.46574
 34781,Lower Great Hwy & Rivera St,37.7454399,-122.50755
 34782,Great Hwy & Sloat Blvd,37.7354799,-122.50682
 34823,Kearny St & North Point St,37.8071799,-122.40721
@@ -3634,9 +3615,7 @@ tag,title,lat,lon
 35631,Munich St & Geneva Ave,37.7129299,-122.43295
 35633,Galvez Ave & Robinson Ave,37.7287999,-122.36703
 35711,Masonic Ave & Haight St,37.7701499,-122.44538
-35728,Castro Station Inbound,37.76262,-122.4352299
 35828,Ortega St & 48th Ave,37.7509799,-122.5075
-35850,Pacific Ave & Polk St,37.7951099,-122.42148
 35859,Pacific Ave & Van Ness Ave,37.7947799,-122.4229
 35863,Palou Ave & 3rd St,37.7340199,-122.39082
 35926,City College Terminal (Phelan Loop),37.7236299,-122.45267
@@ -3646,13 +3625,9 @@ tag,title,lat,lon
 36293,Sacramento St & Cherry St,37.7869099,-122.45656
 36352,San Bruno Ave & Arleta Ave,37.7122899,-122.40242
 36443,Sloat Blvd & 36th Ave,37.7337799,-122.49345
-36453,Sloat Blvd & 47th Ave OB,37.7355299,-122.50535
 36497,Steuart St & Mission St,37.7941399,-122.39425
 36498,Steuart & Mission St,37.7932499,-122.39328
-36575,McLaren School,37.7135499,-122.42222
 36606,Sutter St & Sansome St,37.7902999,-122.40067
-36738,Ulloa St & Lenox Way,37.74113,-122.46615
-36744,Ulloa St & West Portal Ave,37.7409199,-122.46601
 36835,Vicente St & 30th Ave,37.7387699,-122.48713
 36882,Valencia St & Cesar Chavez St,37.7479899,-122.42035
 36932,Wawona St & 46th Ave,37.7361299,-122.50435
@@ -3677,7 +3652,6 @@ tag,title,lat,lon
 37606,Daly City Bart West Station Rd.,37.7070499,-122.46865
 37617,Beale St & Folsom St,37.7888499,-122.39309
 37669,9th St & Market St,37.7773799,-122.4163
-37742,Morse St & Lowell St,37.7110199,-122.44621
 37744,Cesar Chavez & Bartlett St,37.7482199,-122.41902
 37759,Mission & Main,37.7918399,-122.39495
 37766,Mission Bay South & 4th St,37.7705099,-122.39104

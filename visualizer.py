@@ -45,77 +45,32 @@ def draw_static_network(directory):
 	G.add_nodes_from(convert_stops_to_tuples(stops_list))
 	G.add_edges_from(convert_connections_to_tuples(connections_list))
 
-	# remove isolated nodes that are in no connections
-	G.remove_nodes_from(list(nx.isolates(G)))
+	# G = nx.connected_components(G)
+
+	# nx.draw_networkx(G,node_size=0.1,with_labels=False,arrows=False,pos=convert_stops_to_positions(stops_list))
+	# plt.show()
+	# plt.savefig("network_1200", dpi=800)
+
+	# print("Average shortest path:")
+	# print(nx.average_shortest_path_length(G,weight='straight-distance'))
+
+	# print("Center:")
+	# print(nx.center(G))
+
+	# print("Total length:")
+	# print(sum(connection['straight-distance'] for connection in connections_list))
+
+	print("Connectivity:")
+	print(nx.all_pairs_node_connectivity(G))
 
 
 
-	# result = nx.k_components(G)
-	# print(len(G.node))
-
-	# print(len(result[1]))
-
-	# pprint(convert_stops_to_positions(stops_list))
-	# convert_stops_to_positions(stops_list)
-
-	nx.draw_networkx(G,node_size=0.1,with_labels=False,arrows=False,pos=convert_stops_to_positions(stops_list))
-	plt.show()
-
-
-	# for subgraph in result[1]:
-	# 	G2 = G.subgraph(subgraph)
-
-	# 	nx.draw_networkx(G2,node_size=2,with_labels=False,arrows=False,pos=convert_stops_to_positions(stops_list))
-	# 	plt.show()
-
-	# print(list(nx.isolates(G)))
-
-	# H = nx.petersen_graph()
-
-	# pprint(stops_list)
 
 
 
 # ===============================================
 # =				Graph manipulation				=
 # ===============================================
-
-def convert_stops_to_tuples(stops_list):
-	"""Convert the list of stops from list to tuple format."""
-
-	map_func = lambda x: (x['tag'], {'title':x['title'], 'lat':x['lat'], 'lon':x['lon']} )
-
-	return list(map(map_func, stops_list))
-
-
-def convert_stops_to_positions(stops_list):
-	"""Convert the list of stops from list to dictionary of stops:positions format."""
-
-	map_func = lambda x: (x['tag'], float(x['lat']), float(x['lon']) )
-	stops_matrix = list(map(map_func, stops_list))
-
-	transposed_stops_list = list(zip(*stops_matrix))
-
-	min_lat = min(transposed_stops_list[1])
-	max_lat = max(transposed_stops_list[1])
-	min_lon = min(transposed_stops_list[2])
-	max_lon = max(transposed_stops_list[2])
-	scale_lat = 1/ (max_lat - min_lat)
-	scale_lon = 1/ (max_lon - min_lon)
-
-	scale_func = lambda x: (x[0], ( (x[2] - min_lat) * scale_lat, (x[1] - min_lon) * scale_lon))
-	
-	return dict(map(scale_func, stops_matrix))
-
-
-def convert_connections_to_tuples(connections_list):
-	"""Convert the list of connections from list to tuple format."""
-
-	map_func = lambda x: (x['from'], x['to'], {'routes':x['routes']} )
-
-	return list(map(map_func, connections_list))
-
-
 
 
 # ===============================================
