@@ -94,7 +94,11 @@ def write_stops_file(directory, stops_list):
 	# Write stops file
 	stops_file.write("tag,title,lat,lon\n")
 	for stop in stops_list:
-		stops_file.write(stop['tag'] + "," + stop['title'] + "," + stop['lat'] + "," + stop['lon'] + "\n" )
+		stops_file.write(
+			  stop['tag'] + ","
+			+ stop['title'] + ","
+			+ str(stop['lat']) + ","
+			+ str(stop['lon']) + "\n" )
 
 	# Close the file
 	stops_file.close()

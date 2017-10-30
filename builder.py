@@ -65,7 +65,7 @@ def build_static_network(agencies):
 	# After all routes, consolidate data
 	stops_list = consolidate_stops(stops_list)
 	stops_list = remove_isolated_stops(stops_list, connections_list)
-	connections_list = add_walking_connections(stops_list, connections_list, ','.join(agencies))
+	stops, connections_list = merge_nearby_stops(stops_list, connections_list, ','.join(agencies))
 	connections_list = consolidate_connections(connections_list)
 
 	print("Found " + str(len(stops_list)) + " stops and " + str(len(connections_list)) + " connections")
@@ -153,6 +153,11 @@ def consolidate_connections(connections_list):
 	# Sort list (optional)
 	connections_list.sort(key=(lambda x: (int(x['from']), int(x['to'])) ))
 
+	# Remove self loops
+	for i in reversed(range(0,len(connections_list))):
+		if(connections_list[i]['from'] == connections_list[i]['to']):
+			del(connections_list[i])
+
 	# Split list to groups that have the same from and to stops
 	same_connection_groups = groupby(connections_list, key=lambda x: x['from'] + "_" + x['to'])
 
@@ -192,7 +197,7 @@ def remove_isolated_stops(stops_list, connections_list):
 	return list(filter(lambda stop: stop['tag'] not in isolated_stops, stops_list))
 
 
-def add_walking_connections(stops_list, connections_list, directory):
+def merge_nearby_stops(stops_list, connections_list, directory):
 
 
 	# Decide on radius of earth
@@ -205,28 +210,43 @@ def add_walking_connections(stops_list, connections_list, directory):
 	else: # Radius of the Earth in kilometeres, used for 37 degrees north, also 6371.001 on average
 		radius = 6373
 
-	new_connections_total = 0
+	connections_dict = {connection['from'] + "_" + connection['to'] : connection for connection in connections_list}
 
-	for i in range(0,len(stops_list)):
-		for j in range(i+1,len(stops_list)):
+	stops_merged = 0
+	initial_length = str(len(stops_list))
+
+	for i in reversed(range(0, initial_length)):
+		for j in reversed(range(i+1, initial_length)):
 
 			distance = calculate_straight_distance(stops_list[i], stops_list[j], radius)
 
+
 			if distance < .05: # USER SET
-				new_connection = {
-					'from': stops_list[i]['tag'],
-					'to': stops_list[j]['tag'],
-					'routes': ["_W"],
-					'straight-distance': distance,
-					'road-distance': 0}
-				connections_list.append(new_connection)
-				new_connections_total = new_connections_total + 1
+
+				if (stops_list[i]['tag'] + "_" + stops_list[j]['tag'] not in connections_dict and
+					stops_list[j]['tag'] + "_" + stops_list[i]['tag'] not in connections_dict):
+
+					stops_list[i]['lat'] = (float(stops_list[i]['lat']) + float(stops_list[j]['lat'])) /2
+					stops_list[i]['lon'] = (float(stops_list[i]['lon']) + float(stops_list[j]['lon'])) /2
+
+					for connection in connections_list:
+						if connection['from'] == stops_list[j]['tag']:
+							connection['from'] = stops_list[i]['tag']
+
+					for connection in connections_list:
+						if connection['to'] == stops_list[j]['tag']:
+							connection['to'] = stops_list[i]['tag']
+
+					del stops_list[j]
+
+					stops_merged = stops_merged + 1
 
 
-		print("Calculated distances for " + str( i + 1 ) + "/" + str(len(stops_list)) + " stops", end="\r")
+		print("Calculated distances for " + str( initial_length - i + 1 ) + "/" + str(initial_length) + " stops", end="\r")
 
-	print("\nComparison done! found: " + str(new_connections_total) + " new walking connections.")
-	return connections_list
+	print("\nComparison done! Merged: " + str(stops_merged) + " pairs of nearby stops.")
+	
+	return stops_list, connections_list
 
 
 # ===============================================
