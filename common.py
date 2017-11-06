@@ -1,4 +1,33 @@
-import os, sys
+import os, sys, math
+
+
+
+
+
+# ===============================================
+# =					Helper Methods				=
+# ===============================================
+
+def calculate_straight_distance(stop_1_lat, stop_1_lon, stop_2_lat, stop_2_lon, radius):
+
+	rad_pi = math.pi/180
+
+	lat_1 = float(stop_1_lat) * rad_pi
+	lon_1 = float(stop_1_lon) * rad_pi
+
+	lat_2 = float(stop_2_lat) * rad_pi
+	lon_2 = float(stop_2_lon) * rad_pi
+
+	dlon = lon_2 - lon_1
+	dlat = lat_2 - lat_1
+
+	a = ((math.sin(dlat/2))**2) + (math.cos(lat_1) * math.cos(lat_2) * ((math.sin(dlon/2))**2))
+	c = 2 * math.atan2(math.sqrt(a),  math.sqrt(1-a))
+	d = radius * c
+
+	return d
+
+
 
 # ===============================================
 # =					File IO 					=
@@ -78,7 +107,7 @@ def read_connection_entry(connection_text):
 			"from": connection_list[0],
 			"to": connection_list[1],
 			"routes": connection_list[2].split("|"),
-			"straight-distance": float(connection_list[3]),
+			"length": float(connection_list[3]),
 			"road-distance": float(connection_list[4])}
 	else:
 		return None
@@ -111,13 +140,13 @@ def write_connections_file(directory, connections_list):
 	connections_file = open(directory + "/connections.csv", "w+")
 
 	# Write connections file
-	connections_file.write("from,to,routes,straight-distance,road-distance\n")
+	connections_file.write("from,to,routes,length,road-distance\n")
 	for connection in connections_list:
 		connections_file.write(
 			  connection['from'] + ","
 			+ connection['to'] + ","
 			+ '|'.join(connection['routes']) + ","
-			+ str(connection['straight-distance']) + ","
+			+ str(connection['length']) + ","
 			+ str(connection['road-distance'])
 			+ "\n" )
 
@@ -160,7 +189,7 @@ def convert_stops_to_positions(stops_list):
 def convert_connections_to_tuples(connections_list):
 	"""Convert the list of connections from list to tuple format."""
 
-	map_func = lambda x: (x['from'], x['to'], {'routes':x['routes'], 'straight-distance': x['straight-distance']} )
+	map_func = lambda x: (x['from'], x['to'], {'routes':x['routes'], 'length': x['length']} )
 
 	return list(map(map_func, connections_list))
 

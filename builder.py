@@ -8,6 +8,57 @@ from pprint import pprint
 from common import *
 
 
+# Constants
+walking_distance = 0.05 # 50m
+cities = {
+	'toronto':{
+		'tag':"ttc",
+		'area': 630,
+		'radius': 6368.262,
+		'apis':{
+			'ttc': {
+				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=ttc&command=",
+				'route':"&r=",
+				'commands':{
+					'route_list':"routeList",
+					'route_data':"routeConfig"
+				}
+			}
+		}
+	},
+	'la':{
+		'tag':"lametro",
+		'area': 1214,
+		'radius': 6371.57,
+		'apis':{
+			'lametro': {
+				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=lametro&command=",
+				'route':"&r=",
+				'commands':{
+					'route_list':"routeList",
+					'route_data':"routeConfig"
+				}
+			}
+		}
+	},
+	'sf':{
+		'tag':"sf-muni2",
+		'area': 121,
+		'radius': 6370.158,
+		'apis':{
+			'sf-muni': {
+				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=sf-muni&command=",
+				'route':"&r=",
+				'commands':{
+					'route_list':"routeList",
+					'route_data':"routeConfig"
+				}
+			}
+		}
+	}
+ }
+
+
 
 def main():
 	"""Execute the main actions of the network builder program
@@ -16,38 +67,44 @@ def main():
 		static - build the static network of stops and connections between them
 		distances - calculate the straight-line and road distances between stops
 
-		agency,agency_2,... - the transit agency for which we want to retrieve routes
+		city - the city for which we want to get results
 		
 	"""
 
 	# With the "static" argument, build the static network
 	if len(sys.argv) > 2 and (sys.argv[1] == "static" or sys.argv[1] == "-s" ):
 
-		agencies = sys.argv[2].split(",")
-		build_static_network(agencies)
+		build_static_network(sys.argv[2])
+		calculate_distances(sys.argv[2])
 
 	# With the "distances" argument, calculate the distances between stops
 	elif len(sys.argv) > 2 and (sys.argv[1] == "distances" or sys.argv[1] == "-d" ):
-
-		calculate_distances(sys.argv[2])
+		pass
 		# calculate_road_distances(sys.argv[2])
 		#calculate_road_distance_per_row(["262", "264", "265", "266", "267", "268", "269", "270", "271", "271", "273"], ["4907", "4165", "10375", "7773", "4040", "5109", "9687", "5231", "280", "7497", "2768"], sys.argv[2])
 		#calculate_road_distance_per_row(["269", "270", "271", "271"], ["9687", "5231", "280", "7497"], sys.argv[2])
 
+	# With the "help" argument, calculate the distances between stops
+	elif len(sys.argv) > 1 and sys.argv[1] == "help":
+
+		print("Supported cities:")
+		for city in cities:
+			print("\t- " + city)
+
 	# With wrong arguments, print usage help message
 	else:
-		print("Usage: builder <static|distances> <agency>[,<agency_2>,...]")
+		print("Usage: builder <static|distances> <city>")
 
 
 # ===============================================
 # =			Static Network Construction 		=
 # ===============================================
 
-def build_static_network(agencies):
+def build_static_network(city):
 	"""Construct the atops & connection network of the transport system from all the routes"""
 
-	# Get the list of routes and stops for these agencies
-	routes_list = get_routes_list(agencies)
+	# Get the list of routes and stops for this city
+	routes_list = get_routes_list(city)
 	print("Found " + str(len(routes_list)) + " routes")
 
 	# Hold all the stops and their connections
@@ -56,39 +113,39 @@ def build_static_network(agencies):
 
 	# Iterate through routes
 	for index, route in enumerate(routes_list):
-		route_xml = ET.fromstring( call_transit_API(route["agency"], "route_data", route["tag"]) )[0]
+		route_xml = ET.fromstring( call_transit_API(cities[city]['apis'][route['api']], "route_data", route["tag"]) )[0]
 		stops_list = stops_list + get_route_stops(route_xml)
 		connections_list = connections_list + get_route_connections(route_xml)
 
 		print("Extracted data from " + str( index + 1 ) + "/" + str(len(routes_list)) + " routes", end="\r")
 
-	# After all routes, consolidate data
+	# After all routes, clean and consolidate data
 	stops_list = consolidate_stops(stops_list)
 	stops_list = remove_isolated_stops(stops_list, connections_list)
-	stops, connections_list = merge_nearby_stops(stops_list, connections_list, ','.join(agencies))
+	stops, connections_list = merge_nearby_stops(stops_list, connections_list, cities[city]['radius'])
 	connections_list = consolidate_connections(connections_list)
 
 	print("Found " + str(len(stops_list)) + " stops and " + str(len(connections_list)) + " connections")
 
 	# Write results to files
-	write_stops_file(','.join(agencies), stops_list)
-	write_connections_file(','.join(agencies), connections_list)
+	write_stops_file(cities[city]['tag'], stops_list)
+	write_connections_file(cities[city]['tag'], connections_list)
 
 
-def get_routes_list(agencies):
-	"""Use the API to retrieve a list of the agencies's routes."""
+def get_routes_list(city):
+	"""Use the API to retrieve a list of the city's routes."""
 
 	routes_list = []
 
-	for agency in agencies:
+	for api in cities[city]['apis']:
 
-		routes_tree = ET.fromstring(call_transit_API(agency, "route_list"))
+		routes_tree = ET.fromstring(call_transit_API(cities[city]['apis'][api], "route_list"))
 		# we are only interested in the route tags
-		routes_map = map((lambda x: {"tag": x.attrib["tag"], "agency": agency}), routes_tree)
+		routes_map = map((lambda x: {"tag": x.attrib["tag"], "api": api}), routes_tree)
 		# convert to list
 		routes_list = routes_list + list(routes_map)
 
-	return routes_list # DEBUG only the first 10 routes
+	return routes_list[:10] # DEBUG only the first 10 routes
 
 
 def get_route_stops(route_xml):
@@ -103,7 +160,7 @@ def get_route_stops(route_xml):
 		'title': x.attrib['title'],
 		'lat': x.attrib['lat'],
 		'lon': x.attrib['lon'],
-		'straight-distance': 0,
+		'length': 0,
 		'road-distance': 0}
 	stops_map = map(stop_dict_func, stops_map)
 
@@ -129,7 +186,7 @@ def get_route_connections(route_xml):
 				'from': from_stop,
 				'to': to_stop,
 				'routes': [route_xml.attrib['tag']],
-				'straight-distance': 0,
+				'length': 0,
 				'road-distance': 0}
 			connections_list.append(connection_dict)
 
@@ -170,21 +227,19 @@ def consolidate_connections(connections_list):
 def merge_connections(connection_1, connection_2):
 	"""Merge two connections by comparing routes."""
 
+	# Turn into set to discard duplicates 
 	routes_set = set(connection_1['routes'] + connection_2['routes'])
-	
-	if "_W" in routes_set:
-		routes_set.remove("_W")
-
 
 	return {
 		'from': connection_1['from'],
 		'to': connection_1['to'],
 		'routes': list(routes_set),
-		'straight-distance': connection_1['straight-distance'],
+		'length': connection_1['length'],
 		'road-distance': connection_1['road-distance']}
 
 
 def remove_isolated_stops(stops_list, connections_list):
+	"""Use NetworkX to remove isolated or obsolete stops."""
 
 	# Build the graph object, add stops and connections
 	G = nx.Graph()
@@ -197,39 +252,39 @@ def remove_isolated_stops(stops_list, connections_list):
 	return list(filter(lambda stop: stop['tag'] not in isolated_stops, stops_list))
 
 
-def merge_nearby_stops(stops_list, connections_list, directory):
+def merge_nearby_stops(stops_list, connections_list, radius):
+	"""Merge stops that are within walking distance."""
 
-
-	# Decide on radius of earth
-	if directory == 'ttc':
-		radius = 6368.262
-	elif directory == 'lametro':
-		radius = 6371.57
-	elif directory == 'sf-muni':
-		radius = 6370.158
-	else: # Radius of the Earth in kilometeres, used for 37 degrees north, also 6371.001 on average
-		radius = 6373
-
+	# Turn list of connections into dictionary for direct access
 	connections_dict = {connection['from'] + "_" + connection['to'] : connection for connection in connections_list}
 
+	# Counters
 	stops_merged = 0
 	initial_length = len(stops_list)
 
+	# Iterate over every stop with every other in a triangle (in reverse because we are changing it)
 	for i in reversed(range(0, initial_length)):
 		new_length = len(stops_list)
 		for j in reversed(range(i+1, new_length)):
 
-			distance = calculate_straight_distance(stops_list[i], stops_list[j], radius)
+			# Calculate distance between any two stops
+			stop_1 = stops_list[i]
+			stop_2 = stops_list[j]
 
+			distance = calculate_straight_distance(stop_1['lat'], stop_1['lon'], stop_2['lat'], stop_2['lon'], radius)
 
-			if distance < .05: # USER SET
+			# If the two stops are within 50m
+			if distance < walking_distance:
 
+				# If there is no actual transit route connecting the two, merge 2nd to 1st
 				if (stops_list[i]['tag'] + "_" + stops_list[j]['tag'] not in connections_dict and
 					stops_list[j]['tag'] + "_" + stops_list[i]['tag'] not in connections_dict):
 
+					# Set 1st stop position to average of two
 					stops_list[i]['lat'] = (float(stops_list[i]['lat']) + float(stops_list[j]['lat'])) /2
 					stops_list[i]['lon'] = (float(stops_list[i]['lon']) + float(stops_list[j]['lon'])) /2
 
+					# Change connections to tag of 1st stop
 					for connection in connections_list:
 						if connection['from'] == stops_list[j]['tag']:
 							connection['from'] = stops_list[i]['tag']
@@ -238,9 +293,11 @@ def merge_nearby_stops(stops_list, connections_list, directory):
 						if connection['to'] == stops_list[j]['tag']:
 							connection['to'] = stops_list[i]['tag']
 
+					# Delete the second stop
 					del stops_list[j]
 
 					stops_merged = stops_merged + 1
+
 		print("Calculated distances for " + str( initial_length - i + 1 ) + "/" + str(initial_length) + " stops", end="\r")
 
 	print("\nComparison done! Merged: " + str(stops_merged) + " pairs of nearby stops.")
@@ -252,77 +309,35 @@ def merge_nearby_stops(stops_list, connections_list, directory):
 # =				Distance Calculation			=
 # ===============================================
 
-def calculate_distances(directory):
+def calculate_distances(city):
 	"""Calculate the straight-line and road distances between the connected stops of the network."""
 
 	# read the previously-built network data
-	stops_list = read_stops_file(directory)
-	connections_list = read_connections_file(directory)
+	stops_list = read_stops_file(cities[city]['tag'])
+	connections_list = read_connections_file(cities[city]['tag'])
 	
-	# Decide on radius of earth
-	if directory == 'ttc':
-		radius = 6368.262
-	elif directory == 'lametro':
-		radius = 6371.57
-	elif directory == 'sf-muni':
-		radius = 6370.158
-	else: # Radius of the Earth in kilometeres, used for 37 degrees north, also 6371.001 on average
-		radius = 6373
+	# Get Earth radius at city
+	radius = cities[city]['radius']
 
+	# Turn list of stops into dictionary for direct access
 	stops_dict = {stop['tag']: stop for stop in stops_list}
 
-	connections_list = list(map(lambda connection: build_single_connection(connection, stops_dict,  radius), connections_list))
-		
+	# Calculate the length of every connection
+	for connection in connections_list:
+		stop_1 = stops_dict[connection['from']]
+		stop_2 = stops_dict[connection['to']]
+		connection['length'] = calculate_straight_distance(stop_1['lat'], stop_1['lon'], stop_2['lat'], stop_2['lon'], radius)
+
 	# pprint(connections_list)
-	write_connections_file(directory, connections_list)
+	write_connections_file(cities[city]['tag'], connections_list)
 
 
-def build_single_connection(connection, stops_dict, radius):
-	"""Calculate the distance for a single connection and return it as a dictionary object"""
-
-	stop_1 = stops_dict[connection['from']]
-	stop_2 = stops_dict[connection['to']]
-	routes = connection['routes']
-
-	if '_W' not in connection['routes']:
-		straight_distance = calculate_straight_distance(stop_1, stop_2, radius)
-	else:
-		straight_distance = connection['straight-distance']
-
-
-	return {
-		"from": connection['from'],
-		"to": connection['to'],
-		"routes": routes,
-		"straight-distance": straight_distance,
-		"road-distance": str(0)}
-
-
-def calculate_straight_distance(stop_1, stop_2, radius):
-
-
-	lat_1 = float(stop_1['lat']) * (math.pi / 180)
-	lon_1 = float(stop_1['lon']) * (math.pi / 180)
-
-	lat_2 = float(stop_2['lat']) * (math.pi / 180)
-	lon_2 = float(stop_2['lon']) * (math.pi / 180)
-
-	dlon = lon_2 - lon_1
-	dlat = lat_2 - lat_1
-
-	a = ((math.sin(dlat/2))**2) + (math.cos(lat_1) * math.cos(lat_2) * ((math.sin(dlon/2))**2))
-	c = 2 * math.atan2(math.sqrt(a),  math.sqrt(1-a))
-	d = radius * c
-
-	return d
-
-
-def calculate_road_distances(directory):
+def calculate_road_distances(city):
 	#
 	
 	# read the previously-built network data
-	connections_list = read_connections_file(directory)
-	stops_list = read_stops_file(directory)
+	connections_list = read_connections_file(cities[city]['tag'])
+	stops_list = read_stops_file(cities[city]['tag'])
 
 	#Set google client key
 	gmaps = googlemaps.Client(key="AIzaSyB2yJoPRC-bIAPE9CQZBmyyjL_5r--OJSI")
@@ -385,9 +400,9 @@ def calculate_road_distances(directory):
 			connections_list[c1-1]['road_distance'] = single_distance			
 		
 		c1 = c1 + c3
-	write_connections_file(directory, connections_list)
+	write_connections_file(cities[city]['tag'], connections_list)
 
-def calculate_road_distance_per_row(from_stops, to_stops,  directory):
+def calculate_road_distance_per_row(from_stops, to_stops,  city):
 	# input: lists of tags of stops, from_stops and to_stops, and directory
 	#
 	# len(from_stops) <= 25
@@ -401,7 +416,7 @@ def calculate_road_distance_per_row(from_stops, to_stops,  directory):
 	#   ]
 	
 	# read the previously-built network data
-	stops_list = read_stops_file(directory)
+	stops_list = read_stops_file(cities[city]['tag'])
 	
 	#Set google client key
 	gmaps = googlemaps.Client(key="AIzaSyB2yJoPRC-bIAPE9CQZBmyyjL_5r--OJSI")
@@ -435,11 +450,11 @@ def calculate_road_distance_per_row(from_stops, to_stops,  directory):
 # =					API calls 					=
 # ===============================================
 
-def call_transit_API(agency, command, route = "", stop = ""):
+def call_transit_API(api, command, route = "", stop = ""):
 	"""Call the agency's API for a specific command.
 
 	Args:
-		agency: The agency we are interested in
+		api: The API of the agency we are interested in
 		command: The command we want to give.
 		route: The route used in the command (optional).
 		stop: The stop used in the command (optional).
@@ -449,42 +464,12 @@ def call_transit_API(agency, command, route = "", stop = ""):
 
 	"""
 
-	APIs_dict = {
-		'ttc':{
-			'api_base':"http://webservices.nextbus.com/service/publicXMLFeed?a=ttc&command=",
-			'route_option':"&r=",
-			'commands':{
-				'route_list':"routeList",
-				'route_data':"routeConfig"
-				}
-			},
-		'nextTrain':{
-			'api_base':"sadda"
-			}, 
-		'lametro':{
-			'api_base':"http://webservices.nextbus.com/service/publicXMLFeed?a=lametro&command=",
-			'route_option':"&r=",
-			'commands':{
-				'route_list':"routeList",
-				'route_data':"routeConfig"
-				}
-			}, 
-		'sf-muni':{
-			'api_base':"http://webservices.nextbus.com/service/publicXMLFeed?a=sf-muni&command=",
-			'route_option':"&r=",
-			'commands':{
-				'route_list':"routeList",
-				'route_data':"routeConfig"
-				}
-			}
-		}
-
 	if command == 'route_list':
 		options_url = ''
 	elif command == 'route_data' and route != '':
-		options_url = APIs_dict[agency]['route_option'] + route
+		options_url = api['route'] + route
 
-	return requests.get(APIs_dict[agency]['api_base'] + APIs_dict[agency]['commands'][command] +  options_url).text
+	return requests.get(api['base'] + api['commands'][command] +  options_url).text
 
 
 
