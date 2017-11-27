@@ -1,6 +1,54 @@
 import os, sys, math
 
 
+cities = {
+	'toronto':{
+		'tag':"ttc",
+		'area': 630,
+		'radius': 6368.262,
+		'apis':{
+			'ttc': {
+				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=ttc&command=",
+				'route':"&r=",
+				'commands':{
+					'route_list':"routeList",
+					'route_data':"routeConfig"
+				}
+			}
+		}
+	},
+	'la':{
+		'tag':"lametro",
+		'area': 1214,
+		'radius': 6371.57,
+		'apis':{
+			'lametro': {
+				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=lametro&command=",
+				'route':"&r=",
+				'commands':{
+					'route_list':"routeList",
+					'route_data':"routeConfig"
+				}
+			}
+		}
+	},
+	'sf':{
+		'tag':"sf-muni",
+		'area': 121,
+		'radius': 6370.158,
+		'apis':{
+			'sf-muni': {
+				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=sf-muni&command=",
+				'route':"&r=",
+				'commands':{
+					'route_list':"routeList",
+					'route_data':"routeConfig"
+				}
+			}
+		}
+	}
+ }
+
 
 
 
@@ -61,6 +109,28 @@ def read_stops_file(directory):
 	return stops_list
 
 
+
+def read_demographics_file(directory):
+	"""Opens demographics file and reads contents into a list."""
+
+	# read the file and split the rows into a list
+	try:
+		demographics_file = open(directory + "/demographics.csv","r+")
+	except FileNotFoundError:
+		print("Error: Demographics file missing for these agencies!")
+		sys.exit()
+
+	sectors_list_csv = demographics_file.read().split("\n")
+	demographics_file.close()
+
+	# split every row into a sector entry by applying read_sector_entry
+	sectors_map = map(read_sector_entry, sectors_list_csv)
+	# filter out first (header) and last (empty) lines
+	sectors_list = list(filter(lambda x: x != None, sectors_map))
+
+	return sectors_list
+
+
 def read_connections_file(directory):
 	"""Opens connections file and reads contents into a list."""
 
@@ -90,7 +160,30 @@ def read_stop_entry(stop_text):
 
 	# handle invalid lines
 	if len(stop_list) > 1 and stop_list[0] != "tag":
-		return {"tag": stop_list[0], "title": stop_list[1], "lat": stop_list[2], "lon": stop_list[3]}
+		return {
+			"tag": stop_list[0],
+			"title": stop_list[1],
+			"lat": stop_list[2],
+			"lon": stop_list[3],
+			"merged": stop_list[4].split("|")}
+	else:
+		return None
+	
+	
+def read_sector_entry(sector_text):
+	"""Parses a sector entry from comma-separated to dictionary form."""
+	
+	# split comma-separated values
+	sector_list = sector_text.split(",")
+
+	# handle invalid lines
+	if len(sector_list) > 1 and sector_list[1] != "lat":
+		return {"id": sector_list[0],
+			"lat": float(sector_list[1]),
+			"lon": float(sector_list[2]),
+			"population": int(sector_list[3]),
+			"area": float(sector_list[4]),
+			"density": float(sector_list[5])}
 	else:
 		return None
 	
@@ -121,13 +214,14 @@ def write_stops_file(directory, stops_list):
 	stops_file = open(directory + "/stops.csv", "w+")
 
 	# Write stops file
-	stops_file.write("tag,title,lat,lon\n")
+	stops_file.write("tag,title,lat,lon,merged\n")
 	for stop in stops_list:
 		stops_file.write(
 			  stop['tag'] + ","
 			+ stop['title'] + ","
 			+ str(stop['lat']) + ","
-			+ str(stop['lon']) + "\n" )
+			+ str(stop['lon']) + ","
+			+ '|'.join(stop['merged']) + "\n" )
 
 	# Close the file
 	stops_file.close()
@@ -161,7 +255,7 @@ def write_connections_file(directory, connections_list):
 def convert_stops_to_tuples(stops_list):
 	"""Convert the list of stops from list to tuple format."""
 
-	map_func = lambda x: (x['tag'], {'title':x['title'], 'lat':x['lat'], 'lon':x['lon']} )
+	map_func = lambda x: (x['tag'], {'title':x['title'], 'lat':x['lat'], 'lon':x['lon'], 'merged':x['merged']} )
 
 	return list(map(map_func, stops_list))
 

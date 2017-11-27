@@ -10,60 +10,13 @@ from common import *
 
 # Constants
 walking_distance = 0.05 # 50m
-cities = {
-	'toronto':{
-		'tag':"ttc",
-		'area': 630,
-		'radius': 6368.262,
-		'apis':{
-			'ttc': {
-				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=ttc&command=",
-				'route':"&r=",
-				'commands':{
-					'route_list':"routeList",
-					'route_data':"routeConfig"
-				}
-			}
-		}
-	},
-	'la':{
-		'tag':"lametro",
-		'area': 1214,
-		'radius': 6371.57,
-		'apis':{
-			'lametro': {
-				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=lametro&command=",
-				'route':"&r=",
-				'commands':{
-					'route_list':"routeList",
-					'route_data':"routeConfig"
-				}
-			}
-		}
-	},
-	'sf':{
-		'tag':"sf-muni2",
-		'area': 121,
-		'radius': 6370.158,
-		'apis':{
-			'sf-muni': {
-				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=sf-muni&command=",
-				'route':"&r=",
-				'commands':{
-					'route_list':"routeList",
-					'route_data':"routeConfig"
-				}
-			}
-		}
-	}
- }
 
 
 
 def main():
 	"""Execute the main actions of the network builder program
 
-	Argus:
+	Args:
 		static - build the static network of stops and connections between them
 		distances - calculate the straight-line and road distances between stops
 
@@ -84,6 +37,12 @@ def main():
 		#calculate_road_distance_per_row(["262", "264", "265", "266", "267", "268", "269", "270", "271", "271", "273"], ["4907", "4165", "10375", "7773", "4040", "5109", "9687", "5231", "280", "7497", "2768"], sys.argv[2])
 		#calculate_road_distance_per_row(["269", "270", "271", "271"], ["9687", "5231", "280", "7497"], sys.argv[2])
 
+
+	# With the "distances" argument, calculate the distances between stops
+	elif len(sys.argv) > 2 and (sys.argv[1] == "times" or sys.argv[1] == "-t" ):
+		
+		calculate_times(sys.argv[2])
+		
 	# With the "help" argument, calculate the distances between stops
 	elif len(sys.argv) > 1 and sys.argv[1] == "help":
 
@@ -145,7 +104,7 @@ def get_routes_list(city):
 		# convert to list
 		routes_list = routes_list + list(routes_map)
 
-	return routes_list[:10] # DEBUG only the first 10 routes
+	return routes_list # DEBUG only the first 10 routes
 
 
 def get_route_stops(route_xml):
@@ -160,8 +119,7 @@ def get_route_stops(route_xml):
 		'title': x.attrib['title'],
 		'lat': x.attrib['lat'],
 		'lon': x.attrib['lon'],
-		'length': 0,
-		'road-distance': 0}
+		'merged': [x.attrib['tag'].split("_")[0]]}
 	stops_map = map(stop_dict_func, stops_map)
 
 	return list(stops_map)
@@ -283,6 +241,9 @@ def merge_nearby_stops(stops_list, connections_list, radius):
 					# Set 1st stop position to average of two
 					stops_list[i]['lat'] = (float(stops_list[i]['lat']) + float(stops_list[j]['lat'])) /2
 					stops_list[i]['lon'] = (float(stops_list[i]['lon']) + float(stops_list[j]['lon'])) /2
+
+					# Add stop to merged stops
+					stops_list[i]['merged'] = list(set(stops_list[i]['merged'] + stops_list[j]['merged']))
 
 					# Change connections to tag of 1st stop
 					for connection in connections_list:
@@ -445,6 +406,16 @@ def calculate_road_distance_per_row(from_stops, to_stops,  city):
 		single_distance = google_result['rows'][stop1]['elements'][stop1]['distance']['value']
 		distances.append({"from":from_stops[stop1], "to":to_stops[stop1], "distance":single_distance})
 	return distances
+
+
+
+# ===============================================
+# =			Demographics Calculation			=
+# ===============================================
+
+
+def calculate_times(city):
+	pass
 
 # ===============================================
 # =					API calls 					=
