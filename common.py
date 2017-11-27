@@ -201,7 +201,7 @@ def read_connection_entry(connection_text):
 			"to": connection_list[1],
 			"routes": connection_list[2].split("|"),
 			"length": float(connection_list[3]),
-			"road-distance": float(connection_list[4])}
+			"road-length": float(connection_list[4])}
 	else:
 		return None
 
@@ -234,14 +234,14 @@ def write_connections_file(directory, connections_list):
 	connections_file = open(directory + "/connections.csv", "w+")
 
 	# Write connections file
-	connections_file.write("from,to,routes,length,road-distance\n")
+	connections_file.write("from,to,routes,length,road-length\n")
 	for connection in connections_list:
 		connections_file.write(
 			  connection['from'] + ","
 			+ connection['to'] + ","
 			+ '|'.join(connection['routes']) + ","
 			+ str(connection['length']) + ","
-			+ str(connection['road-distance'])
+			+ str(connection['road-length'])
 			+ "\n" )
 
 	# Close the file

@@ -1,4 +1,4 @@
-from,to,routes,straight-distance,road-distance
+from,to,routes,length,road-length
 1,4291,265,0.4414627225183095,0
 1,4296,265,1.0215065552417488,0
 1,4299,108|358,0.052796592950576836,0
