@@ -279,6 +279,40 @@ def calculate_close_stops_and_least_distance(stops_list, cutoff_square_stops, ra
 	return close_stops_count, least_distance
 
 
+
+
+def count_route_changes(connections_seq):
+
+	candidate_routes = [route for route in connections_seq[0]['routes'] if route['wait-time-mean'] != -1]
+	last_candidates = []
+	final_routes = []
+	changes = 0
+
+	for connection in connections_seq:
+
+		for candidate_route in candidate_routes:
+
+			# If a route doesn't go all the way to the previous change
+			if (candidate_route not in connection['routes']):
+
+				# Remove it from the possible all-the-way routes
+				last_candidates.append(candidate_route)
+				candidate_routes.remove(candidate_route)
+
+		# if there is no possible route for the last trip leg
+		if (not candidate_routes):
+
+			# We have a change, remember the routes that were left
+			changes = changes + 1
+			final_routes.append(last_candidates)
+			candidate_routes = [route for route in connection['routes'] if route['wait-time-mean'] != -1]
+			last_candidates = candidate_routes
+
+	final_routes.append(last_candidates)
+
+	return changes,final_routes
+
+
 # ===============================================
 # =				Graph Visualization				=
 # ===============================================

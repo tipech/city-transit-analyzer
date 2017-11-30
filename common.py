@@ -42,7 +42,8 @@ cities = {
 				'route':"&r=",
 				'commands':{
 					'route_list':"routeList",
-					'route_data':"routeConfig"
+					'route_data':"routeConfig",
+					'predictions':"predictionsForMultiStops"
 				}
 			}
 		}
@@ -82,10 +83,31 @@ def calculate_straight_distance(stop_1_lat, stop_1_lon, stop_2_lat, stop_2_lon, 
 # ===============================================
 
 def create_agencies_folder(directory):
-	"""Creates a folder for these agencies if one doesn't already exist."""
+	"""Creates a folder for this city if one doesn't already exist."""
 
 	if not os.path.isdir(directory):
 		os.makedirs(directory)
+
+
+def read_routes_file(directory):
+	"""Opens routes file and reads contents into a list."""
+
+	# read the file and split the rows into a list
+	try:
+		routes_file = open(directory + "/routes.csv","r+")
+	except FileNotFoundError:
+		print("Error: Routes file missing for this city!")
+		sys.exit()
+
+	routes_list_csv = routes_file.read().split("\n")
+	routes_file.close()
+
+	# split every row into a route entry by applying read_route_entry
+	routes_map = map(read_route_entry, routes_list_csv)
+	# filter out first (header) and last (empty) lines
+	routes_list = list(filter(lambda x: x != None, routes_map))
+
+	return routes_list
 
 
 def read_stops_file(directory):
@@ -95,7 +117,7 @@ def read_stops_file(directory):
 	try:
 		stops_file = open(directory + "/stops.csv","r+")
 	except FileNotFoundError:
-		print("Error: Stops file missing for these agencies!")
+		print("Error: Stops file missing for this city!")
 		sys.exit()
 
 	stops_list_csv = stops_file.read().split("\n")
@@ -117,7 +139,7 @@ def read_demographics_file(directory):
 	try:
 		demographics_file = open(directory + "/demographics.csv","r+")
 	except FileNotFoundError:
-		print("Error: Demographics file missing for these agencies!")
+		print("Error: Demographics file missing for this city!")
 		sys.exit()
 
 	sectors_list_csv = demographics_file.read().split("\n")
@@ -138,7 +160,7 @@ def read_connections_file(directory):
 	try:
 		connections_file = open(directory + "/connections.csv","r+")
 	except FileNotFoundError:
-		print("Error: Connections file missing for these agencies!")
+		print("Error: Connections file missing for this city!")
 		sys.exit()
 
 	connections_list_csv = connections_file.read().split("\n")
@@ -151,6 +173,24 @@ def read_connections_file(directory):
 
 	return connections_list
 	
+	
+def read_route_entry(route_text):
+	"""Parses a route entry from comma-separated to dictionary form."""
+	
+	# split comma-separated values
+	route_list = route_text.split(",")
+
+	# handle invalid lines
+	if len(route_list) > 1 and route_list[0] != "tag":
+		return {
+			"tag": route_list[0],
+			"api": route_list[1],
+			"stops_count": route_list[2],
+			"wait-time-mean": route_list[3],
+			"wait-time-std": route_list[4]}
+	else:
+		return None
+
 	
 def read_stop_entry(stop_text):
 	"""Parses a stop entry from comma-separated to dictionary form."""
@@ -201,9 +241,31 @@ def read_connection_entry(connection_text):
 			"to": connection_list[1],
 			"routes": connection_list[2].split("|"),
 			"length": float(connection_list[3]),
-			"road-length": float(connection_list[4])}
+			"road-length": float(connection_list[4]),
+			"travel-time": float(connection_list[5])}
 	else:
 		return None
+
+
+def write_routes_file(directory, routes_list):
+	"""Creates a new or empties the existing routes file and fills it with the list of routes."""
+
+	# (Re)create empty routes file
+	create_agencies_folder(directory)
+	routes_file = open(directory + "/routes.csv", "w+")
+
+	# Write routes file
+	routes_file.write("tag,api,stops_count,wait_time_mean,wait_time_std\n")
+	for route in routes_list:
+		routes_file.write(
+			  route['tag'] + ","
+			+ route['api'] + ","
+			+ str(route['stops_count']) + ","
+			+ str(route['wait-time-mean']) + ","
+			+ str(route['wait-time-std']) + "\n" )
+
+	# Close the file
+	routes_file.close()
 
 
 def write_stops_file(directory, stops_list):
@@ -241,7 +303,8 @@ def write_connections_file(directory, connections_list):
 			+ connection['to'] + ","
 			+ '|'.join(connection['routes']) + ","
 			+ str(connection['length']) + ","
-			+ str(connection['road-length'])
+			+ str(connection['road-length']) + ","
+			+ str(connection['travel-time'])
 			+ "\n" )
 
 	# Close the file

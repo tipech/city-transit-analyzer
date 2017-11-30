@@ -1,4 +1,4 @@
-import requests, sys, os, math, googlemaps, json
+import requests, sys, os, math, googlemaps, json, numpy
 import xml.etree.ElementTree as ET
 import networkx as nx
 from itertools import groupby
@@ -71,7 +71,10 @@ def build_static_network(city):
 	# Iterate through routes
 	for index, route in enumerate(routes_list):
 		route_xml = ET.fromstring( call_transit_API(cities[city]['apis'][route['api']], "route_data", route["tag"]) )[0]
-		stops_list = stops_list + get_route_stops(route_xml)
+		route_stops = get_route_stops(route_xml)
+		route['stops_count'] = len(route_stops)
+		stops_list = stops_list + route_stops
+
 		connections_list = connections_list + get_route_connections(route_xml)
 
 		print("Extracted data from " + str( index + 1 ) + "/" + str(len(routes_list)) + " routes", end="\r")
@@ -85,6 +88,7 @@ def build_static_network(city):
 	print("Found " + str(len(stops_list)) + " stops and " + str(len(connections_list)) + " connections")
 
 	# Write results to files
+	write_routes_file(cities[city]['tag'], routes_list)
 	write_stops_file(cities[city]['tag'], stops_list)
 	write_connections_file(cities[city]['tag'], connections_list)
 
@@ -98,11 +102,15 @@ def get_routes_list(city):
 
 		routes_tree = ET.fromstring(call_transit_API(cities[city]['apis'][api], "route_list"))
 		# we are only interested in the route tags
-		routes_map = map((lambda x: {"tag": x.attrib["tag"], "api": api}), routes_tree)
+		routes_map = map((lambda x: {"tag":x.attrib["tag"],
+			"api":api,
+			"stops_count":0,
+			"wait-time-mean":-1,
+			"wait-time-std":-1}), routes_tree)
 		# convert to list
 		routes_list = routes_list + list(routes_map)
 
-	return routes_list[:10] # DEBUG only the first 10 routes
+	return routes_list # DEBUG only the first 10 routes
 
 
 def get_route_stops(route_xml):
@@ -143,7 +151,8 @@ def get_route_connections(route_xml):
 				'to': to_stop,
 				'routes': [route_xml.attrib['tag']],
 				'length': 0,
-				'road-length': 0}
+				'road-length': 0,
+				'travel-time': -1}
 			connections_list.append(connection_dict)
 
 	return connections_list
@@ -168,7 +177,7 @@ def consolidate_connections(connections_list):
 
 	# Remove self loops
 	for i in reversed(range(0,len(connections_list))):
-		if(connections_list[i]['from'] == connections_list[i]['to']):
+		if (connections_list[i]['from'] == connections_list[i]['to']):
 			del(connections_list[i])
 
 	# Split list to groups that have the same from and to stops
@@ -191,7 +200,8 @@ def merge_connections(connection_1, connection_2):
 		'to': connection_1['to'],
 		'routes': list(routes_set),
 		'length': connection_1['length'],
-		'road-length': connection_1['road-length']}
+		'road-length': connection_1['road-length'],
+		'travel-time': connection_1['travel-time']}
 
 
 def remove_isolated_stops(stops_list, connections_list):
@@ -311,24 +321,21 @@ def calculate_road_distances(city):
 	index = 0
 	for connection in connections_list:
 
-
 		connection['road-length'] = distances_list[index]
 
 		# Suspiciously big difference in distances, recalculate
-		if(connection['road-length']/connection['length'] > 2 ):
+		if (connection['road-length']/connection['length'] > 2 ):
 			connection['road-length'] = call_distance_API([stops_dict[connection['from']]],[stops_dict[connection['to']]])[0]
 
-		if(connection['length'] > distances_list[index]):
+		if (connection['length'] > distances_list[index]):
 			connection['road-length'] = connection['length']
 
 		index = index + 1
 
-
-	pprint(connections_list)
+		print("Calculated distances for " + str( index + 1 ) + "/" + str(len(connections_list)) + " connections", end="\r")
 
 
 	write_connections_file(cities[city]['tag'], connections_list)
-
 
 
 # ===============================================
@@ -337,8 +344,172 @@ def calculate_road_distances(city):
 
 
 def calculate_times(city):
-	pass
 
+	# read the previously-built network data
+	routes_list = read_routes_file(cities[city]['tag'])
+	stops_list = read_stops_file(cities[city]['tag'])
+	connections_list = read_connections_file(cities[city]['tag'])
+
+	# Turn list of stops into dictionary for direct access
+	stops_dict = {stop['tag']: stop for stop in stops_list}
+
+	# Add an empty array to connections for holding all possible travel times
+	for connection in connections_list:
+		connection['travel-time-array'] = []
+
+	# Iterate through routes
+	for index, route in enumerate(routes_list):
+
+		# Retrieve stops again to make sure they are correct
+		route_xml = ET.fromstring( call_transit_API(cities[city]['apis'][route['api']], "route_data", route["tag"]) )[0]
+		route_stops = [stop['tag'] for stop in get_route_stops(route_xml)]
+
+		# Retrieve time predictions for this route and these stops
+		predictions_xml = call_transit_API(cities[city]['apis'][route['api']], "predictions", route["tag"], route_stops)
+
+		# Convert from xml to actual objects
+		route_predictions = get_route_predictions(ET.fromstring(predictions_xml))
+
+		# If this an actual entry without errors
+		if (len(route_predictions) > 0):
+
+			route['wait-time-mean'], route['wait-time-std'] = calculate_route_wait_time(route_predictions)
+			
+			# If this isn't a route with no time predictions (nighttime buses)
+			if (route['wait-time-mean'] != -1):
+
+				# Get the connections involved in this route
+				route_connections = [connection for connection in connections_list if (route['tag'] in connection['routes']) ]
+
+				# Calculate travel times
+				calculate_connection_travel_times(route_predictions, route_connections, stops_dict)
+		
+		print("Calculated times from " + str( index + 1 ) + "/" + str(len(routes_list)) + " routes", end="\r")
+
+
+	consolidate_connection_times(connections_list)
+
+	# Write results to files
+	write_routes_file(cities[city]['tag'], routes_list)
+	write_connections_file(cities[city]['tag'], connections_list)
+
+
+def get_route_predictions(predictions_xml):
+	"""Extract the list of stops for this route."""
+
+	predictions_list = []
+
+	for prediction_xml in predictions_xml:
+
+		# If we have directions for this stop
+		if (len(prediction_xml) > 0):
+
+			trips_list = []
+
+			# Go through all the directions (and directions only)
+			for direction in prediction_xml:
+				if (direction.tag == "direction"):
+
+					# Go through all the individual trips
+					for trip in direction:
+
+						# Add the trip entry
+						trip_entry = {'tag': trip.attrib['tripTag'].split("_")[0],
+							'minutes': int(trip.attrib['minutes']),
+							'direction': trip.attrib['dirTag']}
+							# 'isDeparture': trip.attrib['isDeparture'] == 'true'}
+
+						trips_list.append(trip_entry)
+
+
+			# If there were no problems with that prediction
+			if (trips_list):
+				
+				# Add the prediction entry
+				prediction_entry = { 'route': prediction_xml.attrib['routeTag'],
+					'stop': prediction_xml.attrib['stopTag'].split("_")[0],
+					'trips': trips_list}
+
+				predictions_list.append(prediction_entry)
+
+	return predictions_list
+
+
+def calculate_route_wait_time(route_predictions):
+
+	trip_wait_times = []
+
+	# Go through every stop in route
+	for stop_prediction in route_predictions:
+
+		# Group together trips in the same direction
+		for direction, same_direction_trips in groupby(stop_prediction['trips'], lambda x: x['direction']):
+			index = 0
+			same_direction_trips = list(same_direction_trips)
+			same_direction_count = len(same_direction_trips)
+			for trip in same_direction_trips:
+
+				# Wait times are times between consecutive trips
+				if (index < same_direction_count - 1):
+					trip_wait_times.append(same_direction_trips[index+1]['minutes'] - same_direction_trips[index]['minutes'])
+
+				index = index + 1
+
+	if(len(trip_wait_times) > 0):
+		wait_time_average = numpy.mean(trip_wait_times)
+		wait_time_standard_deviation = numpy.std(trip_wait_times)
+	else:
+		wait_time_average = -1
+		wait_time_standard_deviation = -1
+
+
+	return wait_time_average, wait_time_standard_deviation
+
+
+def calculate_connection_travel_times(route_predictions, route_connections, stops_dict):
+
+	# Go through all possible combinations of stops in the predictions
+	for from_prediction in route_predictions:
+		for to_prediction in route_predictions:
+
+			from_stop = from_prediction['stop']
+			to_stop = to_prediction['stop']
+
+			# Find pairs of stops that correspond to actual connections (including merged stops)
+			for connection in route_connections:
+				if ((from_stop == connection['from'] or from_stop in stops_dict[connection['from']]['merged'])
+					and (to_stop == connection['to'] or to_stop in stops_dict[connection['to']]['merged'])):
+
+					connection_times = []
+
+					# Find individual trips
+					for from_trip in from_prediction['trips']:
+						for to_trip in to_prediction['trips']:
+							if (from_trip['tag']==to_trip['tag']):
+
+								# And finally calculate time
+								trip_time = to_trip['minutes'] - from_trip['minutes']
+
+								# If trip in the right direction (a.k.a. time positive)
+								if (trip_time >= 0):
+									connection_times.append(trip_time)
+
+					# If trips were found, calculate the average trip time
+					if (len(connection_times) > 0):
+						travel_time = numpy.mean(connection_times)
+						connection['travel-time-array'].append(travel_time)
+
+
+def consolidate_connection_times(connections_list):
+
+	for connection in connections_list:
+
+		if (len(connection['travel-time-array']) > 0):
+			connection['travel-time'] = numpy.mean(connection['travel-time-array'])
+		else:
+			connection['travel-time'] = -1
+
+		connection.pop('travel-time-array', None)
 
 
 
@@ -347,14 +518,14 @@ def calculate_times(city):
 # =					API calls 					=
 # ===============================================
 
-def call_transit_API(api, command, route = "", stop = ""):
+def call_transit_API(api, command, route = "", stops=[]):
 	"""Call the agency's API for a specific command.
 
 	Args:
 		api: The API of the agency we are interested in
 		command: The command we want to give.
 		route: The route used in the command (optional).
-		stop: The stop used in the command (optional).
+		stops: The listof stops for that route (optional)
 
 	Returns:
 		The response body.
@@ -363,8 +534,15 @@ def call_transit_API(api, command, route = "", stop = ""):
 
 	if command == 'route_list':
 		options_url = ''
+
 	elif command == 'route_data' and route != '':
 		options_url = api['route'] + route
+
+	elif command == 'predictions' and route != '':
+
+		options_url = ''
+		for stop in stops:
+			options_url = options_url + '&stops=' + route + "|" + stop
 
 	return requests.get(api['base'] + api['commands'][command] +  options_url).text
 
