@@ -185,9 +185,9 @@ def read_route_entry(route_text):
 		return {
 			"tag": route_list[0],
 			"api": route_list[1],
-			"stops_count": route_list[2],
-			"wait-time-mean": route_list[3],
-			"wait-time-std": route_list[4]}
+			"stops_count": int(route_list[2]),
+			"wait_time_mean": float(route_list[3]),
+			"wait_time_std": float(route_list[4])}
 	else:
 		return None
 
@@ -241,8 +241,8 @@ def read_connection_entry(connection_text):
 			"to": connection_list[1],
 			"routes": connection_list[2].split("|"),
 			"length": float(connection_list[3]),
-			"road-length": float(connection_list[4]),
-			"travel-time": float(connection_list[5])}
+			"road_length": float(connection_list[4]),
+			"travel_time": float(connection_list[5])}
 	else:
 		return None
 
@@ -261,8 +261,8 @@ def write_routes_file(directory, routes_list):
 			  route['tag'] + ","
 			+ route['api'] + ","
 			+ str(route['stops_count']) + ","
-			+ str(route['wait-time-mean']) + ","
-			+ str(route['wait-time-std']) + "\n" )
+			+ str(route['wait_time_mean']) + ","
+			+ str(route['wait_time_std']) + "\n" )
 
 	# Close the file
 	routes_file.close()
@@ -296,15 +296,15 @@ def write_connections_file(directory, connections_list):
 	connections_file = open(directory + "/connections.csv", "w+")
 
 	# Write connections file
-	connections_file.write("from,to,routes,length,road-length\n")
+	connections_file.write("from,to,routes,length,road_length,road_length\n")
 	for connection in connections_list:
 		connections_file.write(
 			  connection['from'] + ","
 			+ connection['to'] + ","
 			+ '|'.join(connection['routes']) + ","
 			+ str(connection['length']) + ","
-			+ str(connection['road-length']) + ","
-			+ str(connection['travel-time'])
+			+ str(connection['road_length']) + ","
+			+ str(connection['travel_time'])
 			+ "\n" )
 
 	# Close the file

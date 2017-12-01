@@ -1,4 +1,4 @@
-import sys,random,math
+import sys,random,math,numpy
 import networkx as nx
 import matplotlib.pyplot as plt
 from pprint import pprint
@@ -24,15 +24,22 @@ def main():
 
 		for city in sys.argv[2].split(" "):
 
-			G, stops_list, connections_list = create_static_network(cities[city]['tag'])
+			# Read the network files
+			routes_list = read_routes_file(cities[city]['tag'])
+			stops_list = read_stops_file(cities[city]['tag'])
+			connections_list = read_connections_file(cities[city]['tag'])
+
+			G = create_undirected_network(stops_list, connections_list)
+
 			# draw_static_network(G,stops_list)
+			
+			city_metrics = calculate_city_metrics(G, routes_list, stops_list, connections_list, city)
+			metrics.append(city + "," + ",".join(str(value) for value in city_metrics.values()))
 
-			agency_metrics = calculate_all_agency_metrics(G, connections_list, stops_list, city)
-			metrics.append(city + "," + ",".join(str(value) for value in agency_metrics.values()))
+			print("Calculated metrics for: " + city + "                    ")
 
-			# print("Calculated metrics for: " + city + "\t\t")
 
-		metrics = ["city," + ",".join(str(value) for value in agency_metrics.keys())] + metrics
+		metrics = ["city," + ",".join(str(value) for value in city_metrics.keys())] + metrics
 		print("\n" + "\n".join(metrics) + "\n")
 
 	# With wrong arguments, print usage help message
@@ -41,25 +48,20 @@ def main():
 
 		
 
-# ===============================================
-# =			Static Network Visualization 		=
-# ===============================================
-
-def create_static_network(directory):
+def create_undirected_network(stops_list, connections_list):
 	"""Draw an image for the pre-built static network of the transport system."""
 
-	# Read the network files
-	stops_list = read_stops_file(directory)
-	connections_list = read_connections_file(directory)
 
 	# Build the graph object, add stops and connections
-	G = nx.Graph()
+	G = nx.DiGraph()
 	G.add_nodes_from(convert_stops_to_tuples(stops_list))
 	G.add_edges_from(convert_connections_to_tuples(connections_list))
 
 	# G = nx.connected_components(G)
 
-	return G, stops_list, connections_list
+	return G
+
+
 
 
 
@@ -67,7 +69,7 @@ def create_static_network(directory):
 # =				Metrics Calculation				=
 # ===============================================
 
-def calculate_all_agency_metrics(G, connections_list, stops_list, city):
+def calculate_city_metrics(G, routes_list, stops_list, connections_list, city):
 
 	# Area and earth radius presets
 	radius = cities[city]['radius']
@@ -79,11 +81,26 @@ def calculate_all_agency_metrics(G, connections_list, stops_list, city):
 	metrics = {}
 
 
-	# --------- Total & Average Length ----------
-	# metrics['total_length'] = sum(connection['length'] for connection in connections_list)
-	# metrics['total_length_normalized'] = metrics['total_length']/area
+	# ----------- General Statistics ------------
+	metrics['routes_count'] = len(routes_list)
+	metrics['stops_count'] = len(stops_list)
+	metrics['connections_count'] = len(connections_list)
 
-	# metrics['average_connection_length'] = metrics['total_length']/len(connections_list)
+	metrics['total_length'] = sum(connection['length'] for connection in connections_list)
+	# metrics['total_length_normalized'] = metrics['total_length']/area
+	metrics['connection_length_average'] = metrics['total_length']/metrics['connections_count']
+
+	metrics['total_travel_time'] = sum([connection['travel_time'] for connection in connections_list])
+	metrics['connection_travel_time_average'] = metrics['total_travel_time']/metrics['connections_count']
+
+	metrics['connection_speed_average'] = metrics['total_length']/metrics['total_travel_time']
+
+	metrics['wait_time_average'] = numpy.mean([route['wait_time_mean'] for route in routes_list])
+	metrics['wait_time_std'] = numpy.std([route['wait_time_mean'] for route in routes_list])
+
+
+	# ------------- Shortest Times --------------
+	metrics['average_trip'] = calculate_trip(G, radius, sample_size, repetitions)
 
 
 	# --------- Shortest Paths & Detour ---------
@@ -92,38 +109,17 @@ def calculate_all_agency_metrics(G, connections_list, stops_list, city):
 	# metrics['average_detour_normalized'] = ((metrics['average_shortest_path']-metrics['average_straight_distance'])
 	# 	/metrics['average_straight_distance'])
 
-
-	# -------------- Area Coverage --------------
-	stops_sum = 0
-	distance_sum = 0
-
-	# Average over several seeds
-	for i in range(0,repetitions):
-
-		random.seed()
-		new_stops, new_distance = calculate_area_coverage(G, stops_list, radius, sample_size)
-		stops_sum = stops_sum + new_stops
-		distance_sum = distance_sum + new_distance
-
-	metrics['area_coverage_stops'] = stops_sum/repetitions
-	metrics['area_coverage_distance'] = int((distance_sum/repetitions) * 1000)
+	# ------------- Shortest Times --------------
+	# metrics['average']
+	# metrics['average_trip_time'], metrics['average_trip_changes'],  = nx.average_shortest_path_length(G,weight='length')
 
 
-	# ----------- Population Coverage -----------
-	stops_sum = 0
-	distance_sum = 0
-	sectors_list = read_demographics_file(cities[city]['tag'])
-
-	# Average over several seeds
-	for i in range(0,repetitions):
-
-		random.seed()
-		new_stops, new_distance = calculate_population_coverage(G, stops_list, sectors_list, radius, sample_size)
-		stops_sum = stops_sum + new_stops
-		distance_sum = distance_sum + new_distance
-
-	metrics['population_coverage_stops'] = stops_sum/repetitions
-	metrics['population_coverage_distance'] = int((distance_sum/repetitions) * 1000)
+	# ----------------- Coverage ----------------
+	# sectors_list = read_demographics_file(cities[city]['tag'])
+	# metrics['area_coverage_stops'], metrics['area_coverage_distance'] = (
+	# 	calculate_area_coverage(stops_list, radius, sample_size, repetitions))
+	# metrics['population_coverage_stops'], metrics['population_coverage_distance'] = (
+	# 	calculate_population_coverage(stops_list, sectors_list, radius, sample_size, repetitions))
 
 
 	# -------- Clustering & Connectivity --------
@@ -153,98 +149,89 @@ def calculate_average_straight_distance(G, stops_list, radius):
 	return 2*sum/(len(G.nodes)*(len(G.nodes)-1))
 
 
-def calculate_area_coverage(G, stops_list, radius, sample_size):
+def calculate_area_coverage(stops_list, radius, sample_size, repetitions):
+
+	cutoff_low_deg = 0.0036  	# 400m
 
 	lat_dict = {float(stop['lat']):stop for stop in stops_list}
 	lon_dict = {float(stop['lon']):stop for stop in stops_list}
-
-
-	cutoff_high_deg = 0.0072	# 800m
-	cutoff_low_deg = 0.0036  	# 400m
-	walk_km = 0.4		# 400m
 
 	bounding_box = { 'left': min(lon_dict) - cutoff_low_deg,
 		'right': max(lon_dict) + cutoff_low_deg,
 		'top': max(lat_dict) + cutoff_low_deg,
 		'bottom': min(lat_dict) - cutoff_low_deg}
 
-	sample = []
-	close_stops_sum = 0
-	least_distance_sum = 0
-	x = 0
-	i = 0
+	stops_sum = 0
+	distance_sum = 0
 
-	while x < sample_size and i < 10000:
+	# Average over several seeds
+	for i in range(0,repetitions):
 
-		i = i + 1
+		random.seed()
+		sample = []
+		close_stops_sum = 0
+		least_distance_sum = 0
+		x = 0
+		i = 0
 
-		# Uniformly select a random point in service area
-		random_lat = random.uniform(bounding_box['top'], bounding_box['bottom'])
-		random_lon = random.uniform(bounding_box['left'], bounding_box['right'])
+		while x < sample_size and i < 10000:
 
-		cutoff_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff_high_deg)
+			i = i + 1
 
-		if(len(cutoff_square_stops) > 0):
+			random_lat, random_lon = select_random_point_uniform(bounding_box)
 
-			close_stops_count, least_distance = calculate_close_stops_and_least_distance(
-				stops_list, cutoff_square_stops,
-				random_lat, random_lon,
-				cutoff_low_deg,	walk_km, radius)
+			close_stops_count, least_distance = calculate_close_stops_and_least_distance(stops_list, random_lat, random_lon, radius)
 
-			close_stops_sum = close_stops_sum + close_stops_count
-			least_distance_sum = least_distance_sum + least_distance
+			if(close_stops_count != -1 ):
+				close_stops_sum = close_stops_sum + close_stops_count
+				least_distance_sum = least_distance_sum + least_distance
 
-			x = x + 1
-			print("Calculated area coverage for " + str(x) + "/" + str(sample_size) + " points", end="\r")
+				x = x + 1
+				print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
 
-	return close_stops_sum/sample_size, least_distance_sum/sample_size
+		stops_sum = stops_sum + close_stops_sum/sample_size
+		distance_sum = distance_sum + least_distance_sum/sample_size
+
+	return stops_sum/repetitions, int((distance_sum/repetitions) * 1000)
 
 
-def calculate_population_coverage(G, stops_list, sectors_list, radius, sample_size):
+def calculate_population_coverage(stops_list, sectors_list, radius, sample_size, repetitions):
 
-	lat_dict = {float(stop['lat']):stop for stop in stops_list}
-	lon_dict = {float(stop['lon']):stop for stop in stops_list}
-
-	cutoff_high_deg = 0.0072	# 800m
-	cutoff_low_deg = 0.0036  	# 400m
-	walk_km = 0.4		# 400m
-
-	sample = []
-	close_stops_sum = 0
-	least_distance_sum = 0
-	x = 0
-	i = 0
 
 	population_distribution = [sector['population'] for sector in sectors_list]
 
-	while x < sample_size and i < 10000:
+	stops_sum = 0
+	distance_sum = 0
 
-		i = i + 1
+	# Average over several seeds
+	for i in range(0,repetitions):
 
-		# Select a random sector based on population distribution
-		random_sector = random.choices(sectors_list, weights=population_distribution)[0]
-		random_square_side = math.sqrt(random_sector['area']) * 0.0045 #degrees
+		random.seed()
+		sample = []
+		close_stops_sum = 0
+		least_distance_sum = 0
+		x = 0
+		i = 0
 
-		# Uniformly select a random point within that sector
-		random_lat = random.uniform(random_sector['lat'] - random_square_side, random_sector['lat'] + random_square_side)
-		random_lon = random.uniform(random_sector['lon'] - random_square_side, random_sector['lon'] + random_square_side)
+		while x < sample_size and i < 10000:
 
-		cutoff_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff_high_deg)
+			i = i + 1
 
-		if(len(cutoff_square_stops) > 0):
+			random_lat, random_lon = select_random_point_population(population_distribution, sectors_list)
 
-			close_stops_count, least_distance = calculate_close_stops_and_least_distance(
-				stops_list, cutoff_square_stops,
-				random_lat, random_lon,
-				cutoff_low_deg,	walk_km, radius)
+			close_stops_count, least_distance = calculate_close_stops_and_least_distance(stops_list, random_lat, random_lon, radius)
 
-			close_stops_sum = close_stops_sum + close_stops_count
-			least_distance_sum = least_distance_sum + least_distance
+			if(close_stops_count != -1 ):
+				close_stops_sum = close_stops_sum + close_stops_count
+				least_distance_sum = least_distance_sum + least_distance
 
-			x = x + 1
-			print("Calculated population coverage for " + str(x) + "/" + str(sample_size) + " points", end="\r")
+				x = x + 1
+				print("Calculated population coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
 
-	return close_stops_sum/sample_size, least_distance_sum/sample_size
+		stops_sum = stops_sum + close_stops_sum/sample_size
+		distance_sum = distance_sum + least_distance_sum/sample_size
+
+	return stops_sum/repetitions, int((distance_sum/repetitions) * 1000)
 
 
 
@@ -256,9 +243,19 @@ def get_stops_in_square(stops_list, random_lat, random_lon, cutoff):
 
 
 
-def calculate_close_stops_and_least_distance(stops_list, cutoff_square_stops, random_lat, random_lon, cutoff, walk_km, radius):
+def calculate_close_stops_and_least_distance(stops_list, random_lat, random_lon, radius):
 
-	close_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff)
+	cutoff_high_deg = 0.0072	# 800m
+	cutoff_low_deg = 0.0036  	# 400m
+	walk_km = 0.4				# 400m
+
+	cutoff_square_stops = get_stops_in_square(stops_list,random_lat, random_lon, cutoff_high_deg)
+
+	if(len(cutoff_square_stops) == 0):
+		return -1, -1
+	
+
+	close_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff_low_deg)
 	
 	close_stops_distances = list(map(
 		lambda x: calculate_straight_distance(random_lat, random_lon, x['lat'], x['lon'], radius),
@@ -280,10 +277,14 @@ def calculate_close_stops_and_least_distance(stops_list, cutoff_square_stops, ra
 
 
 
+# ===============================================
+# =				Helper Methods		 			=
+# ===============================================
+
 
 def count_route_changes(connections_seq):
 
-	candidate_routes = [route for route in connections_seq[0]['routes'] if route['wait-time-mean'] != -1]
+	candidate_routes = [route for route in connections_seq[0]['routes'] if route['wait_time_mean'] != -1]
 	last_candidates = []
 	final_routes = []
 	changes = 0
@@ -305,12 +306,37 @@ def count_route_changes(connections_seq):
 			# We have a change, remember the routes that were left
 			changes = changes + 1
 			final_routes.append(last_candidates)
-			candidate_routes = [route for route in connection['routes'] if route['wait-time-mean'] != -1]
+			candidate_routes = [route for route in connection['routes'] if route['wait_time_mean'] != -1]
 			last_candidates = candidate_routes
 
 	final_routes.append(last_candidates)
 
 	return changes,final_routes
+
+
+def select_random_point_uniform(bounding_box):
+
+	# Uniformly select a random point within the boundaries
+	random_lat = random.uniform(bounding_box['top'], bounding_box['bottom'])
+	random_lon = random.uniform(bounding_box['left'], bounding_box['right'])
+
+	return random_lat, random_lon
+
+
+
+def select_random_point_population(population_distribution, sectors_list):
+
+	# Select a random sector based on population distribution
+	random_sector = random.choices(sectors_list, weights=population_distribution)[0]
+	random_square_side = math.sqrt(random_sector['area']) * 0.0045 #degrees
+
+	# Uniformly select a random point within that sector
+	random_lat = random.uniform(random_sector['lat'] - random_square_side, random_sector['lat'] + random_square_side)
+	random_lon = random.uniform(random_sector['lon'] - random_square_side, random_sector['lon'] + random_square_side)
+
+	return random_lat, random_lon
+
+
 
 
 # ===============================================

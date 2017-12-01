@@ -28,11 +28,11 @@ def main():
 	if len(sys.argv) > 2 and (sys.argv[1] == "static" or sys.argv[1] == "-s" ):
 
 		build_static_network(sys.argv[2])
-		calculate_distances(sys.argv[2])
 
 	# With the "distances" argument, calculate the distances between stops
 	elif len(sys.argv) > 2 and (sys.argv[1] == "distances" or sys.argv[1] == "-d" ):
-		# pass
+
+		calculate_distances(sys.argv[2])
 		calculate_road_distances(sys.argv[2])
 		
 
@@ -40,6 +40,7 @@ def main():
 	elif len(sys.argv) > 2 and (sys.argv[1] == "times" or sys.argv[1] == "-t" ):
 		
 		calculate_times(sys.argv[2])
+		cleanup(sys.argv[2])
 		
 	# With the "help" argument, calculate the distances between stops
 	elif len(sys.argv) > 1 and sys.argv[1] == "help":
@@ -105,8 +106,8 @@ def get_routes_list(city):
 		routes_map = map((lambda x: {"tag":x.attrib["tag"],
 			"api":api,
 			"stops_count":0,
-			"wait-time-mean":-1,
-			"wait-time-std":-1}), routes_tree)
+			"wait_time_mean":-1,
+			"wait_time_std":-1}), routes_tree)
 		# convert to list
 		routes_list = routes_list + list(routes_map)
 
@@ -151,8 +152,8 @@ def get_route_connections(route_xml):
 				'to': to_stop,
 				'routes': [route_xml.attrib['tag']],
 				'length': 0,
-				'road-length': 0,
-				'travel-time': -1}
+				'road_length': 0,
+				'travel_time': -1}
 			connections_list.append(connection_dict)
 
 	return connections_list
@@ -200,8 +201,8 @@ def merge_connections(connection_1, connection_2):
 		'to': connection_1['to'],
 		'routes': list(routes_set),
 		'length': connection_1['length'],
-		'road-length': connection_1['road-length'],
-		'travel-time': connection_1['travel-time']}
+		'road_length': connection_1['road_length'],
+		'travel_time': connection_1['travel_time']}
 
 
 def remove_isolated_stops(stops_list, connections_list):
@@ -321,14 +322,14 @@ def calculate_road_distances(city):
 	index = 0
 	for connection in connections_list:
 
-		connection['road-length'] = distances_list[index]
+		connection['road_length'] = distances_list[index]
 
 		# Suspiciously big difference in distances, recalculate
-		if (connection['road-length']/connection['length'] > 2 ):
-			connection['road-length'] = call_distance_API([stops_dict[connection['from']]],[stops_dict[connection['to']]])[0]
+		if (connection['road_length']/connection['length'] > 2 ):
+			connection['road_length'] = call_distance_API([stops_dict[connection['from']]],[stops_dict[connection['to']]])[0]
 
 		if (connection['length'] > distances_list[index]):
-			connection['road-length'] = connection['length']
+			connection['road_length'] = connection['length']
 
 		index = index + 1
 
@@ -355,7 +356,7 @@ def calculate_times(city):
 
 	# Add an empty array to connections for holding all possible travel times
 	for connection in connections_list:
-		connection['travel-time-array'] = []
+		connection['travel_time-array'] = []
 
 	# Iterate through routes
 	for index, route in enumerate(routes_list):
@@ -373,10 +374,10 @@ def calculate_times(city):
 		# If this an actual entry without errors
 		if (len(route_predictions) > 0):
 
-			route['wait-time-mean'], route['wait-time-std'] = calculate_route_wait_time(route_predictions)
+			route['wait_time_mean'], route['wait_time_std'] = calculate_route_wait_time(route_predictions)
 			
 			# If this isn't a route with no time predictions (nighttime buses)
-			if (route['wait-time-mean'] != -1):
+			if (route['wait_time_mean'] != -1):
 
 				# Get the connections involved in this route
 				route_connections = [connection for connection in connections_list if (route['tag'] in connection['routes']) ]
@@ -497,20 +498,76 @@ def calculate_connection_travel_times(route_predictions, route_connections, stop
 					# If trips were found, calculate the average trip time
 					if (len(connection_times) > 0):
 						travel_time = numpy.mean(connection_times)
-						connection['travel-time-array'].append(travel_time)
+						connection['travel_time-array'].append(travel_time)
 
 
 def consolidate_connection_times(connections_list):
 
 	for connection in connections_list:
 
-		if (len(connection['travel-time-array']) > 0):
-			connection['travel-time'] = numpy.mean(connection['travel-time-array'])
+		if (len(connection['travel_time-array']) > 0):
+			connection['travel_time'] = numpy.mean(connection['travel_time-array'])
 		else:
-			connection['travel-time'] = -1
+			connection['travel_time'] = -1
 
-		connection.pop('travel-time-array', None)
+		connection.pop('travel_time-array', None)
 
+
+
+def cleanup(city):
+
+	# read the previously-built network data
+	routes_list = read_routes_file(cities[city]['tag'])
+	stops_list = read_stops_file(cities[city]['tag'])
+	connections_list = read_connections_file(cities[city]['tag'])
+
+
+	average_city_speed = 0
+	index = 0
+
+	# Calculate average connection speed
+	for connection in connections_list:
+
+		if (connection['travel_time'] > 0):
+			average_city_speed = average_city_speed + (connection['road_length']/float(connection['travel_time']))
+			index = index + 1
+
+		elif (connection['travel_time'] == 0):
+			index = index + 1
+
+	average_city_speed = average_city_speed/index
+
+	invalid_routes = []
+
+	# Find invalid routes (nightly, etc.)
+	for route in routes_list:
+		if (route['wait_time_mean'] <= 0 ):
+
+			invalid_routes.append(route['tag'])
+			routes_list.remove(route)
+
+	# Find connections with invalid times
+	for connection in connections_list:
+
+		if(connection['travel_time'] < 0):
+	
+			# print([route for route in connection['routes'] if (route not in invalid_routes) ])
+
+			# If they only belong in invalid routes, remove them
+			if (not [route for route in connection['routes'] if (route not in invalid_routes) ] ):
+				connections_list.remove(connection)
+
+			# Else approximate travel time using length and average city speed
+			else:
+				connection['travel_time'] = connection['length'] * average_city_speed
+
+	print("Data cleaned up! Final counts: " + str(len(routes_list))
+		+ " routes, " + str(len(stops_list))
+		+ " stops, " + str(len(connections_list)) + " connections.")
+
+	# Write results to files
+	write_routes_file(cities[city]['tag'], routes_list)
+	write_connections_file(cities[city]['tag'], connections_list)	
 
 
 
