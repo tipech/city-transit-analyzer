@@ -52,7 +52,7 @@ cities = {
 	},'boston':{
 		'tag':"mbta",
 		'area': 232,
-		'radius': 6368.262,
+		'radius': 6368.517,
 		'apis':{
 			'mbta': {
 				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=mbta&command=",
