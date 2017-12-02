@@ -12,7 +12,8 @@ cities = {
 				'route':"&r=",
 				'commands':{
 					'route_list':"routeList",
-					'route_data':"routeConfig"
+					'route_data':"routeConfig",
+					'predictions':"predictionsForMultiStops"
 				}
 			}
 		}
@@ -27,7 +28,8 @@ cities = {
 				'route':"&r=",
 				'commands':{
 					'route_list':"routeList",
-					'route_data':"routeConfig"
+					'route_data':"routeConfig",
+					'predictions':"predictionsForMultiStops"
 				}
 			}
 		}

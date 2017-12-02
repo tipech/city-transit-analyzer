@@ -1,4 +1,4 @@
-import requests, sys, os, math, googlemaps, json, numpy
+import requests, sys, json, numpy
 import xml.etree.ElementTree as ET
 import networkx as nx
 from itertools import groupby
