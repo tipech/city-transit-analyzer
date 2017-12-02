@@ -49,6 +49,21 @@ cities = {
 				}
 			}
 		}
+	},'boston':{
+		'tag':"mbta",
+		'area': 232,
+		'radius': 6368.262,
+		'apis':{
+			'mbta': {
+				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=mbta&command=",
+				'route':"&r=",
+				'commands':{
+					'route_list':"routeList",
+					'route_data':"routeConfig",
+					'predictions':"predictionsForMultiStops"
+				}
+			}
+		}
 	}
  }
 

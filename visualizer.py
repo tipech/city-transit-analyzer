@@ -155,136 +155,124 @@ def calculate_area_coverage(stops_list, radius, sample_size, repetitions):
 	cutoff_low_deg = 0.0036  	# 400m
 	walk_km = 0.4				# 400m
 
-	lat_dict = {float(stop['lat']):stop for stop in stops_list}
-	lon_dict = {float(stop['lon']):stop for stop in stops_list}
+	lat_list = [float(stop['lat']) for stop in stops_list]
+	lon_list = [float(stop['lon']) for stop in stops_list]
 
-	bounding_box = { 'left': min(lon_dict) - cutoff_low_deg,
-		'right': max(lon_dict) + cutoff_low_deg,
-		'top': max(lat_dict) + cutoff_low_deg,
-		'bottom': min(lat_dict) - cutoff_low_deg}
+	bounding_box = { 'left': min(lon_list) - cutoff_low_deg,
+		'right': max(lon_list) + cutoff_low_deg,
+		'top': max(lat_list) + cutoff_low_deg,
+		'bottom': min(lat_list) - cutoff_low_deg}
 
-	stops_sum = 0
-	distance_sum = 0
+	close_stops = 0
+	least_distance = 0
 
 	# Average over several seeds
 	for i in range(0,repetitions):
 
 		random.seed()
-		sample = []
-		close_stops_sum = 0
-		least_distance_sum = 0
-		x = 0
-		i = 0
-
-		while x < sample_size and i < 10000:
-
-			i = i + 1
+		for x in range(0,sample_size):
 
 			random_lat, random_lon = select_random_point_uniform(bounding_box)
 
-			close_stops_count, least_distance = calculate_close_stops_and_least_distance(stops_list, random_lat, random_lon, radius)
+			# Make sure we are within the service area (within 800m of nearest stop)
+			cutoff_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff_high_deg)
+			while (len(cutoff_square_stops) == 0):
+				random_lat, random_lon = select_random_point_population(population_distribution, sectors_list)
+				cutoff_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff_high_deg)
 
-			if(close_stops_count != -1 ):
-				close_stops_sum = close_stops_sum + close_stops_count
-				least_distance_sum = least_distance_sum + least_distance
+			# Calculate number of close stops and least distance
+			close_stops_count, close_stops_distances = (
+				calculate_close_stops(cutoff_square_stops, random_lat, random_lon, cutoff_low_deg))
+			least_distance = calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops)
 
-				x = x + 1
-				print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
+			close_stops = close_stops + close_stops_count
+			least_distance = least_distance + least_distance
+			print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
 
-		stops_sum = stops_sum + close_stops_sum/sample_size
-		distance_sum = distance_sum + least_distance_sum/sample_size
-
-	return stops_sum/repetitions, int((distance_sum/repetitions) * 1000)
+	return close_stops/(sample_size*repetitions), int((least_distance/(sample_size*repetitions)) * 1000)
 
 
 def calculate_population_coverage(stops_list, sectors_list, radius, sample_size, repetitions):
 
-
 	population_distribution = [sector['population'] for sector in sectors_list]
-
-	stops_sum = 0
-	distance_sum = 0
-
-	# Average over several seeds
-	for i in range(0,repetitions):
-
-		random.seed()
-		sample = []
-		close_stops_sum = 0
-		least_distance_sum = 0
-		x = 0
-		i = 0
-
-		while x < sample_size and i < 10000:
-
-			i = i + 1
-
-			random_lat, random_lon = select_random_point_population(population_distribution, sectors_list)
-
-			close_stops_count, least_distance = calculate_close_stops_and_least_distance(stops_list, random_lat, random_lon, radius)
-
-			if(close_stops_count != -1 ):
-				close_stops_sum = close_stops_sum + close_stops_count
-				least_distance_sum = least_distance_sum + least_distance
-
-				x = x + 1
-				print("Calculated population coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
-
-		stops_sum = stops_sum + close_stops_sum/sample_size
-		distance_sum = distance_sum + least_distance_sum/sample_size
-
-	return stops_sum/repetitions, int((distance_sum/repetitions) * 1000)
-
-
-def calculate_trip(G, radius, sample_size, repetitions):
 
 	cutoff_high_deg = 0.0072	# 800m
 	cutoff_low_deg = 0.0036  	# 400m
 	walk_km = 0.4				# 400m
 
-	lat_dict = {float(stop['lat']):stop for stop in stops_list}
-	lon_dict = {float(stop['lon']):stop for stop in stops_list}
-
-	bounding_box = { 'left': min(lon_dict) - cutoff_low_deg,
-		'right': max(lon_dict) + cutoff_low_deg,
-		'top': max(lat_dict) + cutoff_low_deg,
-		'bottom': min(lat_dict) - cutoff_low_deg}
-
-	stops_sum = 0
-	distance_sum = 0
+	close_stops = 0
+	least_distance = 0
 
 	# Average over several seeds
 	for i in range(0,repetitions):
 
 		random.seed()
-		sample = []
-		close_stops_sum = 0
-		least_distance_sum = 0
-		x = 0
-		i = 0
+		for x in range(0,sample_size):
 
-		while x < sample_size and i < 10000:
+			random_lat, random_lon = select_random_point_population(population_distribution, sectors_list)
 
-			i = i + 1
+			# Make sure we are within the service area (within 800m of nearest stop)
+			cutoff_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff_high_deg)
+			while (len(cutoff_square_stops) == 0):
+				random_lat, random_lon = select_random_point_population(population_distribution, sectors_list)
+				cutoff_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff_high_deg)
+
+			# Calculate number of close stops and least distance
+			close_stops_count, close_stops_distances = (
+				calculate_close_stops(cutoff_square_stops, random_lat, random_lon, cutoff_low_deg))
+			least_distance = calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops)
+
+			close_stops = close_stops + close_stops_count
+			least_distance = least_distance + least_distance
+			print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
+
+	return close_stops/(sample_size*repetitions), int((least_distance/(sample_size*repetitions)) * 1000)
+
+
+def calculate_trip(G, radius, sample_size, repetitions):
+
+	cutoff_high_deg = 0.0072	# 800m
+
+	lat_list = [float(stop['lat']) for stop in stops_list]
+	lon_list = [float(stop['lon']) for stop in stops_list]
+
+	bounding_box = { 'left': min(lon_list) - cutoff_low_deg,
+		'right': max(lon_list) + cutoff_low_deg,
+		'top': max(lat_list) + cutoff_low_deg,
+		'bottom': min(lat_list) - cutoff_low_deg}
+
+	trip_time = 0
+	trip_distance = 0
+	trip_changes = 0
+
+	# Average over several seeds
+	for i in range(0,repetitions):
+
+		random.seed()
+		for x in range(0,sample_size):
 
 			random_lat_1, random_lon_1 = select_random_point_uniform(bounding_box)
 			random_lat_2, random_lon_2 = select_random_point_uniform(bounding_box)
 
+			# Make sure first point is within the service area (within 800m of nearest stop)
+			cutoff_square_stops = get_stops_in_square(stops_list, random_lat_1, random_lon_1, cutoff_high_deg)
+			while (len(cutoff_square_stops) == 0):
+				random_lat_1, random_lon_1 = select_random_point_uniform(bounding_box)
+				cutoff_square_stops = get_stops_in_square(stops_list, random_lat_1, random_lon_1, cutoff_high_deg)
 
+			# Make sure second point is within the service area (within 800m of nearest stop)
+			cutoff_square_stops = get_stops_in_square(stops_list, random_lat_2, random_lon_2, cutoff_high_deg)
+			while (len(cutoff_square_stops) == 0):
+				random_lat_2, random_lon_2 = select_random_point_uniform(bounding_box)
+				cutoff_square_stops = get_stops_in_square(stops_list, random_lat_2, random_lon_2, cutoff_high_deg)
 
-			close_stops_count, least_distance = calculate_close_stops_and_least_distance(stops_list, random_lat, random_lon, radius)
+			# Calculate trip time
 
-			if(close_stops_count != -1 ):
-				close_stops_sum = close_stops_sum + close_stops_count
-				least_distance_sum = least_distance_sum + least_distance
+			# close_stops = close_stops + close_stops_count
+			# least_distance = least_distance + least_distance
+			print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
 
-				x = x + 1
-				print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
-
-		stops_sum = stops_sum + close_stops_sum/sample_size
-		distance_sum = distance_sum + least_distance_sum/sample_size
-
-	return stops_sum/repetitions, int((distance_sum/repetitions) * 1000)
+	return close_stops/(sample_size*repetitions), int((least_distance/(sample_size*repetitions)) * 1000)
 
 
 def get_stops_in_square(stops_list, random_lat, random_lon, cutoff):
@@ -294,17 +282,7 @@ def get_stops_in_square(stops_list, random_lat, random_lon, cutoff):
 			and (random_lon < float(stop['lon'])+cutoff and random_lon > float(stop['lon'])-cutoff))]
 
 
-def calculate_cutoff_stops(stops_list, random_lat, random_lon, cutoff_high_deg):
-	
-
-
-def calculate_close_stops_and_least_distance(stops_list, random_lat, random_lon, cutoff_high_deg):
-
-	cutoff_square_stops = get_stops_in_square(stops_list,random_lat, random_lon, cutoff_high_deg)
-
-	if(len(cutoff_square_stops) == 0):
-		return -1, -1
-	
+def calculate_close_stops(stops_list, random_lat, random_lon, cutoff_low_deg):
 
 	close_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff_low_deg)
 	
@@ -314,7 +292,12 @@ def calculate_close_stops_and_least_distance(stops_list, random_lat, random_lon,
 
 	close_stops_count = len(list(filter(lambda x: x < walk_km, close_stops_distances)))
 
-	if close_stops_count > 0:
+	return close_stops_count, close_stops_distances
+
+
+def calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops):
+
+	if(close_stops_distances):
 
 		least_distance = min(close_stops_distances)
 
@@ -324,7 +307,7 @@ def calculate_close_stops_and_least_distance(stops_list, random_lat, random_lon,
 			cutoff_square_stops)
 		least_distance = min(list(cutoff_stops_distances))
 
-	return close_stops_count, least_distance
+	return least_distance
 
 
 
