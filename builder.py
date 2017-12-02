@@ -34,12 +34,23 @@ def main():
 
 		calculate_distances(sys.argv[2])
 		calculate_road_distances(sys.argv[2])
-		
 
-	# With the "distances" argument, calculate the distances between stops
+	# With the "distances" argument, calculate the times between stops
 	elif len(sys.argv) > 2 and (sys.argv[1] == "times" or sys.argv[1] == "-t" ):
 		
 		calculate_times(sys.argv[2])
+		cleanup(sys.argv[2])
+		
+	# With the "all" argument, calculate everything in a row
+	elif len(sys.argv) > 2 and (sys.argv[1] == "all" or sys.argv[1] == "-a" ):
+		
+		build_static_network(sys.argv[2])
+
+		calculate_distances(sys.argv[2])
+		calculate_road_distances(sys.argv[2])
+
+		calculate_times(sys.argv[2])
+		
 		cleanup(sys.argv[2])
 		
 	# With the "help" argument, calculate the distances between stops

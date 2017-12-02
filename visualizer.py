@@ -100,7 +100,7 @@ def calculate_city_metrics(G, routes_list, stops_list, connections_list, city):
 
 
 	# ------------- Shortest Times --------------
-	metrics['average_trip'] = calculate_trip(G, radius, sample_size, repetitions)
+	metrics['average_trip'] = calculate_trip(G, stops_list, radius, sample_size, repetitions)
 
 
 	# --------- Shortest Paths & Detour ---------
@@ -115,11 +115,11 @@ def calculate_city_metrics(G, routes_list, stops_list, connections_list, city):
 
 
 	# ----------------- Coverage ----------------
-	# sectors_list = read_demographics_file(cities[city]['tag'])
-	# metrics['area_coverage_stops'], metrics['area_coverage_distance'] = (
-	# 	calculate_area_coverage(stops_list, radius, sample_size, repetitions))
-	# metrics['population_coverage_stops'], metrics['population_coverage_distance'] = (
-	# 	calculate_population_coverage(stops_list, sectors_list, radius, sample_size, repetitions))
+	sectors_list = read_demographics_file(cities[city]['tag'])
+	metrics['area_coverage_stops'], metrics['area_coverage_distance'] = (
+		calculate_area_coverage(stops_list, radius, sample_size, repetitions))
+	metrics['population_coverage_stops'], metrics['population_coverage_distance'] = (
+		calculate_population_coverage(stops_list, sectors_list, radius, sample_size, repetitions))
 
 
 	# -------- Clustering & Connectivity --------
@@ -177,19 +177,19 @@ def calculate_area_coverage(stops_list, radius, sample_size, repetitions):
 			# Make sure we are within the service area (within 800m of nearest stop)
 			cutoff_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff_high_deg)
 			while (len(cutoff_square_stops) == 0):
-				random_lat, random_lon = select_random_point_population(population_distribution, sectors_list)
+				random_lat, random_lon = select_random_point_uniform(bounding_box)
 				cutoff_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff_high_deg)
 
 			# Calculate number of close stops and least distance
 			close_stops_count, close_stops_distances = (
-				calculate_close_stops(cutoff_square_stops, random_lat, random_lon, cutoff_low_deg))
-			least_distance = calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops)
+				calculate_close_stops(cutoff_square_stops, random_lat, random_lon, cutoff_low_deg, radius))
+			least_distance = calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops, radius)
 
 			close_stops = close_stops + close_stops_count
 			least_distance = least_distance + least_distance
 			print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
 
-	return close_stops/(sample_size*repetitions), int((least_distance/(sample_size*repetitions)) * 1000)
+	return close_stops/(sample_size*repetitions), least_distance/(sample_size*repetitions)
 
 
 def calculate_population_coverage(stops_list, sectors_list, radius, sample_size, repetitions):
@@ -198,7 +198,6 @@ def calculate_population_coverage(stops_list, sectors_list, radius, sample_size,
 
 	cutoff_high_deg = 0.0072	# 800m
 	cutoff_low_deg = 0.0036  	# 400m
-	walk_km = 0.4				# 400m
 
 	close_stops = 0
 	least_distance = 0
@@ -219,19 +218,20 @@ def calculate_population_coverage(stops_list, sectors_list, radius, sample_size,
 
 			# Calculate number of close stops and least distance
 			close_stops_count, close_stops_distances = (
-				calculate_close_stops(cutoff_square_stops, random_lat, random_lon, cutoff_low_deg))
-			least_distance = calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops)
+				calculate_close_stops(cutoff_square_stops, random_lat, random_lon, cutoff_low_deg, radius))
+			least_distance = calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops, radius)
 
 			close_stops = close_stops + close_stops_count
 			least_distance = least_distance + least_distance
 			print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
 
-	return close_stops/(sample_size*repetitions), int((least_distance/(sample_size*repetitions)) * 1000)
+	return close_stops/(sample_size*repetitions), least_distance/(sample_size*repetitions)
 
 
-def calculate_trip(G, radius, sample_size, repetitions):
+def calculate_trip(G, stops_list, radius, sample_size, repetitions):
 
 	cutoff_high_deg = 0.0072	# 800m
+	cutoff_low_deg = 0.0036  	# 400m
 
 	lat_list = [float(stop['lat']) for stop in stops_list]
 	lon_list = [float(stop['lon']) for stop in stops_list]
@@ -267,12 +267,14 @@ def calculate_trip(G, radius, sample_size, repetitions):
 				cutoff_square_stops = get_stops_in_square(stops_list, random_lat_2, random_lon_2, cutoff_high_deg)
 
 			# Calculate trip time
+			nx.shortest_path(G,)
 
-			# close_stops = close_stops + close_stops_count
-			# least_distance = least_distance + least_distance
-			print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
+			trip_time = trip_time + 1
+			trip_distance = trip_distance + 1
+			trip_changes = trip_changes + 1
+			print("Calculated trip stats for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
 
-	return close_stops/(sample_size*repetitions), int((least_distance/(sample_size*repetitions)) * 1000)
+	return trip_time/(sample_size*repetitions), trip_distance/(sample_size*repetitions), trip_changes/(sample_size*repetitions)
 
 
 def get_stops_in_square(stops_list, random_lat, random_lon, cutoff):
@@ -282,32 +284,39 @@ def get_stops_in_square(stops_list, random_lat, random_lon, cutoff):
 			and (random_lon < float(stop['lon'])+cutoff and random_lon > float(stop['lon'])-cutoff))]
 
 
-def calculate_close_stops(stops_list, random_lat, random_lon, cutoff_low_deg):
+def calculate_close_stops(stops_list, random_lat, random_lon, cutoff_low_deg, radius):
+
+	walk_km = 0.4		# 400m
 
 	close_square_stops = get_stops_in_square(stops_list, random_lat, random_lon, cutoff_low_deg)
 	
-	close_stops_distances = list(map(
-		lambda x: calculate_straight_distance(random_lat, random_lon, x['lat'], x['lon'], radius),
-		close_square_stops))
-
-	close_stops_count = len(list(filter(lambda x: x < walk_km, close_stops_distances)))
+	close_stops_distances = (
+			[calculate_straight_distance(random_lat, random_lon, stop['lat'], stop['lon'], radius) for stop in close_square_stops])
+	
+	close_stops_count = len([distance for distance in close_stops_distances if distance < walk_km])
 
 	return close_stops_count, close_stops_distances
 
 
-def calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops):
+def calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops, radius):
 
 	if(close_stops_distances):
 
 		least_distance = min(close_stops_distances)
 
 	else:
-		cutoff_stops_distances = map(
-			lambda x: calculate_straight_distance(random_lat, random_lon, x['lat'], x['lon'], radius),
-			cutoff_square_stops)
-		least_distance = min(list(cutoff_stops_distances))
+		cutoff_stops_distances = (
+			[calculate_straight_distance(random_lat, random_lon, stop['lat'], stop['lon'], radius) for stop in cutoff_square_stops])
+		least_distance = min(cutoff_stops_distances)
 
 	return least_distance
+
+
+def get_closest_stop(random_lat, random_lon, cutoff_square_stops, radius):
+
+	stop[''] for 
+
+
 
 
 
