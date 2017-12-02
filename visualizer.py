@@ -292,7 +292,7 @@ def calculate_close_stops(stops_list, random_lat, random_lon, cutoff_low_deg, ra
 	
 	close_stops_distances = (
 			[calculate_straight_distance(random_lat, random_lon, stop['lat'], stop['lon'], radius) for stop in close_square_stops])
-	
+
 	close_stops_count = len([distance for distance in close_stops_distances if distance < walk_km])
 
 	return close_stops_count, close_stops_distances
@@ -314,7 +314,11 @@ def calculate_least_distance(random_lat, random_lon, close_stops_distances, cuto
 
 def get_closest_stop(random_lat, random_lon, cutoff_square_stops, radius):
 
-	stop[''] for 
+	cutoff_stops_distances = (
+		[calculate_straight_distance(random_lat, random_lon, stop['lat'], stop['lon'], radius) for stop in cutoff_square_stops])
+	least_distance = min(cutoff_stops_distances)
+
+	stop['tag'] for stop in cutoff_square_stops
 
 
 

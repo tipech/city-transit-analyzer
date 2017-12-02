@@ -335,8 +335,11 @@ def calculate_road_distances(city):
 
 		connection['road_length'] = distances_list[index]
 
+		if (connection['length'] == 0):
+			connection['road_length'] = 0
+			
 		# Suspiciously big difference in distances, recalculate
-		if (connection['road_length']/connection['length'] > 2 ):
+		elif (connection['road_length']/connection['length'] > 2 ):
 			connection['road_length'] = call_distance_API([stops_dict[connection['from']]],[stops_dict[connection['to']]])[0]
 
 		if (connection['length'] > distances_list[index]):
