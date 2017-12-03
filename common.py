@@ -62,6 +62,15 @@ cities = {
 					'route_data':"routeConfig",
 					'predictions':"predictionsForMultiStops"
 				}
+			},
+			'mit': {
+				'base':"http://webservices.nextbus.com/service/publicXMLFeed?a=mit&command=",
+				'route':"&r=",
+				'commands':{
+					'route_list':"routeList",
+					'route_data':"routeConfig",
+					'predictions':"predictionsForMultiStops"
+				}
 			}
 		}
 	}
@@ -148,6 +157,26 @@ def read_stops_file(directory):
 	return stops_list
 
 
+def read_connections_file(directory):
+	"""Opens connections file and reads contents into a list."""
+
+	# read the file and split the rows into a list
+	try:
+		connections_file = open(directory + "/connections.csv","r+")
+	except FileNotFoundError:
+		print("Error: Connections file missing for this city!")
+		sys.exit()
+
+	connections_list_csv = connections_file.read().split("\n")
+	connections_file.close()
+
+	# split every row into a connection entry by applying read_connection_entry
+	connections_map = map(read_connection_entry, connections_list_csv)
+	# filter out first (header) and last (empty) lines
+	connections_list = list(filter(lambda x: x != None, connections_map))
+
+	return connections_list
+
 
 def read_demographics_file(directory):
 	"""Opens demographics file and reads contents into a list."""
@@ -170,25 +199,25 @@ def read_demographics_file(directory):
 	return sectors_list
 
 
-def read_connections_file(directory):
-	"""Opens connections file and reads contents into a list."""
+def read_poi_file(directory):
+	"""Opens points of interest file and reads contents into a list."""
 
 	# read the file and split the rows into a list
 	try:
-		connections_file = open(directory + "/connections.csv","r+")
+		poi_file = open(directory + "/poi.csv","r+")
 	except FileNotFoundError:
-		print("Error: Connections file missing for this city!")
+		print("Error: Points of interest file missing for this city!")
 		sys.exit()
 
-	connections_list_csv = connections_file.read().split("\n")
-	connections_file.close()
+	poi_list_csv = poi_file.read().split("\n")
+	poi_file.close()
 
-	# split every row into a connection entry by applying read_connection_entry
-	connections_map = map(read_connection_entry, connections_list_csv)
+	# split every row into a sector entry by applying read_sector_entry
+	poi_map = map(read_poi_entry, poi_list_csv)
 	# filter out first (header) and last (empty) lines
-	connections_list = list(filter(lambda x: x != None, connections_map))
+	poi_list = list(filter(lambda x: x != None, poi_map))
 
-	return connections_list
+	return poi_list
 	
 	
 def read_route_entry(route_text):
@@ -227,6 +256,25 @@ def read_stop_entry(stop_text):
 		return None
 	
 	
+def read_connection_entry(connection_text):
+	"""Parses a connection entry from comma-separated to dictionary form."""
+	
+	# split comma-separated values
+	connection_list = connection_text.split(",")
+
+	# handle invalid lines
+	if len(connection_list) > 1 and connection_list[0] != "from":
+		return {
+			"from": connection_list[0],
+			"to": connection_list[1],
+			"routes": connection_list[2].split("|"),
+			"length": float(connection_list[3]),
+			"road_length": float(connection_list[4]),
+			"travel_time": float(connection_list[5])}
+	else:
+		return None
+	
+	
 def read_sector_entry(sector_text):
 	"""Parses a sector entry from comma-separated to dictionary form."""
 	
@@ -245,21 +293,18 @@ def read_sector_entry(sector_text):
 		return None
 	
 	
-def read_connection_entry(connection_text):
-	"""Parses a connection entry from comma-separated to dictionary form."""
+def read_poi_entry(poi_text):
+	"""Parses a point of interest entry from comma-separated to dictionary form."""
 	
 	# split comma-separated values
-	connection_list = connection_text.split(",")
+	poi_list = poi_text.split(",")
 
 	# handle invalid lines
-	if len(connection_list) > 1 and connection_list[0] != "from":
-		return {
-			"from": connection_list[0],
-			"to": connection_list[1],
-			"routes": connection_list[2].split("|"),
-			"length": float(connection_list[3]),
-			"road_length": float(connection_list[4]),
-			"travel_time": float(connection_list[5])}
+	if len(poi_list) > 1 and poi_list[1] != "lat":
+		return {"type": poi_list[0],
+			"lat": float(poi_list[1]),
+			"lon": float(poi_list[2]),
+			"name": poi_list[3]}
 	else:
 		return None
 
@@ -313,7 +358,7 @@ def write_connections_file(directory, connections_list):
 	connections_file = open(directory + "/connections.csv", "w+")
 
 	# Write connections file
-	connections_file.write("from,to,routes,length,road_length,road_length\n")
+	connections_file.write("from,to,routes,length,road_length,travel_time\n")
 	for connection in connections_list:
 		connections_file.write(
 			  connection['from'] + ","

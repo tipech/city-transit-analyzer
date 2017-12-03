@@ -22,14 +22,14 @@ def main():
 
 		metrics = []
 
-		for city in sys.argv[2].split(" "):
+		for city in sys.argv[2].split(","):
 
 			# Read the network files
 			routes_list = read_routes_file(cities[city]['tag'])
 			stops_list = read_stops_file(cities[city]['tag'])
 			connections_list = read_connections_file(cities[city]['tag'])
 
-			G = create_undirected_network(stops_list, connections_list)
+			G = create_directed_network(stops_list, connections_list)
 
 			# draw_static_network(G,stops_list)
 			
@@ -48,7 +48,7 @@ def main():
 
 		
 
-def create_undirected_network(stops_list, connections_list):
+def create_directed_network(stops_list, connections_list):
 	"""Draw an image for the pre-built static network of the transport system."""
 
 
@@ -71,12 +71,15 @@ def create_undirected_network(stops_list, connections_list):
 
 def calculate_city_metrics(G, routes_list, stops_list, connections_list, city):
 
+	sectors_list = read_demographics_file(cities[city]['tag'])
+	poi_list = read_poi_file(cities[city]['tag'])
+
 	# Area and earth radius presets
 	radius = cities[city]['radius']
 	area = cities[city]['area']
 
 	repetitions = 1
-	sample_size = 100
+	sample_size = 10
 
 	metrics = {}
 
@@ -93,33 +96,38 @@ def calculate_city_metrics(G, routes_list, stops_list, connections_list, city):
 	metrics['total_travel_time'] = sum([connection['travel_time'] for connection in connections_list])
 	metrics['connection_travel_time_average'] = metrics['total_travel_time']/metrics['connections_count']
 
-	metrics['connection_speed_average'] = metrics['total_length']/metrics['total_travel_time']
+	metrics['connection_speed_average'] = 60*metrics['total_length']/metrics['total_travel_time']
 
-	metrics['wait_time_average'] = numpy.mean([route['wait_time_mean'] for route in routes_list])
-	metrics['wait_time_std'] = numpy.std([route['wait_time_mean'] for route in routes_list])
-
-
-	# ------------- Shortest Times --------------
-	metrics['average_trip'] = calculate_trip(G, stops_list, radius, sample_size, repetitions)
+	metrics['wait_time_average'] = numpy.mean([route['wait_time_mean'] for route in routes_list])/2
+	metrics['wait_time_std'] = numpy.std([route['wait_time_mean'] for route in routes_list])/2
 
 
-	# --------- Shortest Paths & Detour ---------
-	# metrics['average_shortest_path'] = nx.average_shortest_path_length(G,weight='length')
-	# metrics['average_straight_distance'] = calculate_average_straight_distance(G, stops_list, radius)
-	# metrics['average_detour_normalized'] = ((metrics['average_shortest_path']-metrics['average_straight_distance'])
-	# 	/metrics['average_straight_distance'])
+	# --------- Shortest Times & Paths ----------
+	(metrics['average_trip_time_uniform'],
+		metrics['average_trip_length_uniform'],
+		metrics['average_trip_transfers_uniform'],
+		metrics['average_straight_distance_uniform']) = (
+		calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius, sample_size, repetitions))
 
-	# ------------- Shortest Times --------------
-	# metrics['average']
-	# metrics['average_trip_time'], metrics['average_trip_changes'],  = nx.average_shortest_path_length(G,weight='length')
+	metrics['average_detour_normalized'] = ((metrics['average_trip_length_uniform']-metrics['average_straight_distance_uniform'])
+		/metrics['average_straight_distance_uniform'])
 
+
+	# --- Shortest Population Times and Paths ---
+	(metrics['average_trip_time_population'],
+		metrics['average_trip_length_population'],
+		metrics['average_trip_transfers_population'],
+		metrics['average_straight_distance_population']) = (
+		calculate_trip_population(G, routes_list, stops_list, connections_list, sectors_list, radius, sample_size, repetitions))
 
 	# ----------------- Coverage ----------------
-	sectors_list = read_demographics_file(cities[city]['tag'])
-	metrics['area_coverage_stops'], metrics['area_coverage_distance'] = (
-		calculate_area_coverage(stops_list, radius, sample_size, repetitions))
+	metrics['uniform_coverage_stops'], metrics['uniform_coverage_distance'] = (
+		calculate_uniform_coverage(stops_list, radius, sample_size, repetitions))
 	metrics['population_coverage_stops'], metrics['population_coverage_distance'] = (
 		calculate_population_coverage(stops_list, sectors_list, radius, sample_size, repetitions))
+
+	# ------------ Points Of Interest -----------
+	# calculate_poi_uniform(G, routes_list, stops_list, connections_list, poi_list, radius, sample_size, repetitions)
 
 
 	# -------- Clustering & Connectivity --------
@@ -130,26 +138,7 @@ def calculate_city_metrics(G, routes_list, stops_list, connections_list, city):
 	return metrics
 
 
-def calculate_average_straight_distance(G, stops_list, radius):
-
-	sum = 0
-
-	for i in range(0,len(stops_list)):
-		for j in range(i+1,len(stops_list)):
-
-			stop_1 = stops_list[i]
-			stop_2 = stops_list[j]
-
-			if stop_1 != stop_2:
-				distance = calculate_straight_distance(stop_1['lat'], stop_1['lon'], stop_2['lat'], stop_2['lon'], radius)
-				sum = sum + distance
-		
-		print("Calculated distances for " + str( i + 1 ) + "/" + str(len(G.nodes)) + " stops", end="\r")
-	
-	return 2*sum/(len(G.nodes)*(len(G.nodes)-1))
-
-
-def calculate_area_coverage(stops_list, radius, sample_size, repetitions):
+def calculate_uniform_coverage(stops_list, radius, sample_size, repetitions):
 
 	cutoff_high_deg = 0.0072	# 800m
 	cutoff_low_deg = 0.0036  	# 400m
@@ -228,13 +217,15 @@ def calculate_population_coverage(stops_list, sectors_list, radius, sample_size,
 	return close_stops/(sample_size*repetitions), least_distance/(sample_size*repetitions)
 
 
-def calculate_trip(G, stops_list, radius, sample_size, repetitions):
+def calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius, sample_size, repetitions):
 
 	cutoff_high_deg = 0.0072	# 800m
 	cutoff_low_deg = 0.0036  	# 400m
 
 	lat_list = [float(stop['lat']) for stop in stops_list]
 	lon_list = [float(stop['lon']) for stop in stops_list]
+
+	routes_dict = {route['tag']:route for route in routes_list}
 
 	bounding_box = { 'left': min(lon_list) - cutoff_low_deg,
 		'right': max(lon_list) + cutoff_low_deg,
@@ -243,13 +234,15 @@ def calculate_trip(G, stops_list, radius, sample_size, repetitions):
 
 	trip_time = 0
 	trip_distance = 0
-	trip_changes = 0
+	trip_transfers = 0
+	trip_straight_distance = 0
 
 	# Average over several seeds
 	for i in range(0,repetitions):
 
 		random.seed()
-		for x in range(0,sample_size):
+		x=0
+		while x < sample_size:
 
 			random_lat_1, random_lon_1 = select_random_point_uniform(bounding_box)
 			random_lat_2, random_lon_2 = select_random_point_uniform(bounding_box)
@@ -260,21 +253,196 @@ def calculate_trip(G, stops_list, radius, sample_size, repetitions):
 				random_lat_1, random_lon_1 = select_random_point_uniform(bounding_box)
 				cutoff_square_stops = get_stops_in_square(stops_list, random_lat_1, random_lon_1, cutoff_high_deg)
 
+			stop_1 = get_closest_stop(random_lat_1, random_lon_1, cutoff_square_stops, radius)
+
 			# Make sure second point is within the service area (within 800m of nearest stop)
 			cutoff_square_stops = get_stops_in_square(stops_list, random_lat_2, random_lon_2, cutoff_high_deg)
 			while (len(cutoff_square_stops) == 0):
 				random_lat_2, random_lon_2 = select_random_point_uniform(bounding_box)
 				cutoff_square_stops = get_stops_in_square(stops_list, random_lat_2, random_lon_2, cutoff_high_deg)
 
-			# Calculate trip time
-			nx.shortest_path(G,)
+			stop_2 = get_closest_stop(random_lat_2, random_lon_2, cutoff_square_stops, radius)
 
-			trip_time = trip_time + 1
-			trip_distance = trip_distance + 1
-			trip_changes = trip_changes + 1
-			print("Calculated trip stats for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
+			# Find shortest path (forward or backwards)
+			try:
+				path = nx.shortest_path(G, stop_1['tag'], stop_2['tag'], 'travel_time')
+			except nx.NetworkXNoPath:
+				try:
+					path = nx.shortest_path(G, stop_2['tag'], stop_1['tag'], 'travel_time')
+				except nx.NetworkXNoPath:
+					path = -1
 
-	return trip_time/(sample_size*repetitions), trip_distance/(sample_size*repetitions), trip_changes/(sample_size*repetitions)
+			# If it exists, get data on it
+			if(path != -1):
+
+				connections_seq =  convert_stops_seq_to_connections_seq(path, connections_list)
+				transfers, trip_legs = count_route_transfers(connections_seq, routes_dict)
+
+				if(transfers != -1):
+					wait_time = 0
+					for leg_routes in trip_legs:
+						wait_time = wait_time + min([routes_dict[route]['wait_time_mean'] for route in leg_routes])/2
+
+					trip_time = trip_time + wait_time + sum([connection['travel_time'] for connection in connections_seq])
+					trip_distance = trip_distance + sum([connection['road_length'] for connection in connections_seq])
+					trip_transfers = trip_transfers + transfers
+					trip_straight_distance = (trip_straight_distance + 
+						calculate_straight_distance(stop_1['lat'], stop_1['lon'], stop_2['lat'], stop_2['lon'], radius))
+					x = x + 1
+					print("Calculated trip stats for " + str(x + i*sample_size) + "/" + str(sample_size*repetitions), end="\r")
+
+	return (trip_time/(sample_size*repetitions),
+		trip_distance/(sample_size*repetitions),
+		trip_transfers/(sample_size*repetitions),
+		trip_straight_distance/(sample_size*repetitions))
+
+
+def calculate_trip_population(G, routes_list, stops_list, connections_list, sectors_list, radius, sample_size, repetitions):
+
+	population_distribution = [sector['population'] for sector in sectors_list]
+
+	cutoff_high_deg = 0.0072	# 800m
+	cutoff_low_deg = 0.0036  	# 400m
+
+	trip_time = 0
+	trip_distance = 0
+	trip_transfers = 0
+	trip_straight_distance = 0
+
+	# Average over several seeds
+	for i in range(0,repetitions):
+
+		random.seed()
+		x=0
+		while x < sample_size:
+
+			random_lat_1, random_lon_1 = select_random_point_population(population_distribution, sectors_list)
+			random_lat_2, random_lon_2 = select_random_point_population(population_distribution, sectors_list)
+
+			# Make sure first point is within the service area (within 800m of nearest stop)
+			cutoff_square_stops = get_stops_in_square(stops_list, random_lat_1, random_lon_1, cutoff_high_deg)
+			while (len(cutoff_square_stops) == 0):
+				random_lat_1, random_lon_1 = select_random_point_uniform(bounding_box)
+				cutoff_square_stops = get_stops_in_square(stops_list, random_lat_1, random_lon_1, cutoff_high_deg)
+
+			stop_1 = get_closest_stop(random_lat_1, random_lon_1, cutoff_square_stops, radius)
+
+			# Make sure second point is within the service area (within 800m of nearest stop)
+			cutoff_square_stops = get_stops_in_square(stops_list, random_lat_2, random_lon_2, cutoff_high_deg)
+			while (len(cutoff_square_stops) == 0):
+				random_lat_2, random_lon_2 = select_random_point_uniform(bounding_box)
+				cutoff_square_stops = get_stops_in_square(stops_list, random_lat_2, random_lon_2, cutoff_high_deg)
+
+			stop_2 = get_closest_stop(random_lat_2, random_lon_2, cutoff_square_stops, radius)
+
+			# Find shortest path (forward or backwards)
+			try:
+				path = nx.shortest_path(G, stop_1['tag'], stop_2['tag'], 'travel_time')
+			except nx.NetworkXNoPath:
+				try:
+					path = nx.shortest_path(G, stop_2['tag'], stop_1['tag'], 'travel_time')
+				except nx.NetworkXNoPath:
+					path = -1
+
+			# If it exists, get data on it
+			if(path != -1):
+
+				connections_seq =  convert_stops_seq_to_connections_seq(path, connections_list)
+				transfers, trip_legs = count_route_transfers(connections_seq, routes_dict)
+
+				if(transfers != -1):
+					wait_time = 0
+					for leg_routes in trip_legs:
+						wait_time = wait_time + min([routes_dict[route]['wait_time_mean'] for route in leg_routes])/2
+
+					trip_time = trip_time + wait_time + sum([connection['travel_time'] for connection in connections_seq])
+					trip_distance = trip_distance + sum([connection['road_length'] for connection in connections_seq])
+					trip_transfers = trip_transfers + transfers
+					trip_straight_distance = (trip_straight_distance + 
+						calculate_straight_distance(stop_1['lat'], stop_1['lon'], stop_2['lat'], stop_2['lon'], radius))
+					x = x + 1
+					print("Calculated trip stats for " + str(x + i*sample_size) + "/" + str(sample_size*repetitions), end="\r")
+
+	return (trip_time/(sample_size*repetitions),
+		trip_distance/(sample_size*repetitions),
+		trip_transfers/(sample_size*repetitions),
+		trip_straight_distance/(sample_size*repetitions))
+
+
+def calculate_poi_uniform(G, routes_list, stops_list, connections_list, poi_list, radius, sample_size, repetitions):
+
+	cutoff_high_deg = 0.0072	# 800m
+	cutoff_low_deg = 0.0036  	# 400m
+
+	lat_list = [float(stop['lat']) for stop in stops_list]
+	lon_list = [float(stop['lon']) for stop in stops_list]
+
+	routes_dict = {route['tag']:route for route in routes_list}
+
+	bounding_box = { 'left': min(lon_list) - cutoff_low_deg,
+		'right': max(lon_list) + cutoff_low_deg,
+		'top': max(lat_list) + cutoff_low_deg,
+		'bottom': min(lat_list) - cutoff_low_deg}
+
+	closest_poi_trip_time = 0
+
+	# Average over several seeds
+	for i in range(0,repetitions):
+
+		random.seed()
+		x=0
+		j=0
+		while x < sample_size and j < 1000:
+
+			random_lat_1, random_lon_1 = select_random_point_uniform(bounding_box)
+
+			trip_times = []
+
+			for poi in poi_list:
+
+				# Make sure first point is within the service area (within 800m of nearest stop)
+				cutoff_square_stops = get_stops_in_square(stops_list, random_lat_1, random_lon_1, cutoff_high_deg)
+				while (len(cutoff_square_stops) == 0):
+					random_lat_1, random_lon_1 = select_random_point_uniform(bounding_box)
+					cutoff_square_stops = get_stops_in_square(stops_list, random_lat_1, random_lon_1, cutoff_high_deg)
+
+				stop_1 = get_closest_stop(random_lat_1, random_lon_1, cutoff_square_stops, radius)
+
+				stop_2 = get_closest_stop(poi['lat'], poi['lon'], stops_list, radius)
+				# pprint(stop_2)
+
+				# Find shortest path (forward or backwards)
+				try:
+					path = nx.shortest_path(G, stop_1['tag'], stop_2['tag'], 'travel_time')
+				except nx.NetworkXNoPath:
+					path = -1
+
+				# If it exists, get data on it
+				if(path != -1):
+
+					connections_seq =  convert_stops_seq_to_connections_seq(path, connections_list)
+					transfers, trip_legs = count_route_transfers(connections_seq, routes_dict)
+
+					if(transfers != -1):
+						wait_time = 0
+						for leg_routes in trip_legs:
+							wait_time = wait_time + min([routes_dict[route]['wait_time_mean'] for route in leg_routes])/2
+
+						trip_times.append(wait_time + sum([connection['travel_time'] for connection in connections_seq]))
+
+			if(not trip_times):
+				closest_poi_trip_time = closest_poi_trip_time + min(trip_times)
+
+				x = x + 1
+				print("Calculated trip stats for " + str(x + i*sample_size) + "/" + str(sample_size*repetitions), end="\r")
+			j = j + 1
+
+	return closest_poi_trip_time/(sample_size*repetitions)
+
+
+# ===============================================
+# =				Helper Methods		 			=
+# ===============================================
 
 
 def get_stops_in_square(stops_list, random_lat, random_lon, cutoff):
@@ -314,51 +482,78 @@ def calculate_least_distance(random_lat, random_lon, close_stops_distances, cuto
 
 def get_closest_stop(random_lat, random_lon, cutoff_square_stops, radius):
 
-	cutoff_stops_distances = (
-		[calculate_straight_distance(random_lat, random_lon, stop['lat'], stop['lon'], radius) for stop in cutoff_square_stops])
-	least_distance = min(cutoff_stops_distances)
+	stops_distances = (
+		[{'distance': calculate_straight_distance(random_lat, random_lon, stop['lat'], stop['lon'], radius), 'stop': stop}
+			for stop in cutoff_square_stops])
+	least_distance = min([stop['distance'] for stop in stops_distances])
 
-	stop['tag'] for stop in cutoff_square_stops
-
-
-
-
-
-# ===============================================
-# =				Helper Methods		 			=
-# ===============================================
+	closest_stop = [stop['stop'] for stop in stops_distances if (stop['distance']==least_distance)][0]
+	return closest_stop
 
 
-def count_route_changes(connections_seq):
+def convert_stops_seq_to_connections_seq(stops_seq, connections_list):
 
-	candidate_routes = [route for route in connections_seq[0]['routes'] if route['wait_time_mean'] != -1]
+	connections_seq = []
+
+	for index in range(0, len(stops_seq) - 1):
+
+		from_stop = stops_seq[index]
+		to_stop = stops_seq[index + 1]
+
+		connection = [connection for connection in connections_list
+			if (connection['from'] == from_stop and connection['to'] == to_stop)][0]
+
+		connections_seq.append(connection)
+
+	return connections_seq
+
+
+def count_route_transfers(connections_seq, routes_dict):
+
+	# Impossible if empty list
+	if(not connections_seq):
+		return -1, []
+
+	candidate_routes = [route for route in connections_seq[0]['routes']
+		if (route in routes_dict and routes_dict[route]['wait_time_mean'] != -1)]
 	last_candidates = []
 	final_routes = []
 	changes = 0
 
 	for connection in connections_seq:
 
+		new_candidate_routes = []
+	
 		for candidate_route in candidate_routes:
 
 			# If a route doesn't go all the way to the previous change
 			if (candidate_route not in connection['routes']):
 
+				# print(candidate_routes)
 				# Remove it from the possible all-the-way routes
 				last_candidates.append(candidate_route)
-				candidate_routes.remove(candidate_route)
+				# candidate_routes.remove(candidate_route)
+			else:
+				new_candidate_routes.append(candidate_route)
 
 		# if there is no possible route for the last trip leg
-		if (not candidate_routes):
+		if (not new_candidate_routes):
 
 			# We have a change, remember the routes that were left
 			changes = changes + 1
 			final_routes.append(last_candidates)
-			candidate_routes = [route for route in connection['routes'] if route['wait_time_mean'] != -1]
-			last_candidates = candidate_routes
+			candidate_routes = [route for route in connection['routes']
+				if (route in routes_dict and routes_dict[route]['wait_time_mean'] != -1)]
+			last_candidates = list(candidate_routes)
 
 	final_routes.append(last_candidates)
 
-	return changes,final_routes
+	# Test if route was possible (due to having invalid routes)
+	for leg in final_routes:
+		if(not leg):
+			changes = -1
+
+	return changes-1,final_routes
 
 
 def select_random_point_uniform(bounding_box):
@@ -368,7 +563,6 @@ def select_random_point_uniform(bounding_box):
 	random_lon = random.uniform(bounding_box['left'], bounding_box['right'])
 
 	return random_lat, random_lon
-
 
 
 def select_random_point_population(population_distribution, sectors_list):

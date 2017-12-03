@@ -35,10 +35,14 @@ def main():
 		calculate_distances(sys.argv[2])
 		calculate_road_distances(sys.argv[2])
 
-	# With the "distances" argument, calculate the times between stops
+	# With the "times" argument, calculate the times between stops
 	elif len(sys.argv) > 2 and (sys.argv[1] == "times" or sys.argv[1] == "-t" ):
 		
 		calculate_times(sys.argv[2])
+		
+	# With the "cleanup" argument, remove invalid routes and cleanup data
+	elif len(sys.argv) > 2 and (sys.argv[1] == "clean" or sys.argv[1] == "-c" ):
+		
 		cleanup(sys.argv[2])
 		
 	# With the "all" argument, calculate everything in a row
@@ -133,11 +137,11 @@ def get_route_stops(route_xml):
 
 	# lambda function to turn xml attributes into dictionary keys
 	stop_dict_func = lambda x: {
-		'tag': x.attrib['tag'].split("_")[0],
+		'tag': x.attrib['tag'],
 		'title': x.attrib['title'],
 		'lat': x.attrib['lat'],
 		'lon': x.attrib['lon'],
-		'merged': [x.attrib['tag'].split("_")[0]]}
+		'merged': [x.attrib['tag']]}
 	stops_map = map(stop_dict_func, stops_map)
 
 	return list(stops_map)
@@ -154,8 +158,8 @@ def get_route_connections(route_xml):
 		for i in range(len(direction) - 1):
 
 			# get the stop tags, discard special endings like "_ar"
-			from_stop = (direction[i].attrib['tag']).split('_',1)[0]
-			to_stop = (direction[i+1].attrib['tag']).split('_',1)[0]
+			from_stop = direction[i].attrib['tag']
+			to_stop = direction[i+1].attrib['tag']
 
 			# add the new connection between stops
 			connection_dict = {
@@ -176,7 +180,7 @@ def consolidate_stops(stops_list):
 	# Turn stop list into a dictionary and back to remove duplicates
 	stops_list = list({stop['tag']: stop for stop in stops_list}.values())
 	# Sort list (optional)
-	stops_list.sort(key=(lambda x: int(x['tag'])))
+	stops_list.sort(key=(lambda x: x['tag']))
 
 	return stops_list
 
@@ -185,7 +189,7 @@ def consolidate_connections(connections_list):
 	"""Merge duplicates from the list of connections."""
 
 	# Sort list (optional)
-	connections_list.sort(key=(lambda x: (int(x['from']), int(x['to'])) ))
+	connections_list.sort(key=(lambda x: (x['from'], x['to']) ))
 
 	# Remove self loops
 	for i in reversed(range(0,len(connections_list))):
@@ -337,7 +341,7 @@ def calculate_road_distances(city):
 
 		if (connection['length'] == 0):
 			connection['road_length'] = 0
-			
+
 		# Suspiciously big difference in distances, recalculate
 		elif (connection['road_length']/connection['length'] > 2 ):
 			connection['road_length'] = call_distance_API([stops_dict[connection['from']]],[stops_dict[connection['to']]])[0]
@@ -427,14 +431,15 @@ def get_route_predictions(predictions_xml):
 
 					# Go through all the individual trips
 					for trip in direction:
+						if ('tripTag' in trip.attrib):
 
-						# Add the trip entry
-						trip_entry = {'tag': trip.attrib['tripTag'].split("_")[0],
-							'minutes': int(trip.attrib['minutes']),
-							'direction': trip.attrib['dirTag']}
-							# 'isDeparture': trip.attrib['isDeparture'] == 'true'}
+							# Add the trip entry
+							trip_entry = {'tag': trip.attrib['tripTag'],
+								'minutes': int(trip.attrib['minutes']),
+								'direction': trip.attrib['dirTag']}
+								# 'isDeparture': trip.attrib['isDeparture'] == 'true'}
 
-						trips_list.append(trip_entry)
+							trips_list.append(trip_entry)
 
 
 			# If there were no problems with that prediction
@@ -442,7 +447,7 @@ def get_route_predictions(predictions_xml):
 				
 				# Add the prediction entry
 				prediction_entry = { 'route': prediction_xml.attrib['routeTag'],
-					'stop': prediction_xml.attrib['stopTag'].split("_")[0],
+					'stop': prediction_xml.attrib['stopTag'],
 					'trips': trips_list}
 
 				predictions_list.append(prediction_entry)
@@ -552,36 +557,39 @@ def cleanup(city):
 	average_city_speed = average_city_speed/index
 
 	invalid_routes = []
+	valid_routes = []
 
 	# Find invalid routes (nightly, etc.)
 	for route in routes_list:
 		if (route['wait_time_mean'] <= 0 ):
 
 			invalid_routes.append(route['tag'])
-			routes_list.remove(route)
+		else:
+			valid_routes.append(route)
+
+	valid_connections = []
 
 	# Find connections with invalid times
 	for connection in connections_list:
 
 		if(connection['travel_time'] < 0):
 	
-			# print([route for route in connection['routes'] if (route not in invalid_routes) ])
-
-			# If they only belong in invalid routes, remove them
-			if (not [route for route in connection['routes'] if (route not in invalid_routes) ] ):
-				connections_list.remove(connection)
+			# Only keep connections if they don't belong only in invalid routes
+			if ( [route for route in connection['routes'] if (route not in invalid_routes) ] ):
 
 			# Else approximate travel time using length and average city speed
-			else:
+				valid_connections.append(connection)
 				connection['travel_time'] = connection['length'] * average_city_speed
+		else:
+			valid_connections.append(connection)
 
-	print("Data cleaned up! Final counts: " + str(len(routes_list))
+	print("Data cleaned up! Final counts: " + str(len(valid_routes))
 		+ " routes, " + str(len(stops_list))
-		+ " stops, " + str(len(connections_list)) + " connections.")
+		+ " stops, " + str(len(valid_connections)) + " connections.")
 
 	# Write results to files
-	write_routes_file(cities[city]['tag'], routes_list)
-	write_connections_file(cities[city]['tag'], connections_list)	
+	write_routes_file(cities[city]['tag'], valid_routes)
+	write_connections_file(cities[city]['tag'], valid_connections)	
 
 
 
