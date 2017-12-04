@@ -284,6 +284,8 @@ def calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius,
 
 	cutoff_high_deg = 0.0072	# 800m
 	cutoff_low_deg = 0.0036  	# 400m
+	# Adjust the result by 30% due to greedy path bias
+	adjustment_weight = 0.7
 
 	lat_list = [float(stop['lat']) for stop in stops_list]
 	lon_list = [float(stop['lon']) for stop in stops_list]
@@ -353,7 +355,19 @@ def calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius,
 						transfers = -1
 			
 				if(transfers != -1):
-					trip_time = trip_time + wait_time + sum([connection['travel_time'] for connection in connections_seq])
+					print("Trip:                                ")
+					print("From: " + str(random_lat_1) + "," + str(random_lon_1) + " to: " + str(random_lat_2) + "," + str(random_lon_2))
+					print("Time: ")
+					print(adjustment_weight*wait_time + sum([connection['travel_time'] for connection in connections_seq]))
+					print("Distance: ")
+					print(sum([connection['road_length'] for connection in connections_seq]))
+					print("Transfers: ")
+					print(transfers)
+					print("Straight Distance: ")
+					print(calculate_straight_distance(stop_1['lat'], stop_1['lon'], stop_2['lat'], stop_2['lon'], radius))
+					print(" ")
+
+					trip_time = trip_time + adjustment_weight*wait_time + sum([connection['travel_time'] for connection in connections_seq])
 					trip_distance = trip_distance + sum([connection['road_length'] for connection in connections_seq])
 					trip_transfers = trip_transfers + transfers
 					trip_straight_distance = (trip_straight_distance + 
@@ -361,10 +375,7 @@ def calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius,
 					x = x + 1
 					print("Calculated trip stats for " + str(x + i*sample_size) + "/" + str(sample_size*repetitions), end="\r")
 
-	print(" ")
-	print(trip_time/(sample_size*repetitions))
-	print(trip_distance/(sample_size*repetitions))
-	print(trip_transfers/(sample_size*repetitions))
+	print("")
 
 	return (trip_time/(sample_size*repetitions),
 		trip_distance/(sample_size*repetitions),
@@ -373,6 +384,9 @@ def calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius,
 
 
 def calculate_trip_population(G, routes_list, stops_list, connections_list, sectors_list, radius, sample_size, repetitions):
+
+	# Adjust the result by 30% due to greedy path bias
+	adjustment_weight = 0.7
 
 	population_distribution = [sector['population'] for sector in sectors_list]
 	
@@ -437,7 +451,20 @@ def calculate_trip_population(G, routes_list, stops_list, connections_list, sect
 						transfers = -1
 			
 				if(transfers != -1):
-					trip_time = trip_time + wait_time + sum([connection['travel_time'] for connection in connections_seq])
+
+					print("Trip:                                ")
+					print("From: " + str(random_lat_1) + "," + str(random_lon_1) + " to: " + str(random_lat_2) + "," + str(random_lon_2))
+					print("Time: ")
+					print(adjustment_weight*wait_time + sum([connection['travel_time'] for connection in connections_seq]))
+					print("Distance: ")
+					print(sum([connection['road_length'] for connection in connections_seq]))
+					print("Transfers: ")
+					print(transfers)
+					print("Straight Distance: ")
+					print(calculate_straight_distance(stop_1['lat'], stop_1['lon'], stop_2['lat'], stop_2['lon'], radius))
+					print(" ")
+
+					trip_time = trip_time + adjustment_weight*wait_time + sum([connection['travel_time'] for connection in connections_seq])
 					trip_distance = trip_distance + sum([connection['road_length'] for connection in connections_seq])
 					trip_transfers = trip_transfers + transfers
 					trip_straight_distance = (trip_straight_distance + 
@@ -446,9 +473,6 @@ def calculate_trip_population(G, routes_list, stops_list, connections_list, sect
 					print("Calculated trip stats for " + str(x + i*sample_size) + "/" + str(sample_size*repetitions), end="\r")
 
 	print("")
-	print(trip_time/(sample_size*repetitions))
-	print(trip_distance/(sample_size*repetitions))
-	print(trip_transfers/(sample_size*repetitions))
 
 	return (trip_time/(sample_size*repetitions),
 		trip_distance/(sample_size*repetitions),
@@ -602,6 +626,9 @@ def convert_stops_seq_to_connections_seq(stops_seq, connections_list):
 
 def count_route_transfers(connections_seq, routes_dict):
 
+	# Adjust the result by 30% due to greedy path bias
+	adjustment_weight = 0.7
+
 	# Impossible if empty list
 	if(not connections_seq):
 		return -1, []
@@ -645,7 +672,9 @@ def count_route_transfers(connections_seq, routes_dict):
 		if(not leg):
 			changes = -1
 
-	return changes-1,final_routes
+
+
+	return int((changes-1)*adjustment_weight),final_routes
 
 
 def select_random_point_uniform(bounding_box):
