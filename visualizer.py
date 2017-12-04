@@ -188,7 +188,7 @@ def calculate_uniform_coverage(stops_list, radius, sample_size, repetitions):
 
 			close_stops = close_stops + close_stops_count
 			least_distance = least_distance + least_distance_stop
-			print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
+			print("Calculated area coverage for " + str(x + i*sample_size) + "/" + str(sample_size*repetitions), end="\r")
 
 	return close_stops/(sample_size*repetitions), least_distance/(sample_size*repetitions)
 
@@ -224,7 +224,7 @@ def calculate_population_coverage(stops_list, sectors_list, radius, sample_size,
 
 			close_stops = close_stops + close_stops_count
 			least_distance = least_distance + least_distance_stop
-			print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
+			print("Calculated population coverage for " + str(x + i*sample_size) + "/" + str(sample_size*repetitions), end="\r")
 
 	return close_stops/(sample_size*repetitions), least_distance/(sample_size*repetitions)
 
@@ -283,6 +283,8 @@ def calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius,
 					path = nx.shortest_path(G, stop_2['tag'], stop_1['tag'], 'travel_time')
 				except nx.NetworkXNoPath:
 					path = -1
+
+			pprint(path)
 
 			# If it exists, get data on it
 			if(path != -1):
@@ -387,6 +389,7 @@ def calculate_trip_population(G, routes_list, stops_list, connections_list, sect
 					x = x + 1
 					print("Calculated trip stats for " + str(x + i*sample_size) + "/" + str(sample_size*repetitions), end="\r")
 
+	print("")
 	return (trip_time/(sample_size*repetitions),
 		trip_distance/(sample_size*repetitions),
 		trip_transfers/(sample_size*repetitions),
