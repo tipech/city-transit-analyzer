@@ -17,8 +17,45 @@ def main():
 
 	"""
 
-	# With the "static" argument, create images of the static network
-	if len(sys.argv) > 2 and (sys.argv[1] == "static" or sys.argv[1] == "-s" ):
+	# With the "draw" argument, draw the network
+	if len(sys.argv) > 2 and (sys.argv[1] == "draw" or sys.argv[1] == "-d" ):
+
+		draw_static_network(G,stops_list)
+
+
+	# With the "poi" argument, calculate poi statistics
+	elif len(sys.argv) > 2 and (sys.argv[1] == "poi" or sys.argv[1] == "-p" ):
+
+
+		metrics = []
+
+		for city in sys.argv[2].split(","):
+
+			# Read the network files
+			routes_list = read_routes_file(cities[city]['tag'])
+			stops_list = read_stops_file(cities[city]['tag'])
+			connections_list = read_connections_file(cities[city]['tag'])
+			poi_list = read_poi_file(cities[city]['tag'])
+
+			sample_size = sys.argv[3]
+			sample_size = sys.argv[4]
+
+			G = create_directed_network(stops_list, connections_list)
+			radius = cities[city]['radius']
+			area = cities[city]['area']
+
+
+			# ------------ Points Of Interest -----------
+			poi = calculate_poi_uniform(G, routes_list, stops_list, connections_list, poi_list,
+				radius, sample_size, repetitions, poi_type)
+		
+			print(poi)
+
+			print("Calculated poi for: " + city + "                    ")
+
+
+	# With the "metrics" argument, calculate all metrics
+	elif len(sys.argv) > 2 and (sys.argv[1] == "metrics" or sys.argv[1] == "-m" ):
 
 		metrics = []
 
@@ -29,11 +66,12 @@ def main():
 			stops_list = read_stops_file(cities[city]['tag'])
 			connections_list = read_connections_file(cities[city]['tag'])
 
-			G = create_directed_network(stops_list, connections_list)
+			sample_size = int(sys.argv[3])
+			repetitions = int(sys.argv[4])
 
-			# draw_static_network(G,stops_list)
+			G = create_directed_network(stops_list, connections_list)
 			
-			city_metrics = calculate_city_metrics(G, routes_list, stops_list, connections_list, city)
+			city_metrics = calculate_city_metrics(G, routes_list, stops_list, connections_list, city, sample_size, repetitions)
 			metrics.append(city + "," + ",".join(str(value) for value in city_metrics.values()))
 			write_metrics_file("city," + ",".join(str(value) for value in city_metrics.keys())
 				+ "\n".join(metrics) + "\n")
@@ -44,11 +82,33 @@ def main():
 		metrics = ["city," + ",".join(str(value) for value in city_metrics.keys())] + metrics
 		metrics_text = "\n".join(metrics) + "\n"
 		write_metrics_file(metrics_text)
-		print(metrics_text)
+		# print(metrics_text)
+
+	# With the "evaluation" argument, calculate some paths for evaluation
+	elif len(sys.argv) > 2 and (sys.argv[1] == "evaluation" or sys.argv[1] == "-e" ):
+
+		city = sys.argv[2]
+		sample_size = int(sys.argv[3])
+		repetitions = 1
+
+		# Area and earth radius presets
+		radius = cities[city]['radius']
+		area = cities[city]['area']
+
+		# Read the network files
+		routes_list = read_routes_file(cities[city]['tag'])
+		stops_list = read_stops_file(cities[city]['tag'])
+		connections_list = read_connections_file(cities[city]['tag'])
+		sectors_list = read_demographics_file(cities[city]['tag'])
+
+		G = create_directed_network(stops_list, connections_list)
+
+		calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius, sample_size, repetitions)
+		calculate_trip_population(G, routes_list, stops_list, connections_list, sectors_list, radius, sample_size, repetitions)
 
 	# With wrong arguments, print usage help message
 	else:
-		print("Usage: visualizer <static|...> <city>[,<city_2>,...]")
+		print("Usage: visualizer <metrics|evaluation|draw|poi> <city>[,<city_2>,...]")
 
 		
 
@@ -67,23 +127,17 @@ def create_directed_network(stops_list, connections_list):
 
 
 
-
-
 # ===============================================
 # =				Metrics Calculation				=
 # ===============================================
 
-def calculate_city_metrics(G, routes_list, stops_list, connections_list, city):
+def calculate_city_metrics(G, routes_list, stops_list, connections_list, city, sample_size, repetitions):
 
 	sectors_list = read_demographics_file(cities[city]['tag'])
-	# poi_list = read_poi_file(cities[city]['tag'])
 
 	# Area and earth radius presets
 	radius = cities[city]['radius']
 	area = cities[city]['area']
-
-	repetitions = 10
-	sample_size = 100
 
 	metrics = {}
 
@@ -137,9 +191,6 @@ def calculate_city_metrics(G, routes_list, stops_list, connections_list, city):
 		calculate_uniform_coverage(stops_list, radius, sample_size, repetitions))
 	metrics['population_coverage_stops'], metrics['population_coverage_distance'] = (
 		calculate_population_coverage(stops_list, sectors_list, radius, sample_size, repetitions))
-
-	# ------------ Points Of Interest -----------
-	# calculate_poi_uniform(G, routes_list, stops_list, connections_list, poi_list, radius, sample_size, repetitions)
 
 
 	# -------- Clustering & Connectivity --------
@@ -284,7 +335,7 @@ def calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius,
 				except nx.NetworkXNoPath:
 					path = -1
 
-			pprint(path)
+			# pprint(path)
 
 			# If it exists, get data on it
 			if(path != -1):
@@ -309,6 +360,11 @@ def calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius,
 						calculate_straight_distance(stop_1['lat'], stop_1['lon'], stop_2['lat'], stop_2['lon'], radius))
 					x = x + 1
 					print("Calculated trip stats for " + str(x + i*sample_size) + "/" + str(sample_size*repetitions), end="\r")
+
+	print(" ")
+	print(trip_time/(sample_size*repetitions))
+	print(trip_distance/(sample_size*repetitions))
+	print(trip_transfers/(sample_size*repetitions))
 
 	return (trip_time/(sample_size*repetitions),
 		trip_distance/(sample_size*repetitions),
@@ -390,13 +446,17 @@ def calculate_trip_population(G, routes_list, stops_list, connections_list, sect
 					print("Calculated trip stats for " + str(x + i*sample_size) + "/" + str(sample_size*repetitions), end="\r")
 
 	print("")
+	print(trip_time/(sample_size*repetitions))
+	print(trip_distance/(sample_size*repetitions))
+	print(trip_transfers/(sample_size*repetitions))
+
 	return (trip_time/(sample_size*repetitions),
 		trip_distance/(sample_size*repetitions),
 		trip_transfers/(sample_size*repetitions),
 		trip_straight_distance/(sample_size*repetitions))
 
 
-def calculate_poi_uniform(G, routes_list, stops_list, connections_list, poi_list, radius, sample_size, repetitions):
+def calculate_poi_uniform(G, routes_list, stops_list, connections_list, poi_list, radius, sample_size, repetitions, poi_type):
 
 	cutoff_high_deg = 0.0072	# 800m
 	cutoff_low_deg = 0.0036  	# 400m
