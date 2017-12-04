@@ -73,7 +73,7 @@ def main():
 			
 			city_metrics = calculate_city_metrics(G, routes_list, stops_list, connections_list, city, sample_size, repetitions)
 			metrics.append(city + "," + ",".join(str(value) for value in city_metrics.values()))
-			write_metrics_file("city," + ",".join(str(value) for value in city_metrics.keys())
+			write_metrics_file(city, "city," + ",".join(str(value) for value in city_metrics.keys())
 				+ "\n".join(metrics) + "\n")
 		
 			print("Calculated metrics for: " + city + "                    ")
@@ -81,7 +81,7 @@ def main():
 
 		metrics = ["city," + ",".join(str(value) for value in city_metrics.keys())] + metrics
 		metrics_text = "\n".join(metrics) + "\n"
-		write_metrics_file(metrics_text)
+		write_metrics_file(city, metrics_text)
 		# print(metrics_text)
 
 	# With the "evaluation" argument, calculate some paths for evaluation
