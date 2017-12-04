@@ -373,6 +373,18 @@ def write_connections_file(directory, connections_list):
 	connections_file.close()
 
 
+def write_metrics_file(metrics_text):
+	"""Creates a new or empties the existing metrics file and fills it with the results."""
+
+	# (Re)create empty connections file
+	metrics_file = open("metrics.csv", "w+")
+
+	# Write metrics file
+	metrics_file.write(metrics_text)
+	# Close the file
+	metrics_file.close()
+
+
 # ===============================================
 # =				Graph manipulation				=
 # ===============================================

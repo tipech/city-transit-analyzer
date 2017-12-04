@@ -35,12 +35,16 @@ def main():
 			
 			city_metrics = calculate_city_metrics(G, routes_list, stops_list, connections_list, city)
 			metrics.append(city + "," + ",".join(str(value) for value in city_metrics.values()))
-
+			write_metrics_file("city," + ",".join(str(value) for value in city_metrics.keys())
+				+ "\n".join(metrics) + "\n")
+		
 			print("Calculated metrics for: " + city + "                    ")
 
 
 		metrics = ["city," + ",".join(str(value) for value in city_metrics.keys())] + metrics
-		print("\n" + "\n".join(metrics) + "\n")
+		metrics_text = "\n".join(metrics) + "\n"
+		write_metrics_file(metrics_text)
+		print(metrics_text)
 
 	# With wrong arguments, print usage help message
 	else:
@@ -72,14 +76,14 @@ def create_directed_network(stops_list, connections_list):
 def calculate_city_metrics(G, routes_list, stops_list, connections_list, city):
 
 	sectors_list = read_demographics_file(cities[city]['tag'])
-	poi_list = read_poi_file(cities[city]['tag'])
+	# poi_list = read_poi_file(cities[city]['tag'])
 
 	# Area and earth radius presets
 	radius = cities[city]['radius']
 	area = cities[city]['area']
 
-	repetitions = 1
-	sample_size = 10
+	repetitions = 10
+	sample_size = 100
 
 	metrics = {}
 
@@ -105,20 +109,28 @@ def calculate_city_metrics(G, routes_list, stops_list, connections_list, city):
 	# --------- Shortest Times & Paths ----------
 	(metrics['average_trip_time_uniform'],
 		metrics['average_trip_length_uniform'],
-		metrics['average_trip_transfers_uniform'],
+		metrics['average_transfers_uniform'],
 		metrics['average_straight_distance_uniform']) = (
 		calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius, sample_size, repetitions))
 
-	metrics['average_detour_normalized'] = ((metrics['average_trip_length_uniform']-metrics['average_straight_distance_uniform'])
-		/metrics['average_straight_distance_uniform'])
+	metrics['average_trip_length_normalized_uniform'] = metrics['average_trip_length_uniform']/metrics['average_straight_distance_uniform']
+	metrics['average_time_normalized_uniform'] = metrics['average_trip_time_uniform']/metrics['average_straight_distance_uniform']
+	metrics['average_transfers_normalized_uniform'] = metrics['average_transfers_uniform']/metrics['average_straight_distance_uniform']
+	
 
 
 	# --- Shortest Population Times and Paths ---
 	(metrics['average_trip_time_population'],
 		metrics['average_trip_length_population'],
-		metrics['average_trip_transfers_population'],
+		metrics['average_transfers_population'],
 		metrics['average_straight_distance_population']) = (
 		calculate_trip_population(G, routes_list, stops_list, connections_list, sectors_list, radius, sample_size, repetitions))
+
+	metrics['average_trip_length_normalized_population'] = metrics['average_trip_length_population']/metrics['average_straight_distance_population']
+	metrics['average_time_normalized_population'] = metrics['average_trip_time_population']/metrics['average_straight_distance_population']
+	metrics['average_transfers_normalized_population'] = metrics['average_transfers_population']/metrics['average_straight_distance_population']
+	
+
 
 	# ----------------- Coverage ----------------
 	metrics['uniform_coverage_stops'], metrics['uniform_coverage_distance'] = (
@@ -172,10 +184,10 @@ def calculate_uniform_coverage(stops_list, radius, sample_size, repetitions):
 			# Calculate number of close stops and least distance
 			close_stops_count, close_stops_distances = (
 				calculate_close_stops(cutoff_square_stops, random_lat, random_lon, cutoff_low_deg, radius))
-			least_distance = calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops, radius)
+			least_distance_stop = calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops, radius)
 
 			close_stops = close_stops + close_stops_count
-			least_distance = least_distance + least_distance
+			least_distance = least_distance + least_distance_stop
 			print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
 
 	return close_stops/(sample_size*repetitions), least_distance/(sample_size*repetitions)
@@ -208,10 +220,10 @@ def calculate_population_coverage(stops_list, sectors_list, radius, sample_size,
 			# Calculate number of close stops and least distance
 			close_stops_count, close_stops_distances = (
 				calculate_close_stops(cutoff_square_stops, random_lat, random_lon, cutoff_low_deg, radius))
-			least_distance = calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops, radius)
+			least_distance_stop = calculate_least_distance(random_lat, random_lon, close_stops_distances, cutoff_square_stops, radius)
 
 			close_stops = close_stops + close_stops_count
-			least_distance = least_distance + least_distance
+			least_distance = least_distance + least_distance_stop
 			print("Calculated area coverage for " + str(x*repetitions) + "/" + str(sample_size*repetitions), end="\r")
 
 	return close_stops/(sample_size*repetitions), least_distance/(sample_size*repetitions)
@@ -278,11 +290,16 @@ def calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius,
 				connections_seq =  convert_stops_seq_to_connections_seq(path, connections_list)
 				transfers, trip_legs = count_route_transfers(connections_seq, routes_dict)
 
+				wait_time = 0
+				for leg_routes in trip_legs:
+					
+					wait_times_list = [routes_dict[route]['wait_time_mean'] for route in leg_routes]
+					if(wait_times_list):
+						wait_time = wait_time + min(wait_times_list)/2
+					else:
+						transfers = -1
+			
 				if(transfers != -1):
-					wait_time = 0
-					for leg_routes in trip_legs:
-						wait_time = wait_time + min([routes_dict[route]['wait_time_mean'] for route in leg_routes])/2
-
 					trip_time = trip_time + wait_time + sum([connection['travel_time'] for connection in connections_seq])
 					trip_distance = trip_distance + sum([connection['road_length'] for connection in connections_seq])
 					trip_transfers = trip_transfers + transfers
@@ -300,6 +317,8 @@ def calculate_trip_uniform(G, routes_list, stops_list, connections_list, radius,
 def calculate_trip_population(G, routes_list, stops_list, connections_list, sectors_list, radius, sample_size, repetitions):
 
 	population_distribution = [sector['population'] for sector in sectors_list]
+	
+	routes_dict = {route['tag']:route for route in routes_list}
 
 	cutoff_high_deg = 0.0072	# 800m
 	cutoff_low_deg = 0.0036  	# 400m
@@ -322,7 +341,7 @@ def calculate_trip_population(G, routes_list, stops_list, connections_list, sect
 			# Make sure first point is within the service area (within 800m of nearest stop)
 			cutoff_square_stops = get_stops_in_square(stops_list, random_lat_1, random_lon_1, cutoff_high_deg)
 			while (len(cutoff_square_stops) == 0):
-				random_lat_1, random_lon_1 = select_random_point_uniform(bounding_box)
+				random_lat_1, random_lon_1 = select_random_point_population(population_distribution, sectors_list)
 				cutoff_square_stops = get_stops_in_square(stops_list, random_lat_1, random_lon_1, cutoff_high_deg)
 
 			stop_1 = get_closest_stop(random_lat_1, random_lon_1, cutoff_square_stops, radius)
@@ -330,7 +349,7 @@ def calculate_trip_population(G, routes_list, stops_list, connections_list, sect
 			# Make sure second point is within the service area (within 800m of nearest stop)
 			cutoff_square_stops = get_stops_in_square(stops_list, random_lat_2, random_lon_2, cutoff_high_deg)
 			while (len(cutoff_square_stops) == 0):
-				random_lat_2, random_lon_2 = select_random_point_uniform(bounding_box)
+				random_lat_2, random_lon_2 = select_random_point_population(population_distribution, sectors_list)
 				cutoff_square_stops = get_stops_in_square(stops_list, random_lat_2, random_lon_2, cutoff_high_deg)
 
 			stop_2 = get_closest_stop(random_lat_2, random_lon_2, cutoff_square_stops, radius)
@@ -350,11 +369,16 @@ def calculate_trip_population(G, routes_list, stops_list, connections_list, sect
 				connections_seq =  convert_stops_seq_to_connections_seq(path, connections_list)
 				transfers, trip_legs = count_route_transfers(connections_seq, routes_dict)
 
+				wait_time = 0
+				for leg_routes in trip_legs:
+					
+					wait_times_list = [routes_dict[route]['wait_time_mean'] for route in leg_routes]
+					if(wait_times_list):
+						wait_time = wait_time + min(wait_times_list)/2
+					else:
+						transfers = -1
+			
 				if(transfers != -1):
-					wait_time = 0
-					for leg_routes in trip_legs:
-						wait_time = wait_time + min([routes_dict[route]['wait_time_mean'] for route in leg_routes])/2
-
 					trip_time = trip_time + wait_time + sum([connection['travel_time'] for connection in connections_seq])
 					trip_distance = trip_distance + sum([connection['road_length'] for connection in connections_seq])
 					trip_transfers = trip_transfers + transfers
@@ -423,11 +447,16 @@ def calculate_poi_uniform(G, routes_list, stops_list, connections_list, poi_list
 					connections_seq =  convert_stops_seq_to_connections_seq(path, connections_list)
 					transfers, trip_legs = count_route_transfers(connections_seq, routes_dict)
 
-					if(transfers != -1):
-						wait_time = 0
-						for leg_routes in trip_legs:
-							wait_time = wait_time + min([routes_dict[route]['wait_time_mean'] for route in leg_routes])/2
-
+				wait_time = 0
+				for leg_routes in trip_legs:
+					
+					wait_times_list = [routes_dict[route]['wait_time_mean'] for route in leg_routes]
+					if(wait_times_list):
+						wait_time = wait_time + min(wait_times_list)/2
+					else:
+						transfers = -1
+			
+				if(transfers != -1):
 						trip_times.append(wait_time + sum([connection['travel_time'] for connection in connections_seq]))
 
 			if(not trip_times):
